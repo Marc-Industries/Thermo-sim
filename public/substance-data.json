@@ -78,54 +78,89 @@
       "key": "Water",
       "name": { "it": "Acqua", "en": "Water" },
       "molar_mass": 18.015,
-      "critical_pressure": 22.064,
+      "critical_pressure": 22.064e6,
       "critical_temperature": 647.096,
       "critical_density": 322,
       "acentric_factor": 0.344,
       "triple_point_temp": 273.16,
-      "triple_point_pressure": 0.0000611,
-      "normal_boiling_point": 373.15
+      "triple_point_pressure": 611.657,
+      "normal_boiling_point": 373.15,
+      "saturation_table": {
+        "273.15": { "P": 611.657, "T": 273.15, "vf": 0.001002, "vg": 206.136, "hf": 0.0, "hg": 2501.0, "sf": 0.0, "sg": 9.155 },
+        "298.15": { "P": 3169, "T": 298.15, "vf": 0.001004, "vg": 39.13, "hf": 104.8, "hg": 2443.9, "sf": 0.3674, "sg": 8.721 },
+        "323.15": { "P": 12346, "T": 323.15, "vf": 0.001008, "vg": 10.02, "hf": 209.3, "hg": 2384.5, "sf": 0.7032, "sg": 8.221 },
+        "373.15": { "P": 101325, "T": 373.15, "vf": 0.001045, "vg": 1.6729, "hf": 417.36, "hg": 2257.9, "sf": 1.3069, "sg": 6.6863 },
+        "423.15": { "P": 408760, "T": 423.15, "vf": 0.001080, "vg": 0.4625, "hf": 635.3, "hg": 2048.9, "sf": 1.8610, "sg": 5.7098 },
+        "473.15": { "P": 1555280, "T": 473.15, "vf": 0.001121, "vg": 0.1318, "hf": 967.8, "hg": 1604.2, "sf": 2.5705, "sg": 4.1094 }
+      }
     },
     {
       "key": "R134a",
       "name": { "it": "Refrigerante R-134a", "en": "Refrigerant R-134a" },
       "molar_mass": 102.03,
-      "critical_pressure": 40.593,
+      "critical_pressure": 40.593e6,
       "critical_temperature": 374.21,
       "critical_density": 511.9,
       "acentric_factor": 0.3272,
-      "normal_boiling_point": 247.08
+      "normal_boiling_point": 247.08,
+      "saturation_table": {
+        "240": { "P": 74700, "T": 240, "vf": 0.000751, "vg": 0.25633, "hf": 161.2, "hg": 407.2, "sf": 0.8865, "sg": 1.7893 },
+        "250": { "P": 104850, "T": 250, "vf": 0.000761, "vg": 0.18657, "hf": 175.7, "hg": 413.8, "sf": 0.9466, "sg": 1.7376 },
+        "260": { "P": 145200, "T": 260, "vf": 0.000772, "vg": 0.13980, "hf": 190.7, "hg": 420.0, "sf": 1.0048, "sg": 1.6936 },
+        "270": { "P": 196850, "T": 270, "vf": 0.000783, "vg": 0.10748, "hf": 206.4, "hg": 425.8, "sf": 1.0613, "sg": 1.6552 },
+        "280": { "P": 261400, "T": 280, "vf": 0.000796, "vg": 0.084639, "hf": 222.9, "hg": 431.0, "sf": 1.1160, "sg": 1.6210 }
+      }
     },
     {
       "key": "R410a",
       "name": { "it": "Refrigerante R-410a", "en": "Refrigerant R-410a" },
       "molar_mass": 72.59,
-      "critical_pressure": 49.1,
+      "critical_pressure": 49.1e6,
       "critical_temperature": 344.5,
       "critical_density": 485.1,
       "acentric_factor": 0.296,
-      "normal_boiling_point": 221.55
+      "normal_boiling_point": 221.55,
+      "saturation_table": {
+        "240": { "P": 314000, "T": 240, "vf": 0.000761, "vg": 0.068543, "hf": 115.0, "hg": 393.0, "sf": 0.6400, "sg": 1.6690 },
+        "250": { "P": 437000, "T": 250, "vf": 0.000772, "vg": 0.050321, "hf": 136.0, "hg": 401.0, "sf": 0.7280, "sg": 1.6240 },
+        "260": { "P": 596000, "T": 260, "vf": 0.000783, "vg": 0.037980, "hf": 158.0, "hg": 408.0, "sf": 0.8100, "sg": 1.5830 },
+        "270": { "P": 797000, "T": 270, "vf": 0.000796, "vg": 0.028880, "hf": 181.0, "hg": 414.0, "sf": 0.8880, "sg": 1.5460 },
+        "280": { "P": 1050000, "T": 280, "vf": 0.000810, "vg": 0.022351, "hf": 205.0, "hg": 419.0, "sf": 0.9640, "sg": 1.5120 }
+      }
     },
     {
       "key": "R22",
       "name": { "it": "Refrigerante R-22", "en": "Refrigerant R-22" },
       "molar_mass": 86.468,
-      "critical_pressure": 49.73,
+      "critical_pressure": 49.73e6,
       "critical_temperature": 369.21,
       "critical_density": 573.3,
       "acentric_factor": 0.22082,
-      "normal_boiling_point": 247.05
+      "normal_boiling_point": 247.05,
+      "saturation_table": {
+        "240": { "P": 308100, "T": 240, "vf": 0.000738, "vg": 0.068869, "hf": 106.4, "hg": 376.8, "sf": 0.6050, "sg": 1.6970 },
+        "250": { "P": 428100, "T": 250, "vf": 0.000748, "vg": 0.050391, "hf": 128.1, "hg": 384.2, "sf": 0.7020, "sg": 1.6420 },
+        "260": { "P": 585900, "T": 260, "vf": 0.000759, "vg": 0.037815, "hf": 150.5, "hg": 391.1, "sf": 0.7920, "sg": 1.5980 },
+        "270": { "P": 785600, "T": 270, "vf": 0.000772, "vg": 0.028800, "hf": 173.7, "hg": 397.4, "sf": 0.8780, "sg": 1.5610 },
+        "280": { "P": 1033200, "T": 280, "vf": 0.000787, "vg": 0.022282, "hf": 197.9, "hg": 402.9, "sf": 0.9600, "sg": 1.5260 }
+      }
     },
     {
       "key": "Ammonia",
       "name": { "it": "Ammoniaca", "en": "Ammonia" },
       "molar_mass": 17.031,
-      "critical_pressure": 113.33,
+      "critical_pressure": 113.33e6,
       "critical_temperature": 405.65,
       "critical_density": 235,
       "acentric_factor": 0.25,
-      "normal_boiling_point": 239.65
+      "normal_boiling_point": 239.65,
+      "saturation_table": {
+        "260": { "P": 131400, "T": 260, "vf": 0.001424, "vg": 0.25688, "hf": -66.6, "hg": 1338.6, "sf": -0.2534, "sg": 5.2854 },
+        "270": { "P": 188800, "T": 270, "vf": 0.001445, "vg": 0.18127, "hf": -48.1, "hg": 1335.6, "sf": -0.1809, "sg": 5.0818 },
+        "280": { "P": 266500, "T": 280, "vf": 0.001468, "vg": 0.13149, "hf": -29.0, "hg": 1331.7, "sf": -0.1086, "sg": 4.9092 },
+        "290": { "P": 370500, "T": 290, "vf": 0.001493, "vg": 0.096944, "hf": -9.4, "hg": 1327.0, "sf": -0.0366, "sg": 4.7600 },
+        "300": { "P": 504000, "T": 300, "vf": 0.001522, "vg": 0.072618, "hf": 10.8, "hg": 1321.5, "sf": 0.0350, "sg": 4.6287 }
+      }
     }
   ]
 }
-

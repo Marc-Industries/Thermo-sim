@@ -41,15 +41,30 @@ const idealGasData: Record<string, IdealGasProperties> = {}
   }
 })
 
-// Simplified water properties (use available JSON real data as metadata)
-const waterMeta = (substanceData as any).real?.find((r: any) => r.key === 'Water') || {}
+// Load real substance data (water, refrigerants)
+const realSubstances: Record<string, any> = {}
+;(substanceData as any).real?.forEach((r: any) => {
+  realSubstances[r.key] = r
+})
 
-// Very small simplified saturation table (fallback)
-const waterSaturation: Record<number, Record<string, number>> = {
-  0.000611: { Tsat: 273.16, vf: 0.001, vg: 206.0, hf: 0.0, hg: 2500.0, sf: 0.0, sg: 7.5 },
-  0.01: { Tsat: 318.6, vf: 0.001, vg: 14.67, hf: 419, hg: 2676, sf: 1.3, sg: 7.31 },
-  0.1: { Tsat: 373.95, vf: 0.00104, vg: 1.673, hf: 417, hg: 2675, sf: 1.307, sg: 7.31 },
-  1.0: { Tsat: 453.0, vf: 0.001, vg: 0.194, hf: 1447, hg: 2792, sf: 3.78, sg: 6.59 },
+// Build saturation table maps for fast lookup
+function buildSaturationMaps(substance: string) {
+  const data = realSubstances[substance]
+  if (!data?.saturation_table) return { byT: {}, byP: {}, entries: [] }
+  
+  const byT: Record<number, any> = {}
+  const byP: Record<number, any> = {}
+  const entries: any[] = Object.entries(data.saturation_table).map(([k, v]: any) => ({
+    T: parseFloat(k),
+    ...(v as any)
+  }))
+  
+  entries.forEach(e => {
+    byT[e.T] = e
+    byP[e.P] = e
+  })
+  
+  return { byT, byP, entries: entries || [] }
 }
 
 function ensureProps(obj: Record<string, any>, keys: string[]) {
@@ -117,12 +132,16 @@ export function calculateIdealGasState(
 }
 
 /**
- * Simplified water model: expects P (Pa) and T (K) ideally. Returns rough estimates.
+ * Improved real fluid model using saturation tables.
  */
-export function calculateWaterState(
+export function calculateRealState(
+  substance: string,
   prop1: { name: string; value: number },
   prop2: { name: string; value: number }
 ): ThermodynamicState {
+  const data = realSubstances[substance]
+  if (!data) throw new Error(`Real substance not available: ${substance}`)
+  
   const props: Record<string, number> = { [prop1.name]: prop1.value, [prop2.name]: prop2.value }
   const P = props.P
   const T = props.T
@@ -131,34 +150,72 @@ export function calculateWaterState(
   let u = props.u
   let s = props.s
   let x = props.x
-
-  if (P === undefined || T === undefined) {
-    throw new Error('Water model requires at least P and T (in SI units: Pa, K)')
-  }
-
-  // choose nearest saturation entry by pressure (Pa -> convert table keys in Pa)
-  const satEntries: any[] = Object.entries(waterSaturation).map(([k, v]) => ({ p: parseFloat(k), ...(v as any) }))
-  // find approximate saturation at given P (conversion: table keys in MPa or Pa? table keys in Pa already)
-  let sat: any = satEntries[0]
-  for (const e of satEntries) {
-    if (Math.abs(e.p - P) < Math.abs(sat.p - P)) sat = e
-  }
-
-  // rough phase decision
+  
+  // Build saturation lookup
+  const { byT, byP, entries } = buildSaturationMaps(substance)
+  
+  if (!entries.length) throw new Error(`No saturation data for: ${substance}`)
+  
+  // Find nearest saturation point to determine phase
+  let satPoint: any = null
   let phase = 'liquid'
-  if (T > (sat?.Tsat ?? -Infinity)) phase = 'gas'
-  else if (Math.abs(T - (sat?.Tsat ?? T)) < 1e-6) phase = 'two-phase'
-
-  if (v === undefined) {
-    v = phase === 'gas' ? (461.5 * T) / P : sat.vf
+  
+  // If P and T both provided, determine phase
+  if (P !== undefined && T !== undefined) {
+    // Find saturation T at given P
+    let closestSat = entries[0]
+    for (const e of entries) {
+      if (Math.abs(e.P - P) < Math.abs(closestSat.P - P)) closestSat = e
+    }
+    satPoint = closestSat
+    const Tsat = closestSat.T
+    
+    if (T < Tsat) phase = 'liquid'
+    else if (T > Tsat) phase = 'gas'
+    else phase = 'two-phase'
   }
-  if (h === undefined) {
-    h = phase === 'gas' ? 2500000 + 1850 * (T - 373) : sat.hf
-  }
+  
+  // Fill in missing properties using saturation point
+  if (!satPoint && entries.length > 0) satPoint = entries[Math.floor(entries.length / 2)]
+  
+  if (v === undefined) v = phase === 'gas' ? satPoint.vg : satPoint.vf
+  if (h === undefined) h = phase === 'gas' ? satPoint.hg : satPoint.hf
+  if (s === undefined) s = phase === 'gas' ? satPoint.sg : satPoint.sf
   if (u === undefined) u = h - P * v
-  if (s === undefined) s = phase === 'gas' ? sat.sg : sat.sf
-
+  if (x === undefined && phase === 'two-phase') x = 0.5
+  
   return { P, T, v, h, u, s, x, phase }
+}
+
+/**
+ * Simplified water model fallback for backward compatibility
+ */
+export function calculateWaterState(
+  prop1: { name: string; value: number },
+  prop2: { name: string; value: number }
+): ThermodynamicState {
+  // Try new model first
+  try {
+    return calculateRealState('Water', prop1, prop2)
+  } catch (e) {
+    // Fallback to bare minimum
+    const props: Record<string, number> = { [prop1.name]: prop1.value, [prop2.name]: prop2.value }
+    const P = props.P
+    const T = props.T
+    
+    if (P === undefined || T === undefined) {
+      throw new Error('Water model requires P and T (SI units)')
+    }
+    
+    // Extremely rough fallback properties
+    const phase = T > 373.15 ? 'gas' : 'liquid'
+    const h = phase === 'gas' ? 2500000 : 1447
+    const s = phase === 'gas' ? 7.0 : 3.78
+    const v = phase === 'gas' ? (461.5 * T) / P : 0.001
+    const u = h - P * v
+    
+    return { P, T, v, h, u, s, phase }
+  }
 }
 
 export function computeThermodynamicState(
@@ -175,26 +232,19 @@ export function computeThermodynamicState(
   }
 
   if (model === 'real') {
+    // Check if real substance exists
+    if (realSubstances[substance]) {
+      const state = calculateRealState(substance, prop1, prop2)
+      return { state }
+    }
+    
+    // Fallback for older named substances
     if (substance === 'Water' || substance === 'Steam') {
       const state = calculateWaterState(prop1, prop2)
       return { state }
     }
-    // For other real fluids, return metadata if available
-    const meta = (substanceData as any).real?.find((r: any) => r.key === substance)
-    if (meta) {
-      // Very rough idealization: treat as ideal gas with molar mass conversion if possible
-      const M = meta.molar_mass
-      if (M && (prop1.name === 'P' || prop2.name === 'P')) {
-        // Attempt ideal gas fallback using R_universal / M
-        const R_univ = 8.314462618
-        const R_spec = (R_univ * 1000) / M // J/kgK
-        // create a temporary ideal gas entry
-        const temp: IdealGasProperties = { R: R_spec, cp: 1000, cv: 700, gamma: 1.428 }
-        idealGasData[substance] = temp
-        const state = calculateIdealGasState(substance, prop1, prop2)
-        return { state, extra: { R: temp.R, cp: temp.cp, cv: temp.cv, gamma: temp.gamma } }
-      }
-    }
+    
+    throw new Error(`Real substance not available: ${substance}`)
   }
 
   throw new Error(`Model/substance not supported: ${model}/${substance}`)
