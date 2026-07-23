@@ -42,7 +42,7 @@ export default function ThermoChart({ diagram, height = 400, series }: ThermoCha
 
   // Flatten points into chart data
   const data = series.flatMap((s) =>
-    s.points.map((p, idx) => ({
+    s.points.map((p) => ({
       [xKey]: (p as Record<string, any>)[xKey],
       [yKey]: (p as Record<string, any>)[yKey],
       seriesName: s.name,
