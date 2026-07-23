@@ -137,17 +137,17 @@ export function calculateWaterState(
   }
 
   // choose nearest saturation entry by pressure (Pa -> convert table keys in Pa)
-  const satEntries = Object.entries(waterSaturation).map(([k, v]) => ({ p: parseFloat(k), ...v }))
+  const satEntries: any[] = Object.entries(waterSaturation).map(([k, v]) => ({ p: parseFloat(k), ...(v as any) }))
   // find approximate saturation at given P (conversion: table keys in MPa or Pa? table keys in Pa already)
-  let sat = satEntries[0]
+  let sat: any = satEntries[0]
   for (const e of satEntries) {
     if (Math.abs(e.p - P) < Math.abs(sat.p - P)) sat = e
   }
 
   // rough phase decision
   let phase = 'liquid'
-  if (T > sat.Tsat) phase = 'gas'
-  else if (Math.abs(T - sat.Tsat) < 1e-6) phase = 'two-phase'
+  if (T > (sat?.Tsat ?? -Infinity)) phase = 'gas'
+  else if (Math.abs(T - (sat?.Tsat ?? T)) < 1e-6) phase = 'two-phase'
 
   if (v === undefined) {
     v = phase === 'gas' ? (461.5 * T) / P : sat.vf
