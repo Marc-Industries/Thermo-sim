@@ -1,0 +1,59 @@
+{
+  "ideal_gas": [
+    {
+      "key": "Air",
+      "name": { "it": "Aria", "en": "Air" },
+      "R": 287,
+      "cp": 1005,
+      "cv": 718,
+      "gamma": 1.4
+    },
+    {
+      "key": "N2",
+      "name": { "it": "Azoto", "en": "Nitrogen" },
+      "R": 296.8,
+      "cp": 1040,
+      "cv": 743.5,
+      "gamma": 1.4
+    },
+    {
+      "key": "O2",
+      "name": { "it": "Ossigeno", "en": "Oxygen" },
+      "R": 259.8,
+      "cp": 918,
+      "cv": 658,
+      "gamma": 1.4
+    },
+    {
+      "key": "He",
+      "name": { "it": "Elio", "en": "Helium" },
+      "R": 2077,
+      "cp": 5193,
+      "cv": 3116,
+      "gamma": 1.67
+    }
+  ],
+  "real": [
+    {
+      "key": "Water",
+      "name": { "it": "Acqua", "en": "Water" },
+      "molar_mass": 18.015,
+      "critical_pressure": 22.064,
+      "critical_temperature": 647.096
+    },
+    {
+      "key": "R134a",
+      "name": { "it": "Refrigerante R-134a", "en": "Refrigerant R-134a" },
+      "molar_mass": 102.03,
+      "critical_pressure": 40.593,
+      "critical_temperature": 374.21
+    },
+    {
+      "key": "R410a",
+      "name": { "it": "Refrigerante R-410a", "en": "Refrigerant R-410a" },
+      "molar_mass": 72.59,
+      "critical_pressure": 49.1,
+      "critical_temperature": 344.5
+    }
+  ]
+}
