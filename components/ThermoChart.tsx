@@ -57,8 +57,15 @@ export default function ThermoChart({ diagram, height = 400, series }: ThermoCha
           <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
           <XAxis dataKey={xKey} label={{ value: axis.x, position: 'insideBottomRight', offset: -5 }} />
           <YAxis label={{ value: axis.y, angle: -90, position: 'insideLeft' }} />
-          <Tooltip contentStyle={{ backgroundColor: '#1e293b', border: '1px solid #475569' }} />
-          {series.map((s) => (
+          <Tooltip
+            contentStyle={{ backgroundColor: '#1e293b', border: '1px solid #475569' }}
+            formatter={(value: any, name: any, props: any) => {
+              if (typeof value === 'number') return [Number(value).toFixed(4), props && props.payload && props.payload.seriesName]
+              return [value, name]
+            }}
+            labelFormatter={(label) => `${axis.x}: ${label}`}
+          />
+          {series.map((s, idx) => (
             <Line
               key={s.name}
               dataKey={yKey}
@@ -66,6 +73,7 @@ export default function ThermoChart({ diagram, height = 400, series }: ThermoCha
               dot={s.showDots}
               isAnimationActive={false}
               connectNulls
+              strokeWidth={s.big ? 2.5 : 1.5}
             />
           ))}
         </LineChart>

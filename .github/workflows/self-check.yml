@@ -1,0 +1,57 @@
+name: CI - Self-check
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-self-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        run: npm install -g pnpm@9
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm build --if-present
+
+      - name: Start Next (background)
+        run: |
+          pnpm start &
+          echo $! > .next-pid
+
+      - name: Wait for server
+        run: |
+          for i in {1..30}; do
+            if curl -sSf http://localhost:3000/api/self-check >/dev/null; then
+              echo "server ready"
+              break
+            fi
+            echo "waiting..."
+            sleep 1
+          done
+
+      - name: Run self-check
+        run: |
+          curl -sSf http://localhost:3000/api/self-check | jq .
+
+      - name: Kill server
+        if: success() || failure()
+        run: |
+          if [ -f .next-pid ]; then
+            kill $(cat .next-pid) || true
+            rm .next-pid
+          fi
