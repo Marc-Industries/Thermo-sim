@@ -14,10 +14,10 @@ export default function ProcessAnalysis() {
   const [processType, setProcessType] = useState('isobaric')
   const [state1, setState1] = useState<any>(null)
   const [state2, setState2] = useState<any>(null)
-  const [prop1_1, setProp1_1] = useState({ name: 'P', value: 1 })
-  const [prop1_2, setProp1_2] = useState({ name: 'T', value: 373 })
-  const [prop2_1, setProp2_1] = useState({ name: 'P', value: 1 })
-  const [prop2_2, setProp2_2] = useState({ name: 'h', value: 2600 })
+  const [prop1_1, setProp1_1] = useState<{ name: string; value: string | number }>({ name: 'P', value: 1 })
+  const [prop1_2, setProp1_2] = useState<{ name: string; value: string | number }>({ name: 'T', value: 373 })
+  const [prop2_1, setProp2_1] = useState<{ name: string; value: string | number }>({ name: 'P', value: 1 })
+  const [prop2_2, setProp2_2] = useState<{ name: string; value: string | number }>({ name: 'h', value: 2600 })
   const [busy, setBusy] = useState(false)
 
   const processTypes = ['isobaric', 'isochoric', 'isothermal', 'adiabatic', 'polytropic']
