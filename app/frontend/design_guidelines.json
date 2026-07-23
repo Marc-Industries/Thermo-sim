@@ -1,0 +1,109 @@
+{
+  "theme": "dark",
+  "archetype": "Swiss & High-Contrast (Technical / CAD Variant)",
+  "typography": {
+    "headings": {
+      "fontFamily": "Chivo, sans-serif",
+      "strategy": "Bold, square-ish, precise. Use tracking-tight for H1-H3. Never center align technical dashboard headings."
+    },
+    "body": {
+      "fontFamily": "IBM Plex Sans, sans-serif",
+      "strategy": "Clean, highly legible at small sizes, excellent for dense data UI."
+    },
+    "numbers_and_math": {
+      "fontFamily": "JetBrains Mono, monospace",
+      "strategy": "CRITICAL: All thermodynamic properties (P, T, v, h, u, s), metrics, and Professor Mode outputs MUST use this monospace font. Ensures decimal alignment in dense tables."
+    }
+  },
+  "colors": {
+    "background": {
+      "app": "#020617",
+      "surface": "#0f172a",
+      "surfaceHover": "#1e293b",
+      "description": "Cool-tinted deep slate (slate-950) for a precise, scientific lab environment. Do not use pure black."
+    },
+    "text": {
+      "primary": "#f8fafc",
+      "secondary": "#94a3b8",
+      "disabled": "#475569"
+    },
+    "accents": {
+      "primary": "#ff3366",
+      "primaryDescription": "Signal Red - Used for Heat additions (Qin), high temperature states, and primary CTAs.",
+      "secondary": "#00e5ff",
+      "secondaryDescription": "Cyan / Klein Blue - Used for Cooling (Qout), liquid phases, and secondary interactive elements.",
+      "warning": "#fbbf24",
+      "warningDescription": "Amber - Used for state transitions, work (W) outputs, and alerts."
+    },
+    "borders": {
+      "default": "#1e293b",
+      "focus": "#ff3366"
+    }
+  },
+  "layouts": {
+    "dashboard_grid": {
+      "type": "High Density Grid (Mode B)",
+      "strategy": "Strict grid hierarchy. Use CSS Grid with 1px border-collapse style. 'Expose the skeleton' — border-r and border-b on grid items to create a technical blueprint feel.",
+      "spacing": "Tight internal padding (p-4 or p-6) for high information density. External gaps can be 0 if using the 1px grid border strategy."
+    },
+    "alignment": "Strictly Left-aligned for data, tables, and forms. Center alignment is banned for technical data displays."
+  },
+  "surfaces": {
+    "cards": "Grid Borders (Technical Look). Flat backgrounds, 1px visible borders (border-slate-800), NO soft shadows. Instead of shadows, use subtle colored left-borders (border-l-2) to denote state (e.g., red for hot, blue for cold).",
+    "headers": "Solid background with a hard bottom border (border-b border-slate-800). No glassmorphism in the main scientific workbench to prevent visual refraction of dense data."
+  },
+  "component_instructions": {
+    "tables": "Must be dense, highly structured. Sortable headers. Hover effects on rows (bg-slate-800/50). Numbers must be right-aligned and monospace.",
+    "inputs": "Shadcn UI forms. Square or slightly rounded (rounded-sm max). Focus rings must be high-contrast Signal Red or Cyan.",
+    "tabs": "Flat, pill-less. Active state should be a 2px bottom border (Signal Red) over a transparent background.",
+    "buttons": "Sharp edges (rounded-sm or rounded-none). Primary action in Signal Red. Secondary in Outline style.",
+    "interactive_diagrams": "Recharts for P-v, T-s, P-h graphs. The charts MUST have a grid background (stroke-dasharray='3 3' stroke='#1e293b'). Axis labels must be JetBrains Mono. Data lines should glow (use drop-shadow in SVG or thick 2px strokes).",
+    "professor_mode": "Use a specialized 'Terminal/Retro-Futurism' micro-theme. Deep indigo/black background, monospace fonts, step-by-step progressive disclosure (using Accordions or step lists)."
+  },
+  "visual_enhancers": {
+    "motion": "Minimalist. Micro-interactions for hover states. Tooltips must appear instantly (no long delays) because experts scan quickly. Transitions on property updates should flash softly (e.g., bg-slate-800 to transparent) to indicate data change.",
+    "accessibility": "Minimum 4.5:1 contrast for all text. Focus rings must be 2px solid. All properties MUST include units (kJ/kg, MPa, K) next to the value."
+  },
+  "required_libraries": [
+    {
+      "name": "@phosphor-icons/react",
+      "purpose": "Technical and dense dashboard iconography. Use 'regular' or 'light' weights.",
+      "install": "yarn add @phosphor-icons/react"
+    },
+    {
+      "name": "recharts",
+      "purpose": "For interactive 2D thermodynamic diagrams (P-v, T-s, Mollier).",
+      "install": "yarn add recharts"
+    },
+    {
+      "name": "react-latex-next",
+      "purpose": "MANDATORY for 'Professor Mode' step-by-step symbolic + numeric derivations.",
+      "install": "yarn add react-latex-next"
+    }
+  ],
+  "testing": {
+    "attributes": "All interactive elements, input fields, calculation outputs, and unit toggles MUST include `data-testid` in kebab-case."
+  },
+  "media": {
+    "images": [
+      {
+        "url": "https://images.unsplash.com/photo-1714899984906-a3e8f43025a0?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njl8MHwxfHNlYXJjaHwzfHxhYnN0cmFjdCUyMHRlY2huaWNhbCUyMGRhcmslMjBncmlkJTIwYmFja2dyb3VuZHxlbnwwfHx8fDE3ODQ4MDg0NTF8MA&ixlib=rb-4.1.0&q=85",
+        "category": "auth_background",
+        "description": "Abstract technical dark grid background. Use for the login/signup page or marketing hero section with a heavy opacity overlay (bg-slate-950/80)."
+      }
+    ]
+  },
+  "universal_guidelines_for_main_agent": [
+    "You tend to converge toward generic, 'on distribution' outputs. In frontend design, this creates what users call the 'AI slop' aesthetic. Avoid this: make creative, distinctive frontends that surprise and delight.",
+    "Dark colors look good when used independently without gradients. DO NOT use dark colors as gradients.",
+    "Don't make generic centered layouts, simplistic gradients, and uniform styling. You MUST NOT center align the app container.",
+    "NEVER use AI assistant Emoji characters like 🤖🧠💭💡🔮🎯 etc for icons. Use the specified icon library.",
+    "Every interaction needs micro-animations - hover states, transitions. Static = dead.",
+    "Do NOT apply `transition: all`. Target specific properties.",
+    "All calculation output values MUST use the specified monospace font (`JetBrains Mono`).",
+    "DO NOT use a transparent background for the header. It must have a solid background color.",
+    "For toasts, use the `sonner` library.",
+    "Never use placeholder URLs. If an image is needed, use the provided auth_background."
+  ]
+}
+
