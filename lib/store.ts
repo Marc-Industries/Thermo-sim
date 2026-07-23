@@ -133,6 +133,16 @@ export const useStore = create<Store>()(
         cycle: [],
         addToCycle: (state) => set((s) => ({ cycle: [...s.cycle, state] })),
         clearCycle: () => set({ cycle: [] }),
+        setCycle: (newCycle: any[]) => set({ cycle: newCycle }),
+        removeFromCycle: (index: number) => set((s) => ({ cycle: s.cycle.filter((_, i) => i !== index) })),
+        moveCycleItem: (from: number, to: number) =>
+          set((s) => {
+            const arr = [...s.cycle]
+            if (from < 0 || from >= arr.length || to < 0 || to >= arr.length) return { cycle: arr }
+            const [item] = arr.splice(from, 1)
+            arr.splice(to, 0, item)
+            return { cycle: arr }
+          }),
 
         // Export current session as JSON string (session snapshot)
         exportSnapshot: () => {
