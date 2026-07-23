@@ -1,0 +1,194 @@
+{
+  "metadata": {
+    "version": "1.2",
+    "description": "Database esteso delle costanti termodinamiche per Thermonator Pro",
+    "reference_state": "IUPAC (T = 298.15 K, P = 100000 Pa)",
+    "universal_gas_constant_R_u": 8.314462618
+  },
+  "substances": [
+    {
+      "id": "N2",
+      "name": "Azoto",
+      "formula": "N2",
+      "category": "Diatomic Gases",
+      "molar_mass_kg_mol": 0.0280134,
+      "specific_gas_constant_R_J_kgK": 296.80,
+      "critical_state": {
+        "temperature_K": 126.192,
+        "pressure_Pa": 3395800,
+        "density_kg_m3": 314.03
+      },
+      "triple_point": {
+        "temperature_K": 63.151,
+        "pressure_Pa": 12520.0
+      },
+      "acentric_factor": 0.0372,
+      "ideal_gas_cp_coefficients": {
+        "model": "NASA_7_polynomial",
+        "T_range_K": [200, 1000],
+        "coefficients": [3.298677, 1.40824e-3, -3.96322e-6, 5.64151e-9, -2.44485e-12]
+      }
+    },
+    {
+      "id": "O2",
+      "name": "Ossigeno",
+      "formula": "O2",
+      "category": "Diatomic Gases",
+      "molar_mass_kg_mol": 0.0319988,
+      "specific_gas_constant_R_J_kgK": 259.83,
+      "critical_state": {
+        "temperature_K": 154.581,
+        "pressure_Pa": 5043000,
+        "density_kg_m3": 436.14
+      },
+      "triple_point": {
+        "temperature_K": 54.361,
+        "pressure_Pa": 146.33
+      },
+      "acentric_factor": 0.0222,
+      "ideal_gas_cp_coefficients": {
+        "model": "NASA_7_polynomial",
+        "T_range_K": [200, 1000],
+        "coefficients": [3.782456, -2.99673e-3, 9.84730e-6, -9.68129e-9, 3.24372e-12]
+      }
+    },
+    {
+      "id": "H2",
+      "name": "Idrogeno",
+      "formula": "H2",
+      "category": "Diatomic Gases",
+      "molar_mass_kg_mol": 0.00201588,
+      "specific_gas_constant_R_J_kgK": 4124.2,
+      "critical_state": {
+        "temperature_K": 33.145,
+        "pressure_Pa": 1296400,
+        "density_kg_m3": 31.262
+      },
+      "triple_point": {
+        "temperature_K": 13.952,
+        "pressure_Pa": 7200.0
+      },
+      "acentric_factor": -0.219,
+      "ideal_gas_cp_coefficients": {
+        "model": "NASA_7_polynomial",
+        "T_range_K": [200, 1000],
+        "coefficients": [2.344331, 7.98052e-3, -1.94781e-5, 2.01572e-8, -7.37611e-12]
+      }
+    },
+    {
+      "id": "He",
+      "name": "Elio",
+      "formula": "He",
+      "category": "Noble Gases",
+      "molar_mass_kg_mol": 0.0040026,
+      "specific_gas_constant_R_J_kgK": 2077.1,
+      "critical_state": {
+        "temperature_K": 5.1953,
+        "pressure_Pa": 227460,
+        "density_kg_m3": 69.64
+      },
+      "triple_point": {
+        "temperature_K": 2.177,
+        "pressure_Pa": 5040.0
+      },
+      "acentric_factor": -0.39,
+      "ideal_gas_cp_coefficients": {
+        "model": "NASA_7_polynomial",
+        "T_range_K": [200, 1000],
+        "coefficients": [2.5, 0.0, 0.0, 0.0, 0.0]
+      }
+    },
+    {
+      "id": "Ar",
+      "name": "Argon",
+      "formula": "Ar",
+      "category": "Noble Gases",
+      "molar_mass_kg_mol": 0.039948,
+      "specific_gas_constant_R_J_kgK": 208.13,
+      "critical_state": {
+        "temperature_K": 150.687,
+        "pressure_Pa": 4863000,
+        "density_kg_m3": 535.6
+      },
+      "triple_point": {
+        "temperature_K": 83.8058,
+        "pressure_Pa": 68890.0
+      },
+      "acentric_factor": -0.00219,
+      "ideal_gas_cp_coefficients": {
+        "model": "NASA_7_polynomial",
+        "T_range_K": [200, 1000],
+        "coefficients": [2.5, 0.0, 0.0, 0.0, 0.0]
+      }
+    },
+    {
+      "id": "CH4",
+      "name": "Metano",
+      "formula": "CH4",
+      "category": "Hydrocarbons",
+      "molar_mass_kg_mol": 0.0160425,
+      "specific_gas_constant_R_J_kgK": 518.28,
+      "critical_state": {
+        "temperature_K": 190.564,
+        "pressure_Pa": 4599200,
+        "density_kg_m3": 162.66
+      },
+      "triple_point": {
+        "temperature_K": 90.6941,
+        "pressure_Pa": 11696.0
+      },
+      "acentric_factor": 0.01142,
+      "ideal_gas_cp_coefficients": {
+        "model": "NASA_7_polynomial",
+        "T_range_K": [200, 1000],
+        "coefficients": [5.149876, -1.36709e-2, 4.91800e-5, -4.84743e-8, 1.66693e-11]
+      }
+    },
+    {
+      "id": "C3H8",
+      "name": "Propano",
+      "formula": "C3H8",
+      "category": "Hydrocarbons",
+      "molar_mass_kg_mol": 0.0440956,
+      "specific_gas_constant_R_J_kgK": 188.55,
+      "critical_state": {
+        "temperature_K": 369.89,
+        "pressure_Pa": 4247000,
+        "density_kg_m3": 220.0
+      },
+      "triple_point": {
+        "temperature_K": 85.525,
+        "pressure_Pa": 0.00017
+      },
+      "acentric_factor": 0.1521,
+      "ideal_gas_cp_coefficients": {
+        "model": "NASA_7_polynomial",
+        "T_range_K": [200, 1000],
+        "coefficients": [0.933553, 2.64245e-2, 6.10597e-6, -2.19774e-8, 9.51492e-12]
+      }
+    },
+    {
+      "id": "R22",
+      "name": "Clorodifluorometano",
+      "formula": "CHClF2",
+      "category": "Refrigerants",
+      "molar_mass_kg_mol": 0.086468,
+      "specific_gas_constant_R_J_kgK": 96.15,
+      "critical_state": {
+        "temperature_K": 369.29,
+        "pressure_Pa": 4990000,
+        "density_kg_m3": 523.8
+      },
+      "triple_point": {
+        "temperature_K": 115.73,
+        "pressure_Pa": 0.139
+      },
+      "acentric_factor": 0.2208,
+      "ideal_gas_cp_coefficients": {
+        "model": "NASA_7_polynomial",
+        "T_range_K": [200, 1000],
+        "coefficients": [3.56839, -6.78729e-4, 1.55371e-6, -3.29937e-10, -4.66395e-13]
+      }
+    }
+  ]
+}
