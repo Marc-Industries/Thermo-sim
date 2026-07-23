@@ -3,10 +3,11 @@
     {
       "key": "Air",
       "name": { "it": "Aria", "en": "Air" },
-      "R": 287,
+      "R": 287.05,
       "cp": 1005,
       "cv": 718,
-      "gamma": 1.4
+      "gamma": 1.4,
+      "M": 28.97
     },
     {
       "key": "N2",
@@ -14,7 +15,8 @@
       "R": 296.8,
       "cp": 1040,
       "cv": 743.5,
-      "gamma": 1.4
+      "gamma": 1.4,
+      "M": 28.014
     },
     {
       "key": "O2",
@@ -22,7 +24,8 @@
       "R": 259.8,
       "cp": 918,
       "cv": 658,
-      "gamma": 1.4
+      "gamma": 1.4,
+      "M": 31.998
     },
     {
       "key": "He",
@@ -30,7 +33,44 @@
       "R": 2077,
       "cp": 5193,
       "cv": 3116,
-      "gamma": 1.67
+      "gamma": 1.667,
+      "M": 4.003
+    },
+    {
+      "key": "CO2",
+      "name": { "it": "Anidride Carbonica", "en": "Carbon Dioxide" },
+      "R": 188.9,
+      "cp": 846,
+      "cv": 657,
+      "gamma": 1.289,
+      "M": 44.01
+    },
+    {
+      "key": "H2",
+      "name": { "it": "Idrogeno", "en": "Hydrogen" },
+      "R": 4124,
+      "cp": 14300,
+      "cv": 10180,
+      "gamma": 1.405,
+      "M": 2.016
+    },
+    {
+      "key": "Ar",
+      "name": { "it": "Argon", "en": "Argon" },
+      "R": 208.1,
+      "cp": 520,
+      "cv": 312,
+      "gamma": 1.667,
+      "M": 39.948
+    },
+    {
+      "key": "Steam",
+      "name": { "it": "Vapore d'Acqua", "en": "Water Vapor" },
+      "R": 461.5,
+      "cp": 1850,
+      "cv": 1388,
+      "gamma": 1.33,
+      "M": 18.015
     }
   ],
   "real": [
@@ -39,21 +79,53 @@
       "name": { "it": "Acqua", "en": "Water" },
       "molar_mass": 18.015,
       "critical_pressure": 22.064,
-      "critical_temperature": 647.096
+      "critical_temperature": 647.096,
+      "critical_density": 322,
+      "acentric_factor": 0.344,
+      "triple_point_temp": 273.16,
+      "triple_point_pressure": 0.0000611,
+      "normal_boiling_point": 373.15
     },
     {
       "key": "R134a",
       "name": { "it": "Refrigerante R-134a", "en": "Refrigerant R-134a" },
       "molar_mass": 102.03,
       "critical_pressure": 40.593,
-      "critical_temperature": 374.21
+      "critical_temperature": 374.21,
+      "critical_density": 511.9,
+      "acentric_factor": 0.3272,
+      "normal_boiling_point": 247.08
     },
     {
       "key": "R410a",
       "name": { "it": "Refrigerante R-410a", "en": "Refrigerant R-410a" },
       "molar_mass": 72.59,
       "critical_pressure": 49.1,
-      "critical_temperature": 344.5
+      "critical_temperature": 344.5,
+      "critical_density": 485.1,
+      "acentric_factor": 0.296,
+      "normal_boiling_point": 221.55
+    },
+    {
+      "key": "R22",
+      "name": { "it": "Refrigerante R-22", "en": "Refrigerant R-22" },
+      "molar_mass": 86.468,
+      "critical_pressure": 49.73,
+      "critical_temperature": 369.21,
+      "critical_density": 573.3,
+      "acentric_factor": 0.22082,
+      "normal_boiling_point": 247.05
+    },
+    {
+      "key": "Ammonia",
+      "name": { "it": "Ammoniaca", "en": "Ammonia" },
+      "molar_mass": 17.031,
+      "critical_pressure": 113.33,
+      "critical_temperature": 405.65,
+      "critical_density": 235,
+      "acentric_factor": 0.25,
+      "normal_boiling_point": 239.65
     }
   ]
 }
+
