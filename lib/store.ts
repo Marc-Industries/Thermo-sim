@@ -133,6 +133,35 @@ export const useStore = create<Store>()(
         cycle: [],
         addToCycle: (state) => set((s) => ({ cycle: [...s.cycle, state] })),
         clearCycle: () => set({ cycle: [] }),
+
+        // Export current session as JSON string (session snapshot)
+        exportSnapshot: () => {
+          const s = get()
+          const payload = {
+            lang: s.lang,
+            unitSystem: s.unitSystem,
+            currentState: s.currentState,
+            cycle: s.cycle,
+          }
+          return JSON.stringify(payload)
+        },
+
+        // Import a session snapshot (JSON string) into the store
+        importSnapshot: (json) => {
+          try {
+            const obj = typeof json === 'string' ? JSON.parse(json) : json
+            const updates: any = {}
+            if (obj.lang) updates.lang = obj.lang
+            if (obj.unitSystem) updates.unitSystem = obj.unitSystem
+            if (obj.currentState) updates.currentState = obj.currentState
+            if (Array.isArray(obj.cycle)) updates.cycle = obj.cycle
+            set(updates)
+            return true
+          } catch (e) {
+            // ignore
+            return false
+          }
+        },
       }),
       {
         name: 'thermo-store',

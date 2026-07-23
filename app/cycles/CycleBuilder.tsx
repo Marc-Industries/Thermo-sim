@@ -13,7 +13,7 @@ export default function CycleBuilder() {
 
   const cycles = ['rankine', 'otto', 'diesel', 'brayton', 'carnot']
 
-  const addStateToC ycle = () => {
+  const addStateToCycle = () => {
     if (!currentState) {
       toast.error('Seleziona uno stato prima')
       return
