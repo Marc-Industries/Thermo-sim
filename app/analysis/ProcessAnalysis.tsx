@@ -28,15 +28,15 @@ export default function ProcessAnalysis() {
       const r1 = await computeState({
         model: 'real',
         substance,
-        prop1: { ...prop1_1, unit: (units as any)[prop1_1.name] },
-        prop2: { ...prop1_2, unit: (units as any)[prop1_2.name] },
+        prop1: { name: prop1_1.name, value: Number(prop1_1.value), unit: (units as any)[prop1_1.name] },
+        prop2: { name: prop1_2.name, value: Number(prop1_2.value), unit: (units as any)[prop1_2.name] },
         units,
       })
       const r2 = await computeState({
         model: 'real',
         substance,
-        prop1: { ...prop2_1, unit: (units as any)[prop2_1.name] },
-        prop2: { ...prop2_2, unit: (units as any)[prop2_2.name] },
+        prop1: { name: prop2_1.name, value: Number(prop2_1.value), unit: (units as any)[prop2_1.name] },
+        prop2: { name: prop2_2.name, value: Number(prop2_2.value), unit: (units as any)[prop2_2.name] },
         units,
       })
       setState1(r1.state)
