@@ -58,6 +58,13 @@ interface Store {
   cycle: ThermoState[]
   addToCycle: (state: ThermoState) => void
   clearCycle: () => void
+  setCycle: (newCycle: ThermoState[]) => void
+  removeFromCycle: (index: number) => void
+  moveCycleItem: (from: number, to: number) => void
+
+  // Session snapshot
+  exportSnapshot: () => string
+  importSnapshot: (json: string) => boolean
 }
 
 const translations = {
