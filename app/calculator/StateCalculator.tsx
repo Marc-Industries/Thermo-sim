@@ -11,11 +11,11 @@ import { toast } from 'sonner'
 import { computeState } from '@/lib/api'
 
 export default function StateCalculator() {
-  const { t, units, substances } = useStore()
+  const { t, units, substances, addToCycle } = useStore()
   const [model, setModel] = React.useState<'ideal_gas' | 'real'>('real')
   const [substance, setSubstance] = React.useState('Water')
-  const [prop1, setProp1] = React.useState<{ name: string; value: number | string }>({ name: 'P', value: 1 })
-  const [prop2, setProp2] = React.useState<{ name: string; value: number | string }>({ name: 'T', value: 200 })
+  const [prop1, setProp1] = React.useState<{ name: string; value: number | string }>({ name: 'P', value: 101325 })
+  const [prop2, setProp2] = React.useState<{ name: string; value: number | string }>({ name: 'T', value: 373.15 })
   const [result, setResult] = React.useState<any>(null)
   const [busy, setBusy] = React.useState(false)
 
@@ -24,8 +24,8 @@ export default function StateCalculator() {
   const onModel = (m: 'ideal_gas' | 'real') => {
     setModel(m)
     setSubstance(m === 'real' ? 'Water' : 'Air')
-    setProp1({ name: 'P', value: m === 'real' ? 1 : 100 })
-    setProp2({ name: 'T', value: 200 })
+    setProp1({ name: 'P', value: m === 'real' ? 101325 : 101325 })
+    setProp2({ name: 'T', value: m === 'real' ? 373.15 : 288.15 })
     setResult(null)
   }
 
@@ -49,12 +49,23 @@ export default function StateCalculator() {
       }
       const data = await computeState(body)
       setResult(data)
+      toast.success('Stato calcolato')
     } catch (e: any) {
       toast.error(e?.message || t('saveErr'))
       setResult(null)
     } finally {
       setBusy(false)
     }
+  }
+
+  const addState = () => {
+    if (!result?.state) return
+    addToCycle({
+      ...result.state,
+      substance,
+      model,
+    })
+    toast.success('Stato aggiunto al ciclo')
   }
 
   return (
@@ -124,6 +135,15 @@ export default function StateCalculator() {
           <Lightning size={16} weight="fill" />
           {busy ? t('calc') : t('computeState')}
         </Button>
+        
+        {result && (
+          <Button
+            onClick={addState}
+            className="mt-2 w-full gap-2 bg-signal-blue hover:bg-signal-blue/80"
+          >
+            Aggiungi al ciclo
+          </Button>
+        )}
       </div>
 
       {/* RESULTS */}
