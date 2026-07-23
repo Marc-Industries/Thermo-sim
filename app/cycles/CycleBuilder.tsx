@@ -3,7 +3,6 @@
 import React, { useState, useRef } from 'react'
 import { useStore } from '@/lib/store'
 import { Button } from '@/components/Button'
-import PropertyTable from '@/components/PropertyTable'
 import ThermoChart from '@/components/ThermoChart'
 import { toast } from 'sonner'
 
