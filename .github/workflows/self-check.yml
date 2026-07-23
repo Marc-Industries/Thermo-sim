@@ -44,9 +44,13 @@ jobs:
             sleep 1
           done
 
-      - name: Run self-check
+      - name: Run self-check (curl)
         run: |
           curl -sSf http://localhost:3000/api/self-check | jq .
+
+      - name: Run self-validate script (node)
+        run: |
+          node scripts/self-validate.js
 
       - name: Kill server
         if: success() || failure()
