@@ -46,47 +46,67 @@ export default function ThermoChart({ diagram, height = 400, series, units }: Th
   const axisLabelX = xUnit ? `${ax.xKey} (${xUnit})` : ax.x
   const axisLabelY = yUnit ? `${ax.yKey} (${yUnit})` : ax.y
 
-  // Flatten points into chart data, converting from SI when the user picked
-  // a non-SI unit for the axis.
-  const data = series.flatMap((s) =>
-    s.points.map((p) => {
+  // Build a unified table keyed by (x, then each series name).
+  // recharts needs every <Line dataKey="..."> to read from its own column, so
+  // we collect all x values across series, then emit one row per x with one
+  // column per series. Missing values become null.
+  const xVals: number[] = []
+  const seen = new Set<number>()
+  const seriesByX: Record<number, Record<string, number | null>> = {}
+  for (const s of series) {
+    for (const p of s.points) {
       const xRaw = (p as Record<string, any>)[ax.xKey]
       const yRaw = (p as Record<string, any>)[ax.yKey]
-      const xVal = typeof xRaw === 'number' ? (xUnit ? convertFromSI(ax.xKey, xRaw, xUnit) : xRaw) : xRaw
-      const yVal = typeof yRaw === 'number' ? (yUnit ? convertFromSI(ax.yKey, yRaw, yUnit) : yRaw) : yRaw
-      return {
-        [ax.xKey]: xVal,
-        [ax.yKey]: yVal,
-        seriesName: s.name,
-        color: s.color,
+      const xVal = typeof xRaw === 'number' ? (xUnit ? convertFromSI(ax.xKey, xRaw, xUnit) : xRaw) : Number.NaN
+      const yVal = typeof yRaw === 'number' ? (yUnit ? convertFromSI(ax.yKey, yRaw, yUnit) : yRaw) : Number.NaN
+      if (!Number.isFinite(xVal) || !Number.isFinite(yVal)) continue
+      // Round x to avoid float duplicates; tighter tolerance for log axes would
+      // need a different approach — but for normal ranges this is fine.
+      if (!seen.has(xVal)) {
+        seen.add(xVal)
+        xVals.push(xVal)
+        seriesByX[xVal] = {}
       }
-    })
-  )
+      seriesByX[xVal][s.name] = yVal
+    }
+  }
+  xVals.sort((a, b) => a - b)
+  const data = xVals.map((x) => ({ [ax.xKey]: x, ...(seriesByX[x] || {}) }))
 
   return (
     <div className="w-full bg-slate-950 rounded border border-slate-800 p-3">
       <ResponsiveContainer width="100%" height={height}>
         <LineChart data={data} margin={{ top: 5, right: 5, bottom: 5, left: 5 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-          <XAxis dataKey={ax.xKey} label={{ value: axisLabelX, position: 'insideBottomRight', offset: -5 }} />
-          <YAxis label={{ value: axisLabelY, angle: -90, position: 'insideLeft' }} />
+          <XAxis
+            dataKey={ax.xKey}
+            label={{ value: axisLabelX, position: 'insideBottomRight', offset: -5 }}
+            type="number"
+            domain={['dataMin', 'dataMax']}
+          />
+          <YAxis
+            label={{ value: axisLabelY, angle: -90, position: 'insideLeft' }}
+            type="number"
+            domain={['dataMin', 'dataMax']}
+          />
           <Tooltip
             contentStyle={{ backgroundColor: '#1e293b', border: '1px solid #475569' }}
-            formatter={(value: any, name: any, props: any) => {
-              if (typeof value === 'number') return [Number(value).toFixed(4), props && props.payload && props.payload.seriesName]
+            formatter={(value: any, name: any) => {
+              if (typeof value === 'number') return [Number(value).toFixed(4), name]
               return [value, name]
             }}
-            labelFormatter={(label) => `${axisLabelX}: ${label}`}
+            labelFormatter={(label) => `${axisLabelX}: ${Number(label).toFixed(4)}`}
           />
-          {series.map((s, idx) => (
+          {series.map((s) => (
             <Line
               key={s.name}
-              dataKey={ax.yKey}
+              dataKey={s.name}
               stroke={s.color}
               dot={s.showDots}
               isAnimationActive={false}
-              connectNulls
+              connectNulls={false}
               strokeWidth={s.big ? 2.5 : 1.5}
+              type="monotone"
             />
           ))}
         </LineChart>

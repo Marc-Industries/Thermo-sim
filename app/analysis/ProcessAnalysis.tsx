@@ -37,17 +37,19 @@ export default function ProcessAnalysis() {
   const compute = async () => {
     setBusy(true)
     try {
+      // `value` is already in SI (PropField converts on change). Send an empty
+      // unit string so the server doesn't double-convert.
       const r1 = await computeState({
         model,
         substance,
-        prop1: { name: prop1_1.name, value: Number(prop1_1.value), unit: prop1_1.unit || '' },
-        prop2: { name: prop1_2.name, value: Number(prop1_2.value), unit: prop1_2.unit || '' },
+        prop1: { name: prop1_1.name, value: Number(prop1_1.value), unit: '' },
+        prop2: { name: prop1_2.name, value: Number(prop1_2.value), unit: '' },
       })
       const r2 = await computeState({
         model,
         substance,
-        prop1: { name: prop2_1.name, value: Number(prop2_1.value), unit: prop2_1.unit || '' },
-        prop2: { name: prop2_2.name, value: Number(prop2_2.value), unit: prop2_2.unit || '' },
+        prop1: { name: prop2_1.name, value: Number(prop2_1.value), unit: '' },
+        prop2: { name: prop2_2.name, value: Number(prop2_2.value), unit: '' },
       })
       setState1(r1.state)
       setState2(r2.state)

@@ -46,11 +46,15 @@ export default function StateCalculator() {
   const run = async () => {
     setBusy(true)
     try {
+      // PropField already stores `value` in SI internally (it converts through
+      // `convertToSI` on every input change). Sending the same `unit` again to
+      // the server would cause a double conversion. Pass an empty unit so the
+      // server treats the value as SI directly.
       const body = {
         model,
         substance,
-        prop1: { name: prop1.name, value: parseFloat(String(prop1.value)), unit: prop1.unit ?? '' },
-        prop2: { name: prop2.name, value: parseFloat(String(prop2.value)), unit: prop2.unit ?? '' },
+        prop1: { name: prop1.name, value: parseFloat(String(prop1.value)), unit: '' },
+        prop2: { name: prop2.name, value: parseFloat(String(prop2.value)), unit: '' },
       }
       const data = await computeState(body)
       setResult(data)
@@ -171,7 +175,22 @@ export default function StateCalculator() {
         {result ? (
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-[340px_1fr]">
             <div className="border border-slate-800 p-3 rounded space-y-1">
-              <PropertyTable state={result.state} units={Object.fromEntries(Object.keys(result.state).filter(k => k !== 'phase').map(k => [k, unitsFor(k)[0] || ''])) as any} />
+              <PropertyTable
+                state={result.state}
+                units={Object.fromEntries(
+                  Object.keys(result.state)
+                    .filter(k => k !== 'phase')
+                    .map(k => {
+                      // Honour the unit the user picked in PropField when
+                      // available, otherwise fall back to the canonical SI unit.
+                      const userUnit =
+                        k === prop1.name ? prop1.unit :
+                        k === prop2.name ? prop2.unit :
+                        ''
+                      return [k, userUnit || unitsFor(k)[0] || '']
+                    })
+                ) as any}
+              />
               {result.extra && (
                 <div className="mt-3 border-t border-slate-800 pt-2 text-xs text-slate-500">
                   <p className="font-semibold text-slate-400 mb-1">Costanti sostanza</p>
@@ -184,6 +203,7 @@ export default function StateCalculator() {
             <ThermoChart
               diagram="Ts"
               height={360}
+              units={{ x: 'J/(kg·K)', y: 'K' }}
               series={[
                 {
                   name: 'state',

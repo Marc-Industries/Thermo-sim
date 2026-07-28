@@ -24,7 +24,7 @@ const PAGES: Record<string, React.ComponentType> = {
 }
 
 export default function Shell() {
-  const { t, lang, setLang, unitSystem, setUnitSystem, unitSystems } = useStore()
+  const { t, lang, setLang } = useStore()
   const [tab, setTab] = useState('calculator')
   const [mounted, setMounted] = useState(false)
 
@@ -39,7 +39,7 @@ export default function Shell() {
   return (
     <div className="min-h-screen flex flex-col">
       <Toaster theme="dark" position="top-right" richColors />
-      
+
       {/* HEADER */}
       <header className="sticky top-0 z-30 border-b border-slate-800 bg-slate-950/95 backdrop-blur">
         <div className="flex flex-col gap-3 px-5 py-3 md:flex-row md:items-center md:justify-between">
@@ -55,18 +55,6 @@ export default function Shell() {
             </div>
           </div>
           <div className="flex flex-wrap items-center gap-2">
-            <select
-              value={unitSystem}
-              onChange={(e) => setUnitSystem(e.target.value)}
-              className="h-9 rounded-sm border border-slate-700 bg-slate-900/60 px-3 text-xs text-slate-300"
-              data-testid="unit-system-select"
-            >
-              {Object.keys(unitSystems).map((k) => (
-                <option key={k} value={k}>
-                  {k.replace(/_/g, ' ')}
-                </option>
-              ))}
-            </select>
             <div className="flex overflow-hidden rounded-sm border border-slate-700">
               {['it', 'en'].map((l) => (
                 <button
