@@ -14,12 +14,14 @@ export async function POST(req: NextRequest) {
       )
     }
 
+    if (!['ideal_gas', 'ideal_gas_cp_t', 'real'].includes(model)) {
+      return NextResponse.json({ detail: `Unknown model: ${model}` }, { status: 400 })
+    }
+
     // Normalize units to SI (server-side authoritative conversion)
     const normalized = normalizePayloadUnits({ prop1, prop2, units: body.units })
 
-    // Both prop objects now have values in SI; pass to engine
-    const result = computeThermodynamicState(model, substance, normalized.prop1, normalized.prop2)
-
+    const result = computeThermodynamicState(model as any, substance, normalized.prop1, normalized.prop2)
     return NextResponse.json(result)
   } catch (error: any) {
     return NextResponse.json(

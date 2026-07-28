@@ -5,10 +5,15 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "node ./scripts/ci-build.js",
+    "build": "node ./scripts/build-substances.js && node ./scripts/ci-build.js",
     "start": "next start",
     "lint": "next lint",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "build-substances": "node ./scripts/build-substances.js",
+    "self-check": "node ./scripts/self-validate.js",
+    "smoke": "node ./scripts/smoke.js",
+    "wasm:build": "echo 'see rust-wasm/README.md' && (cd rust-wasm && wasm-pack build --release --target web --out-dir ../../public/wasm || true)",
+    "wasm:test": "cd rust-wasm && cargo test"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.0.0",

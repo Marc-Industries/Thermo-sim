@@ -27,25 +27,15 @@ function findLegacy(key) {
   return (legacy.real || []).find((r) => r.key === key)
 }
 
-/** Parse a cp equation expressed as a string like
- *  "1.92 + 7.08e-4*T - 3.73e4*T^-2" into a callable form we can serialise.
- *  Returns { kind: 'expr', formula, rangeK: [min,max] } so the engine can evaluate.
- */
-function parseCpExpr(formula, rangeK) {
-  return { kind: 'expr', formula, rangeK }
-}
-
 /** Compute specific gas constant R in J/(kg·K) from molar mass M (kg/kmol). */
 function rFromM(MkgPerKmol) {
   return RU / MkgPerKmol * 1000 // RU is J/(mol·K); *1000 = J/(kmol·K); /(kg/kmol) = J/(kg·K)
 }
 
-/** cp from a numeric table (no NASA polynomial) — derive R, cv, gamma from cp and k. */
 function basicIdealGas({ name, key, formula, M_kgPerKmol, cp_kcal, k }) {
   // cp_kcal in kcal/(kg·K) — convert to J/(kg·K)
   const cp = cp_kcal * 4186.8
   const R = rFromM(M_kgPerKmol)
-  // gamma = cp/(cp - R) implies cv = cp - R; spec says use k directly.
   const gamma = k
   const cv = cp - R
   return {
@@ -72,7 +62,6 @@ for (const e of cpTempBlock.dati) cpTempByName.set(e.sostanza.toLowerCase(), e)
 const idealGases = []
 for (const g of idealGas20C.dati) {
   const cpT = cpTempByName.get(g.gas.toLowerCase())
-  // M in kg/kmol → kg/mol ×1000 already; g.M is kg/kmol → J/(kg·K) via 8314/M
   const M_kgPerKmol = g.M
   const base = basicIdealGas({
     name: { it: g.gas, en: englishName(g.gas) },
@@ -92,11 +81,6 @@ for (const g of idealGas20C.dati) {
 }
 
 /* ---------- critical / triple / fundamental from Proprieties2 ----------- */
-const fundamentals = prop2.parametri_fondamentali_sostanze_pure.dati
-const fundamentalsByName = new Map()
-for (const e of fundamentals) fundamentalsByName.set(e.sostanza.toLowerCase(), e)
-
-/** Map ideal-gas keys to "real" counterparts (for those with known saturation data). */
 const realByLegacyKey = new Map()
 for (const r of legacy.real || []) realByLegacyKey.set(r.key, r)
 

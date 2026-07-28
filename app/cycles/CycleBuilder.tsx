@@ -5,17 +5,31 @@ import { useStore } from '@/lib/store'
 import { Button } from '@/components/Button'
 import ThermoChart from '@/components/ThermoChart'
 import { toast } from 'sonner'
+import { analyzeCycle, CycleType } from '@/lib/thermo-engine'
+import { generateProfessorReport } from '@/lib/professor'
+
+const CYCLE_TYPES: CycleType[] = ['rankine', 'rankine_superheated', 'rankine_reheat', 'otto', 'diesel', 'brayton', 'carnot']
 
 export default function CycleBuilder() {
   const { t, cycle, addToCycle, clearCycle, currentState, setCycle, removeFromCycle, moveCycleItem } = useStore()
-  const [selectedCycle, setSelectedCycle] = useState('rankine')
+  const [selectedCycle, setSelectedCycle] = useState<CycleType>('rankine')
+  const [diagram, setDiagram] = useState<'Ts' | 'Pv' | 'Ph' | 'Hs' | 'Tv' | 'Ps'>('Ts')
+  const [report, setReport] = useState<{ markdown: string; latex: string; summary: string; steps: any[] } | null>(null)
+  const [reportBusy, setReportBusy] = useState(false)
   const dragIndex = useRef<number | null>(null)
 
-  const cycles = ['rankine', 'otto', 'diesel', 'brayton', 'carnot']
+  const cycleResult = React.useMemo(() => {
+    if (cycle.length < 4) return null
+    try {
+      return analyzeCycle(selectedCycle, cycle as any)
+    } catch (e: any) {
+      return { error: e.message }
+    }
+  }, [cycle, selectedCycle])
 
   const addStateToCycle = () => {
     if (!currentState) {
-      toast.error('Seleziona uno stato prima')
+      toast.error('Calcola prima uno stato nel tab Stato')
       return
     }
     addToCycle(currentState)
@@ -77,7 +91,7 @@ export default function CycleBuilder() {
 
   const exportReport = async () => {
     try {
-      const payload = { type: 'cycle', cycle }
+      const payload = { type: 'cycle', cycle: cycle as any }
       const res = await fetch('/api/export-report', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -103,8 +117,83 @@ export default function CycleBuilder() {
     }
   }
 
+  const generateProfessor = async () => {
+    if (cycle.length < 4) {
+      toast.error('Servono almeno 4 stati per la Professor Mode')
+      return
+    }
+    setReportBusy(true)
+    try {
+      const res = await fetch('/api/professor', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'cycle',
+          cycle: selectedCycle,
+          substance: (cycle[0] as any).substance || 'Water',
+          model: (cycle[0] as any).model || 'real',
+          states: cycle,
+        }),
+      })
+      const data = await res.json()
+      if (data.error) throw new Error(data.error)
+      setReport(data)
+      toast.success('Report generato')
+    } catch (e: any) {
+      toast.error(e.message || 'Professor Mode fallita')
+    } finally {
+      setReportBusy(false)
+    }
+  }
+
+  const downloadLatex = () => {
+    if (!report?.latex) return
+    const blob = new Blob([report.latex], { type: 'text/x-tex' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `professor-${selectedCycle}.tex`
+    document.body.appendChild(a)
+    a.click()
+    a.remove()
+    URL.revokeObjectURL(url)
+    toast.success('LaTeX scaricato')
+  }
+
+  const downloadPDF = async () => {
+    if (!report?.latex) return
+    try {
+      const res = await fetch('/api/professor/pdf', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ latex: report.latex, cycle: selectedCycle }),
+      })
+      if (!res.ok) {
+        // Fallback: print the page
+        const w = window.open('', '_blank')
+        if (w) {
+          w.document.write(`<html><head><title>Thermonator ${selectedCycle}</title><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script></head><body style="font-family:system-ui;padding:2cm;background:white;color:black">${reportMarkdownToHTML(report.markdown)}</body></html>`)
+          w.document.close()
+          setTimeout(() => w.print(), 800)
+        }
+        return
+      }
+      const blob = await res.blob()
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = `professor-${selectedCycle}.pdf`
+      document.body.appendChild(a)
+      a.click()
+      a.remove()
+      URL.revokeObjectURL(url)
+    } catch (e: any) {
+      toast.error('PDF rendering fallback: usa la stampa del browser')
+    }
+  }
+
   return (
-    <div className="grid grid-cols-1 gap-1 bg-slate-800 lg:grid-cols-[300px_1fr]">
+    <div className="grid grid-cols-1 gap-1 bg-slate-800 lg:grid-cols-[320px_1fr]">
       <div className="bg-slate-950 p-6">
         <h2 className="mb-1 font-head text-xl font-bold">{t('nav_cycle')}</h2>
         <p className="mb-6 text-sm text-slate-500">Costruisci cicli termodinamici</p>
@@ -112,19 +201,28 @@ export default function CycleBuilder() {
         <label className="mb-1 block text-xs uppercase tracking-wide text-slate-500">Tipo Ciclo</label>
         <select
           value={selectedCycle}
-          onChange={(e) => setSelectedCycle(e.target.value)}
+          onChange={(e) => setSelectedCycle(e.target.value as CycleType)}
           className="mb-5 h-10 w-full rounded-sm border border-slate-700 bg-slate-900/60 px-3 text-sm text-slate-300"
         >
-          {cycles.map((c) => (
-            <option key={c} value={c}>
-              {c.toUpperCase()}
-            </option>
+          {CYCLE_TYPES.map((c) => (
+            <option key={c} value={c}>{c.toUpperCase().replace(/_/g, ' ')}</option>
+          ))}
+        </select>
+
+        <label className="mb-1 block text-xs uppercase tracking-wide text-slate-500">Diagramma</label>
+        <select
+          value={diagram}
+          onChange={(e) => setDiagram(e.target.value as any)}
+          className="mb-5 h-10 w-full rounded-sm border border-slate-700 bg-slate-900/60 px-3 text-sm text-slate-300"
+        >
+          {['Ts', 'Pv', 'Ph', 'Hs', 'Tv', 'Ps'].map((d) => (
+            <option key={d} value={d}>{d}</option>
           ))}
         </select>
 
         <div className="space-y-2 mb-4">
           <Button onClick={addStateToCycle} className="w-full" variant="default">
-            Aggiungi Stato
+            Aggiungi Stato corrente
           </Button>
           <Button onClick={() => clearCycle()} className="w-full" variant="outline">
             Cancella Ciclo
@@ -135,7 +233,7 @@ export default function CycleBuilder() {
           <p className="text-slate-400">Punti nel ciclo: <span className="font-bold text-signal-red">{cycle.length}</span></p>
         </div>
 
-        <div className="flex gap-2">
+        <div className="flex gap-2 mb-3">
           <Button onClick={exportJSON} className="flex-1">Esporta JSON</Button>
           <label className="flex-1">
             <input type="file" accept="application/json" onChange={(e) => importJSON(e.target.files?.[0] ?? null)} className="hidden" />
@@ -143,18 +241,21 @@ export default function CycleBuilder() {
           </label>
         </div>
 
-        <div className="mt-3">
-          <Button onClick={exportReport} className="w-full">Esporta Report</Button>
+        <div className="space-y-2">
+          <Button onClick={exportReport} className="w-full">Esporta Report (Markdown)</Button>
+          <Button onClick={generateProfessor} disabled={reportBusy} className="w-full bg-signal-blue hover:bg-signal-blue/80">
+            {reportBusy ? 'Generazione…' : 'Professor Mode (analitico)'}
+          </Button>
         </div>
       </div>
 
       <div className="bg-slate-950 p-6">
-        <h3 className="mb-4 font-head text-base font-bold text-slate-300">Ciclo {selectedCycle.toUpperCase()}</h3>
+        <h3 className="mb-4 font-head text-base font-bold text-slate-300">Ciclo {selectedCycle.toUpperCase().replace(/_/g, ' ')}</h3>
         {cycle.length > 0 ? (
           <div className="grid grid-cols-1 gap-4">
             <ThermoChart
-              diagram="Ts"
-              height={300}
+              diagram={diagram}
+              height={320}
               series={[
                 {
                   name: 'ciclo',
@@ -165,6 +266,15 @@ export default function CycleBuilder() {
                 },
               ]}
             />
+
+            {cycleResult && !('error' in cycleResult) && (
+              <div className="grid grid-cols-2 gap-2 border border-slate-700 p-3 rounded text-sm">
+                <div><span className="text-slate-500">W net:</span> <span className="font-mono text-signal-red">{cycleResult.Wnet.toFixed(2)} J/kg</span></div>
+                <div><span className="text-slate-500">Q in:</span> <span className="font-mono text-signal-blue">{cycleResult.Qin.toFixed(2)} J/kg</span></div>
+                <div><span className="text-slate-500">Q out:</span> <span className="font-mono text-signal-blue">{cycleResult.Qout.toFixed(2)} J/kg</span></div>
+                <div><span className="text-slate-500">η:</span> <span className="font-mono text-emerald-400">{cycleResult.eta.toFixed(4)}</span></div>
+              </div>
+            )}
 
             <div className="space-y-2">
               {cycle.map((st: any, idx: number) => (
@@ -178,7 +288,7 @@ export default function CycleBuilder() {
                 >
                   <div className="text-xs">
                     <div className="font-semibold">Stato {idx + 1}</div>
-                    <div className="text-slate-400">P: {st.P ?? '-'}, T: {st.T ?? '-'}</div>
+                    <div className="text-slate-400">P: {st.P?.toFixed(0) ?? '-'}, T: {st.T?.toFixed(1) ?? '-'}</div>
                   </div>
                   <div className="flex gap-2">
                     <Button onClick={() => removeFromCycle(idx)} variant="outline">Rimuovi</Button>
@@ -187,13 +297,32 @@ export default function CycleBuilder() {
               ))}
             </div>
 
-            <div className="text-xs text-slate-400 p-3 border border-slate-800 rounded">
-              <p>Ciclo con {cycle.length} stati caricati</p>
-            </div>
+            {report && (
+              <div className="border border-slate-700 p-4 rounded bg-slate-900/40">
+                <div className="flex items-center justify-between mb-3">
+                  <h4 className="font-head text-base font-bold text-slate-300">Professor Mode Report</h4>
+                  <div className="flex gap-2">
+                    <Button onClick={downloadLatex} variant="outline">Scarica LaTeX</Button>
+                    <Button onClick={downloadPDF} variant="outline">Scarica PDF</Button>
+                  </div>
+                </div>
+                <p className="text-sm text-emerald-400 mb-2">{report.summary}</p>
+                <div className="max-h-80 overflow-y-auto text-sm text-slate-300 space-y-3">
+                  {report.steps.map((s, i) => (
+                    <div key={i} className="border-b border-slate-800 pb-2">
+                      <p className="font-semibold text-slate-200">{s.title}</p>
+                      <p className="text-slate-400 text-xs">{s.explanation}</p>
+                      <pre className="text-xs text-slate-300 mt-1 whitespace-pre-wrap">{s.latex}</pre>
+                      {s.numeric && <p className="text-xs text-signal-blue mt-1">{s.numeric}</p>}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         ) : (
           <div className="flex h-64 items-center justify-center border border-dashed border-slate-800 rounded text-sm text-slate-600">
-            Aggiungi stati per visualizzare il ciclo →
+            Calcola uno stato nel tab Stato, poi torna qui per costruire il ciclo →
           </div>
         )}
       </div>
@@ -201,3 +330,15 @@ export default function CycleBuilder() {
   )
 }
 
+/** Minimal Markdown → HTML for the print fallback. */
+function reportMarkdownToHTML(md: string): string {
+  return md
+    .replace(/^# (.+)$/gm, '<h1>$1</h1>')
+    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\$\$([\s\S]+?)\$\$/g, '<pre style="background:#f5f5f5;padding:0.5em">$1</pre>')
+    .replace(/\$([^\$]+)\$/g, '<i>$1</i>')
+    .replace(/\n\n/g, '</p><p>')
+    .replace(/^([^<].*)$/gm, '<p>$1</p>')
+}

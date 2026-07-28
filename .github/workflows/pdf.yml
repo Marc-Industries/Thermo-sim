@@ -1,0 +1,80 @@
+name: Build PDF report (Professor Mode)
+
+on:
+  workflow_dispatch:
+    inputs:
+      cycle:
+        description: 'Cycle type to render (rankine, otto, diesel, brayton, carnot)'
+        required: true
+        default: 'rankine'
+  push:
+    branches: [ main ]
+    paths:
+      - 'app/api/professor/**'
+      - 'lib/professor.ts'
+      - '.github/workflows/pdf.yml'
+
+jobs:
+  pdf:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        run: npm install -g pnpm@9
+
+      - name: Install deps
+        run: pnpm install --frozen-lockfile
+
+      - name: Build Next bundle
+        run: pnpm build
+
+      - name: Start Next
+        run: |
+          pnpm start &
+          echo $! > .next-pid
+          for i in {1..30}; do
+            if curl -sSf http://localhost:3000/api/self-check >/dev/null; then
+              echo "ready"
+              break
+            fi
+            sleep 1
+          done
+
+      - name: Fetch Professor Mode LaTeX
+        id: prof
+        run: |
+          curl -sSf "http://localhost:3000/api/professor?cycle=${{ github.event.inputs.cycle || 'rankine' }}" > prof.json
+          cat prof.json | node -e 'let s=""; process.stdin.on("data",c=>s+=c).on("end",()=>{const j=JSON.parse(s); require("fs").writeFileSync("report.tex", j.latex); console.log("summary:", j.summary);})'
+
+      - name: Compile PDF with Tectonic
+        uses: docker://tectonictypesetting/tectonic:latest
+        with:
+          args: --report.tex
+          entrypoint: /bin/sh
+      # ↑ the action above runs `tectonic report.tex` inside a fully-loaded
+      # TeXLive container, producing `report.pdf` as a build artifact.
+
+      - name: Upload PDF artefact
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: professor-report-${{ github.event.inputs.cycle || 'rankine' }}
+          path: report.pdf
+          if-no-files-found: warn
+
+      - name: Kill Next server
+        if: always()
+        run: |
+          if [ -f .next-pid ]; then
+            kill $(cat .next-pid) || true
+            rm .next-pid
+          fi

@@ -5,12 +5,13 @@ const api = axios.create({
   timeout: 30000,
 })
 
+export type ThermoModel = 'ideal_gas' | 'ideal_gas_cp_t' | 'real'
+
 export interface StatePayload {
-  model: 'ideal_gas' | 'real'
+  model: ThermoModel
   substance: string
   prop1: { name: string; value: number; unit: string }
   prop2: { name: string; value: number; unit: string }
-  units: Record<string, string>
 }
 
 export interface StateResponse {
@@ -24,7 +25,7 @@ export interface StateResponse {
     x?: number
     phase?: string
   }
-  extra?: Record<string, number>
+  extra?: Record<string, number | string>
 }
 
 export async function computeState(payload: StatePayload): Promise<StateResponse> {
