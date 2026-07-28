@@ -56,11 +56,153 @@ export function generateProfessorReport(payload: ProfessorPayload): ProfessorOut
   if (payload.type === 'cycle' && payload.states) {
     return generateCycleReport(payload)
   }
+  if (payload.type === 'process' && payload.states && payload.states.length >= 2) {
+    return generateProcessReport(payload)
+  }
   return {
     markdown: '# Professor Mode\n\nUnknown payload',
     latex: '% empty',
     steps: [],
     summary: '',
+  }
+}
+
+function generateProcessReport(p: ProfessorPayload): ProfessorOutput {
+  const subst = p.substance || 'Water'
+  const s1 = p.states![0] || {}
+  const s2 = p.states![1] || {}
+  const kind = p.processType || 'isobaric'
+  const W = p.W ?? 0
+  const Q = p.Q ?? 0
+  const n = p.polytropicN
+  const steps: ProfessorOutput['steps'] = []
+  const md: string[] = ['# Svolgimento Processo ' + kind, '', 'Sostanza: ' + subst + ' modello: ' + p.model, '']
+  const tex: string[] = ['\\section*{Svolgimento Processo ' + kind + '}', 'Sostanza: ' + subst + ' modello: ' + p.model]
+
+  md.push('## Stato iniziale e finale', '')
+  md.push('- Stato 1: $P = ' + NUM(s1.P) + '\\ \\text{Pa},\\ T = ' + NUM(s1.T) + '\\ \\text{K},\\ h = ' + NUM(s1.h) + '\\ \\text{J/kg}$')
+  md.push('- Stato 2: $P = ' + NUM(s2.P) + '\\ \\text{Pa},\\ T = ' + NUM(s2.T) + '\\ \\text{K},\\ h = ' + NUM(s2.h) + '\\ \\text{J/kg}$')
+  md.push('')
+
+  md.push('## Derivazione del processo', '')
+  steps.push({
+    title: 'Identificazione della trasformazione',
+    explanation: "Stiamo analizzando una trasformazione " + kind + " tra lo stato 1 e lo stato 2 nel modello " + (p.model || 'ideal_gas') + '. Applichiamo il I Principio della Termodinamica per calcolare il lavoro specifico e il calore scambiato.',
+    latex: '\\text{Trasformazione: } ' + kind + ',\\quad \\Delta s = s_2 - s_1',
+  })
+
+  if (kind === 'isobaric') {
+    steps.push({
+      title: 'Lavoro a pressione costante',
+      explanation: 'Per P = cost il lavoro specifico si riduce a w = P · (v₂ − v₁). Per un gas ideale è anche w = R · (T₂ − T₁).',
+      latex: 'w = \\int_1^2 P\\, dv = P (v_2 - v_1)',
+      numeric: 'w = ' + W.toFixed(2) + ' J/kg',
+    })
+    steps.push({
+      title: 'Calore scambiato',
+      explanation: 'Per isobaro: q = Δh = h₂ − h₁ = c_p (T₂ − T₁).',
+      latex: 'q = \\Delta h = c_p (T_2 - T_1)',
+      numeric: 'q = ' + Q.toFixed(2) + ' J/kg',
+    })
+  } else if (kind === 'isochoric') {
+    steps.push({
+      title: 'Lavoro a volume costante',
+      explanation: 'Per V = cost il lavoro è zero (niente variazione di volume).',
+      latex: 'w = \\int_1^2 P\\, dv = 0',
+      numeric: 'w = ' + W.toFixed(2) + ' J/kg',
+    })
+    steps.push({
+      title: 'Calore scambiato',
+      explanation: 'Per isocoro: q = Δu = c_v (T₂ − T₁).',
+      latex: 'q = \\Delta u = c_v (T_2 - T_1)',
+      numeric: 'q = ' + Q.toFixed(2) + ' J/kg',
+    })
+  } else if (kind === 'isothermal') {
+    steps.push({
+      title: 'Lavoro isotermo',
+      explanation: 'Per T = cost e gas ideale: w = R · T · ln(v₂ / v₁) = R · T · ln(P₁ / P₂).',
+      latex: 'w = R T \\ln\\frac{v_2}{v_1}',
+      numeric: 'w = ' + W.toFixed(2) + ' J/kg',
+    })
+    steps.push({
+      title: 'Calore isotermo',
+      explanation: "Per un gas ideale Δu = 0 in isoterma, quindi q = w.",
+      latex: 'q = w = R T \\ln\\frac{v_2}{v_1}',
+      numeric: 'q = ' + Q.toFixed(2) + ' J/kg',
+    })
+  } else if (kind === 'adiabatic') {
+    steps.push({
+      title: 'Adiabatica reversibile',
+      explanation: "Una adiabatica reversibile è isoentropica. Per gas ideale: T₂/T₁ = (P₂/P₁)^{(γ−1)/γ} e v₂/v₁ = (P₁/P₂)^{1/γ}.",
+      latex: 'T_2 = T_1 \\left(\\frac{P_2}{P_1}\\right)^{(\\gamma-1)/\\gamma}',
+    })
+    steps.push({
+      title: 'Lavoro adiabatico',
+      explanation: 'Il lavoro è uguale alla diminuzione di energia interna: w = c_v (T₁ − T₂) = Δu = −Δh + R ΔT.',
+      latex: 'w = c_v (T_1 - T_2) = \\Delta u',
+      numeric: 'w = ' + W.toFixed(2) + ' J/kg',
+    })
+    steps.push({
+      title: 'Calore adiabatico',
+      explanation: 'Per definizione di adiabatica: q = 0.',
+      latex: 'q = 0',
+    })
+  } else if (kind === 'polytropic') {
+    steps.push({
+      title: 'Esponente politropico',
+      explanation: 'Una politropica è P v^n = cost. L\'esponente n è dato o ricavato dal rapporto P/v degli stati.',
+      latex: 'P v^n = \\text{cost},\\quad n = \\frac{\\ln(P_2/P_1)}{\\ln(v_1/v_2)}',
+      numeric: 'n = ' + (n ?? '—'),
+    })
+    steps.push({
+      title: 'Lavoro politropico',
+      explanation: 'Per n ≠ 1 il lavoro è w = (P₂ v₂ − P₁ v₁) / (1 − n).',
+      latex: 'w = \\frac{P_2 v_2 - P_1 v_1}{1 - n}',
+      numeric: 'w = ' + W.toFixed(2) + ' J/kg',
+    })
+    steps.push({
+      title: 'Calore politropico',
+      explanation: 'Per gas ideale, q = [(γ − n) / (γ − 1)] · w. Per n = γ il processo è adiabatico; per n = 1 è isotermo; per n = 0 è isobaro.',
+      latex: 'q = \\frac{\\gamma - n}{\\gamma - 1}\\, w',
+      numeric: 'q = ' + Q.toFixed(2) + ' J/kg',
+    })
+  }
+
+  steps.push({
+    title: 'Bilancio energetico',
+    explanation: 'Il I Principio per una trasformazione chiusa si riduce a q = Δu + w = Δh per isobaro. Qui viene espresso esplicitamente:',
+    latex: 'q - w = \\Delta u',
+    numeric: 'q − w = ' + (Q - W).toFixed(2) + ' J/kg = Δu',
+  })
+
+  md.push('## Risultati', '')
+  md.push('- **Lavoro specifico**: $w = ' + W.toFixed(2) + '\\ \\text{J/kg}$')
+  md.push('- **Calore specifico**: $q = ' + Q.toFixed(2) + '\\ \\text{J/kg}$')
+  md.push('- **Variazione di energia interna**: $\\Delta u = q - w = ' + (Q - W).toFixed(2) + '\\ \\text{J/kg}$')
+  md.push('')
+
+  for (const s of steps) {
+    md.push('### ' + s.title)
+    md.push(s.explanation)
+    md.push('')
+    md.push('$$' + s.latex + '$$')
+    if (s.numeric) md.push('*Calcolo:* ' + s.numeric)
+    md.push('')
+  }
+
+  tex.push('\\begin{align*}')
+  tex.push('w &= ' + W.toFixed(2) + '\\ \\text{J/kg} \\\\')
+  tex.push('q &= ' + Q.toFixed(2) + '\\ \\text{J/kg} \\\\')
+  tex.push('\\Delta u &= ' + (Q - W).toFixed(2) + '\\ \\text{J/kg}')
+  tex.push('\\end{align*}')
+
+  const summary = 'Processo ' + kind + ': W=' + W.toFixed(2) + ' J/kg, Q=' + Q.toFixed(2) + ' J/kg, Δu=' + (Q - W).toFixed(2) + ' J/kg'
+
+  return {
+    markdown: md.join('\n'),
+    latex: buildFullLatexDoc('Svolgimento Processo ' + kind, tex.join('\n')),
+    steps,
+    summary,
   }
 }
 

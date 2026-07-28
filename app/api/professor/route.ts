@@ -15,15 +15,37 @@ export async function POST(req: Request) {
 
 export async function GET(req: Request) {
   // Quick smoke endpoint: returns a Rankine sample so the GitHub Action can
-  // produce a PDF artefact without a live client.
+  // produce a PDF artefact without a live client. Also handles `?type=process`.
   const url = new URL(req.url)
   const cycle = url.searchParams.get('cycle') || 'rankine'
+  const type = url.searchParams.get('type') || 'cycle'
+  const substance = url.searchParams.get('substance') || 'Water'
+  const model = (url.searchParams.get('model') as any) || 'real'
+
+  if (type === 'process') {
+    // Sample isothermal process for Air (ideal_gas).
+    const states = [
+      { P: 100000, T: 400, v: 1.166, u: 287000, h: 403700, s: 2000 },
+      { P: 50000, T: 400, v: 2.332, u: 287000, h: 403700, s: 2086.4 },
+    ]
+    const out = generateProfessorReport({
+      type: 'process',
+      substance,
+      model: 'ideal_gas',
+      states,
+      processType: 'isothermal',
+      W: 33562,
+      Q: 33562,
+    })
+    return NextResponse.json(out)
+  }
+
   const sample = sampleRankine()
   const out = generateProfessorReport({
     type: 'cycle',
     cycle: cycle as any,
-    substance: 'Water',
-    model: 'real',
+    substance,
+    model,
     states: sample,
   })
   return NextResponse.json(out)
