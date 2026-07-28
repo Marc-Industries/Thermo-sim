@@ -29,7 +29,7 @@ export interface StateResponse {
 }
 
 export async function computeState(payload: StatePayload): Promise<StateResponse> {
-  const response = await api.post('/compute-state', payload)
+  const response = await api.post('/api/compute-state', payload)
   return response.data
 }
 

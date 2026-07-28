@@ -153,6 +153,62 @@ export async function GET(req: Request) {
       } catch (e: any) {
         results.push({ name: 'real_fluid_P_h', ok: false, error: e.message })
       }
+
+      // Test 11: end-to-end through /api/compute-state — verifies the route is
+      // wired and reachable. This is the same path the browser client uses.
+      try {
+        const r = await fetch(`${url.origin}/api/compute-state`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            model: 'real',
+            substance: 'Water',
+            prop1: { name: 'P', value: 101325, unit: 'Pa' },
+            prop2: { name: 'T', value: 373.15, unit: 'K' },
+          }),
+        })
+        const data = await r.json()
+        const ok = r.status === 200 && data.state && data.state.phase === 'two-phase'
+        results.push({ name: 'http_compute_state', ok: !!ok, status: r.status })
+      } catch (e: any) {
+        results.push({ name: 'http_compute_state', ok: false, error: e.message })
+      }
+
+      // Test 12: end-to-end through /api/analyze-process + /api/analyze-cycle.
+      try {
+        const rp = await fetch(`${url.origin}/api/analyze-process`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            model: 'ideal_gas',
+            substance: 'Aria',
+            state1: { P: 101325, T: 300, v: 0.86, u: 215000, h: 302000, s: 7100 },
+            state2: { P: 101325, T: 600, v: 1.72, u: 430000, h: 604000, s: 7500 },
+            process: 'isobaric',
+          }),
+        })
+        const dataP = await rp.json()
+        const okP = rp.status === 200 && typeof dataP.W === 'number' && typeof dataP.Q === 'number'
+
+        const rc = await fetch(`${url.origin}/api/analyze-cycle`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            type: 'rankine',
+            states: [
+              { P: 10000, T: 319, v: 0.00101, h: 191800, u: 191790, s: 0.6492, phase: 'liquid' },
+              { P: 8000000, T: 320, v: 0.00101, h: 199800, u: 191720, s: 0.6492, phase: 'liquid (compressed)' },
+              { P: 8000000, T: 568, v: 0.03078, h: 2758000, u: 2511800, s: 5.7450, phase: 'gas' },
+              { P: 10000, T: 319, v: 0.03078, h: 1922500, u: 1922400, s: 5.7450, phase: 'two-phase' },
+            ],
+          }),
+        })
+        const dataC = await rc.json()
+        const okC = rc.status === 200 && typeof dataC.eta === 'number' && dataC.eta > 0
+        results.push({ name: 'http_analyze_routes', ok: okP && okC, W: dataP.W, eta: dataC.eta })
+      } catch (e: any) {
+        results.push({ name: 'http_analyze_routes', ok: false, error: e.message })
+      }
     }
 
     return NextResponse.json({ ok: true, results })
