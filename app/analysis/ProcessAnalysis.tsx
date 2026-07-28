@@ -8,9 +8,11 @@ import PropField from '@/components/PropField'
 import { toast } from 'sonner'
 import { computeState } from '@/lib/api'
 import { analyzeProcess, ProcessType } from '@/lib/thermo-engine'
+import { generateProfessorReport } from '@/lib/professor'
+import { convertFromSI } from '@/lib/units'
 
 export default function ProcessAnalysis() {
-  const { t, substances, addToCycle, setCurrentState } = useStore()
+  const { t, substances, setCurrentState } = useStore()
   const [substance, setSubstance] = useState('Water')
   const [model, setModel] = useState<'real' | 'ideal_gas' | 'ideal_gas_cp_t'>('real')
   const [processType, setProcessType] = useState<ProcessType>('isobaric')
@@ -24,6 +26,10 @@ export default function ProcessAnalysis() {
   const [prop2_1, setProp2_1] = useState<{ name: string; value: number | string; unit?: string }>({ name: 'P', value: 101325, unit: 'Pa' })
   const [prop2_2, setProp2_2] = useState<{ name: string; value: number | string; unit?: string }>({ name: 'h', value: 2676, unit: 'kJ/kg' })
   const [busy, setBusy] = useState(false)
+  const [report, setReport] = useState<{ markdown: string; latex: string; summary: string; steps: any[] } | null>(null)
+  const [reportBusy, setReportBusy] = useState(false)
+  // Display units for the result panel — match the input user's choice when possible.
+  const [displayUnits, setDisplayUnits] = useState<Record<string, string>>({})
 
   const processTypes: ProcessType[] = ['isobaric', 'isochoric', 'isothermal', 'adiabatic', 'polytropic']
   const propOptions = model === 'real' ? ['P', 'T', 'v', 'h', 's', 'x'] : ['P', 'T', 'v', 'h', 'u', 's']
@@ -45,17 +51,64 @@ export default function ProcessAnalysis() {
       })
       setState1(r1.state)
       setState2(r2.state)
-      // Process analysis
       const n = processType === 'polytropic' ? parseFloat(polytropicN) : undefined
       const out = analyzeProcess(model, substance, r1.state, r2.state, processType, n)
       setW(out.W); setQ(out.Q)
-      // Push state 1 to store for cycle building
       setCurrentState({ ...r1.state, substance, model })
+      // Use the unit the user picked for the same property (or default SI).
+      setDisplayUnits({
+        P: prop1_1.name === 'P' ? (prop1_1.unit || 'Pa') : (prop2_1.name === 'P' ? (prop2_1.unit || 'Pa') : 'Pa'),
+        T: prop1_1.name === 'T' ? (prop1_1.unit || 'K') : (prop1_2.name === 'T' ? (prop1_2.unit || 'K') : (prop2_1.name === 'T' ? (prop2_1.unit || 'K') : (prop2_2.name === 'T' ? (prop2_2.unit || 'K') : 'K'))),
+        h: prop1_2.name === 'h' ? (prop1_2.unit || 'J/kg') : (prop2_2.name === 'h' ? (prop2_2.unit || 'J/kg') : 'J/kg'),
+        s: prop1_2.name === 's' ? (prop1_2.unit || 'J/(kg·K)') : (prop2_2.name === 's' ? (prop2_2.unit || 'J/(kg·K)') : 'J/(kg·K)'),
+        v: prop1_2.name === 'v' ? (prop1_2.unit || 'm³/kg') : (prop2_2.name === 'v' ? (prop2_2.unit || 'm³/kg') : 'm³/kg'),
+        u: prop1_2.name === 'u' ? (prop1_2.unit || 'J/kg') : (prop2_2.name === 'u' ? (prop2_2.unit || 'J/kg') : 'J/kg'),
+        x: '',
+      })
+      setReport(null)
     } catch (e: any) {
       toast.error(e.message || t('saveErr'))
     } finally {
       setBusy(false)
     }
+  }
+
+  const generateProfessor = async () => {
+    if (!state1 || !state2) {
+      toast.error('Calcola prima i due stati')
+      return
+    }
+    setReportBusy(true)
+    try {
+      const res = await fetch('/api/professor', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'process',
+          substance,
+          model,
+          states: [state1, state2],
+          processType,
+          polytropicN: processType === 'polytropic' ? parseFloat(polytropicN) : undefined,
+          W,
+          Q,
+        }),
+      })
+      const data = await res.json()
+      if (data.error) throw new Error(data.error)
+      setReport(data)
+      toast.success('Report generato')
+    } catch (e: any) {
+      toast.error(e.message || 'Professor Mode fallita')
+    } finally {
+      setReportBusy(false)
+    }
+  }
+
+  const fmtValue = (key: string, value: number) => {
+    const u = displayUnits[key]
+    const v = u ? convertFromSI(key, value, u) : value
+    return `${v.toFixed(2)} ${u || ''}`.trim()
   }
 
   const subsList = (substances as any)[model === 'ideal_gas_cp_t' ? 'ideal_gas' : model] || []
@@ -137,6 +190,16 @@ export default function ProcessAnalysis() {
         <Button onClick={compute} disabled={busy} className="w-full">
           {busy ? t('calc') : 'Analizza Processo'}
         </Button>
+
+        {state1 && state2 && (
+          <Button
+            onClick={generateProfessor}
+            disabled={reportBusy}
+            className="w-full mt-2 bg-signal-blue hover:bg-signal-blue/80"
+          >
+            {reportBusy ? 'Generazione…' : 'Professor Mode (analitico)'}
+          </Button>
+        )}
       </div>
 
       <div className="bg-slate-950 p-6">
@@ -158,6 +221,23 @@ export default function ProcessAnalysis() {
                 <h4 className="mb-2 font-semibold text-slate-300">Analisi del processo: {processType}</h4>
                 <p className="text-sm">Lavoro specifico: <span className="font-mono text-signal-red">W = {W.toFixed(2)} J/kg</span></p>
                 <p className="text-sm">Calore specifico: <span className="font-mono text-signal-blue">Q = {Q.toFixed(2)} J/kg</span></p>
+              </div>
+            )}
+
+            {report && (
+              <div className="border border-slate-700 p-4 rounded bg-slate-900/40">
+                <h4 className="mb-2 font-semibold text-slate-300">Professor Mode — {processType}</h4>
+                <p className="text-sm text-emerald-400 mb-2">{report.summary}</p>
+                <div className="max-h-80 overflow-y-auto text-sm text-slate-300 space-y-3">
+                  {report.steps.map((s, i) => (
+                    <div key={i} className="border-b border-slate-800 pb-2">
+                      <p className="font-semibold text-slate-200">{s.title}</p>
+                      <p className="text-slate-400 text-xs">{s.explanation}</p>
+                      <pre className="text-xs text-slate-300 mt-1 whitespace-pre-wrap">{s.latex}</pre>
+                      {s.numeric && <p className="text-xs text-signal-blue mt-1">{s.numeric}</p>}
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
           </div>

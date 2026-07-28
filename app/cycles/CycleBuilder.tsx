@@ -58,15 +58,7 @@ export default function CycleBuilder() {
   const exportJSON = () => {
     try {
       const data = JSON.stringify({ cycle }, null, 2)
-      const blob = new Blob([data], { type: 'application/json' })
-      const url = URL.createObjectURL(blob)
-      const a = document.createElement('a')
-      a.href = url
-      a.download = `cycle-${selectedCycle}.json`
-      document.body.appendChild(a)
-      a.click()
-      a.remove()
-      URL.revokeObjectURL(url)
+      triggerDownload(new Blob([data], { type: 'application/json' }), `cycle-${selectedCycle}.json`)
       toast.success('Snapshot esportato')
     } catch (e) {
       toast.error('Esportazione fallita')
@@ -99,15 +91,7 @@ export default function CycleBuilder() {
       })
       const data = await res.json()
       if (data?.markdown) {
-        const blob = new Blob([data.markdown], { type: 'text/markdown' })
-        const url = URL.createObjectURL(blob)
-        const a = document.createElement('a')
-        a.href = url
-        a.download = `cycle-report-${selectedCycle}.md`
-        document.body.appendChild(a)
-        a.click()
-        a.remove()
-        URL.revokeObjectURL(url)
+        triggerDownload(new Blob([data.markdown], { type: 'text/markdown' }), `cycle-report-${selectedCycle}.md`)
         toast.success('Report Markdown scaricato')
       } else {
         toast.error('Export report fallito')
@@ -148,15 +132,7 @@ export default function CycleBuilder() {
 
   const downloadLatex = () => {
     if (!report?.latex) return
-    const blob = new Blob([report.latex], { type: 'text/x-tex' })
-    const url = URL.createObjectURL(blob)
-    const a = document.createElement('a')
-    a.href = url
-    a.download = `professor-${selectedCycle}.tex`
-    document.body.appendChild(a)
-    a.click()
-    a.remove()
-    URL.revokeObjectURL(url)
+    triggerDownload(new Blob([report.latex], { type: 'text/x-tex' }), `professor-${selectedCycle}.tex`)
     toast.success('LaTeX scaricato')
   }
 
@@ -166,29 +142,105 @@ export default function CycleBuilder() {
       const res = await fetch('/api/professor/pdf', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ latex: report.latex, cycle: selectedCycle }),
+        body: JSON.stringify({ latex: report.latex, cycle: selectedCycle, markdown: report.markdown }),
       })
-      if (!res.ok) {
-        // Fallback: print the page
+      const contentType = res.headers.get('content-type') || ''
+
+      // Server returned a real PDF blob (LaTeX binary available).
+      if (contentType.includes('application/pdf')) {
+        const blob = await res.blob()
+        triggerDownload(blob, `professor-${selectedCycle}.pdf`)
+        return
+      }
+
+      // Server returned JSON fallback — try in-browser PDF, then print preview.
+      try {
+        const { default: jsPDF } = await import('jspdf')
+        const pdf = new jsPDF({ unit: 'pt', format: 'a4' })
+        const margin = 48
+        const pageWidth = pdf.internal.pageSize.getWidth()
+        const pageHeight = pdf.internal.pageSize.getHeight()
+        const maxWidth = pageWidth - 2 * margin
+
+        pdf.setFont('helvetica', 'bold')
+        pdf.setFontSize(16)
+        pdf.text(`Professor Mode — ${selectedCycle.toUpperCase()}`, margin, margin)
+        pdf.setFont('helvetica', 'normal')
+        pdf.setFontSize(11)
+
+        let cursor = margin + 24
+        const lineHeight = 14
+
+        for (const step of report.steps) {
+          if (cursor > pageHeight - margin - lineHeight * 4) {
+            pdf.addPage()
+            cursor = margin
+          }
+          pdf.setFont('helvetica', 'bold')
+          pdf.text(step.title, margin, cursor)
+          cursor += lineHeight
+          pdf.setFont('helvetica', 'normal')
+          const lines = pdf.splitTextToSize(step.explanation, maxWidth)
+          for (const ln of lines) {
+            if (cursor > pageHeight - margin - lineHeight) {
+              pdf.addPage()
+              cursor = margin
+            }
+            pdf.text(ln, margin, cursor)
+            cursor += lineHeight
+          }
+          if (step.latex) {
+            if (cursor > pageHeight - margin - lineHeight * 2) {
+              pdf.addPage()
+              cursor = margin
+            }
+            pdf.setFont('courier', 'normal')
+            const tlines = pdf.splitTextToSize(step.latex, maxWidth)
+            for (const ln of tlines) {
+              if (cursor > pageHeight - margin - lineHeight) {
+                pdf.addPage()
+                cursor = margin
+              }
+              pdf.text(ln, margin, cursor)
+              cursor += lineHeight
+            }
+            pdf.setFont('helvetica', 'normal')
+          }
+          if (step.numeric) {
+            if (cursor > pageHeight - margin - lineHeight) {
+              pdf.addPage()
+              cursor = margin
+            }
+            pdf.setFont('helvetica', 'italic')
+            pdf.text(step.numeric, margin, cursor)
+            cursor += lineHeight
+            pdf.setFont('helvetica', 'normal')
+          }
+          cursor += lineHeight * 0.5
+        }
+
+        pdf.setFont('helvetica', 'bold')
+        if (cursor > pageHeight - margin - lineHeight * 3) {
+          pdf.addPage()
+          cursor = margin
+        }
+        pdf.text(report.summary, margin, cursor)
+
+        pdf.save(`professor-${selectedCycle}.pdf`)
+        toast.success('PDF generato nel browser')
+        return
+      } catch (jsPdfErr: any) {
+        // Last resort: open a print preview window with MathJax.
         const w = window.open('', '_blank')
         if (w) {
-          w.document.write(`<html><head><title>Thermonator ${selectedCycle}</title><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script></head><body style="font-family:system-ui;padding:2cm;background:white;color:black">${reportMarkdownToHTML(report.markdown)}</body></html>`)
+          w.document.write(`<html><head><title>Thermonator ${selectedCycle}</title><script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script></head><body style="font-family:system-ui;padding:2cm;background:white;color:black">${reportMarkdownToHTML(report.markdown)}</body></html>`)
           w.document.close()
           setTimeout(() => w.print(), 800)
         }
-        return
+        toast.error('PDF non disponibile — usa Stampa dal browser')
       }
-      const blob = await res.blob()
-      const url = URL.createObjectURL(blob)
-      const a = document.createElement('a')
-      a.href = url
-      a.download = `professor-${selectedCycle}.pdf`
-      document.body.appendChild(a)
-      a.click()
-      a.remove()
-      URL.revokeObjectURL(url)
     } catch (e: any) {
-      toast.error('PDF rendering fallback: usa la stampa del browser')
+      toast.error('PDF rendering fallback: ' + (e.message || 'errore'))
     }
   }
 
@@ -341,4 +393,16 @@ function reportMarkdownToHTML(md: string): string {
     .replace(/\$([^\$]+)\$/g, '<i>$1</i>')
     .replace(/\n\n/g, '</p><p>')
     .replace(/^([^<].*)$/gm, '<p>$1</p>')
+}
+
+/** Save a Blob as a file download in the user's browser. */
+function triggerDownload(blob: Blob, filename: string) {
+  const url = URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.href = url
+  a.download = filename
+  document.body.appendChild(a)
+  a.click()
+  a.remove()
+  URL.revokeObjectURL(url)
 }

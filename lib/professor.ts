@@ -26,6 +26,12 @@ export interface ProfessorPayload {
   states?: ThermodynamicState[]
   prop1?: { name: string; value: number; unit?: string }
   prop2?: { name: string; value: number; unit?: string }
+  /** Process-specific: which transformation was analysed. */
+  processType?: string
+  polytropicN?: number
+  /** Process-specific: pre-computed work / heat. */
+  W?: number
+  Q?: number
   extras?: Record<string, number>
 }
 
