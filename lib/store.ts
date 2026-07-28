@@ -16,7 +16,7 @@ export interface ThermoState {
   x?: number
   phase?: string
   substance?: string
-  model?: 'ideal_gas' | 'real'
+  model?: 'ideal_gas' | 'ideal_gas_cp_t' | 'real'
 }
 
 interface UnitSystem extends Record<string, string> {

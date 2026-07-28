@@ -1,0 +1,928 @@
+{
+  "proprieta_gas_ideale_20C": {
+    "descrizione": "Proprietà dei gas nello stato ideale a temperatura ambiente t = 20°C",
+    "unita_di_misura": {
+      "M": "kg/kmol",
+      "cp0": "kcal/kg K",
+      "cv0": "kcal/kg K",
+      "k": "cp/cv",
+      "R_kcal": "kcal/kg K",
+      "R_J": "J/kg K"
+    },
+    "dati": [
+      {
+        "gas": "Acqua",
+        "M": 18.016,
+        "cp0": 0.4454,
+        "cv0": 0.3352,
+        "k": 1.329,
+        "R_kcal": 0.1103,
+        "R_J": null
+      },
+      {
+        "gas": "Ammoniaca",
+        "M": 17.03,
+        "cp0": 0.5004,
+        "cv0": 0.3838,
+        "k": 1.304,
+        "R_kcal": 0.1167,
+        "R_J": null
+      },
+      {
+        "gas": "Anidride carbonica",
+        "M": 44.01,
+        "cp0": 0.2016,
+        "cv0": 0.1565,
+        "k": 1.288,
+        "R_kcal": 0.0452,
+        "R_J": null
+      },
+      {
+        "gas": "Argo",
+        "M": 39.94,
+        "cp0": 0.1244,
+        "cv0": 0.0747,
+        "k": 1.665,
+        "R_kcal": 0.0497,
+        "R_J": null
+      },
+      {
+        "gas": "Aria",
+        "M": 28.97,
+        "cp0": 0.240,
+        "cv0": 0.1714,
+        "k": 1.40,
+        "R_kcal": 0.0686,
+        "R_J": null
+      },
+      {
+        "gas": "Azoto",
+        "M": 28.02,
+        "cp0": 0.2484,
+        "cv0": 0.1775,
+        "k": 1.399,
+        "R_kcal": 0.0709,
+        "R_J": null
+      },
+      {
+        "gas": "Elio",
+        "M": 4.003,
+        "cp0": 1.2416,
+        "cv0": 0.7455,
+        "k": 1.665,
+        "R_kcal": 0.4964,
+        "R_J": null
+      },
+      {
+        "gas": "Idrogeno",
+        "M": 2.016,
+        "cp0": 3.419,
+        "cv0": 2.434,
+        "k": 1.405,
+        "R_kcal": 0.9857,
+        "R_J": 4125.5
+      },
+      {
+        "gas": "Metano",
+        "M": 16.04,
+        "cp0": 0.5321,
+        "cv0": 0.4083,
+        "k": 1.303,
+        "R_kcal": 0.1238,
+        "R_J": null
+      },
+      {
+        "gas": "Ossigeno",
+        "M": 32.00,
+        "cp0": 0.2193,
+        "cv0": 0.1572,
+        "k": 1.395,
+        "R_kcal": 0.0621,
+        "R_J": null
+      },
+      {
+        "gas": "Propano",
+        "M": 44.09,
+        "cp0": 0.3985,
+        "cv0": 0.3535,
+        "k": 1.127,
+        "R_kcal": 0.045,
+        "R_J": null
+      }
+    ]
+  },
+  "costante_universale_gas": [
+    { "valore": 847.8, "unita": "kgf m / kmol K" },
+    { "valore": 8314.0, "unita": "J / kmol K" },
+    { "valore": 1.987, "unita": "kcal / kmol K oppure Btu / lbmole R" },
+    { "valore": 0.08206, "unita": "l atm / mol K oppure m³ atm / kmol K" },
+    { "valore": 10.73, "unita": "psi ft³ / lbmole R" },
+    { "valore": 0.7302, "unita": "atm ft³ / lbmole R" }
+  ],
+  "dipendenza_calore_specifico_temperatura": {
+    "descrizione": "Dipendenza del calore specifico a pressione costante dalla temperatura per alcune sostanze nello stato di gas ideale",
+    "unita_di_misura": { "cp": "kJ/kg K", "T": "K" },
+    "dati": [
+      {
+        "sostanza": "Acetilene",
+        "formula_chimica": "C2H2",
+        "equazione_cp": "1.92 + 7.08e-4*T - 3.73e4*T^-2",
+        "campo_validita_K": [280, 1280]
+      },
+      {
+        "sostanza": "Acqua",
+        "formula_chimica": "H2O",
+        "equazione_cp": "4.614 - 103*T^-0.5 + 967*T^-1",
+        "campo_validita_K": [300, 3000]
+      },
+      {
+        "sostanza": "Ammoniaca",
+        "formula_chimica": "NH3",
+        "equazione_cp": "1.52 + 19.4e-4*T - 17.9e-8*T^2",
+        "campo_validita_K": [300, 1000]
+      },
+      {
+        "sostanza": "Anidride carbonica",
+        "formula_chimica": "CO2",
+        "equazione_cp": "1.54 - 345*T^-1 + 4.14e4*T^-2",
+        "campo_validita_K": [300, 3500]
+      },
+      {
+        "sostanza": "Anidride solforosa",
+        "formula_chimica": "SO2",
+        "equazione_cp": "0.785 + 0.712e-4*T - 1.725e4*T^-2",
+        "campo_validita_K": [300, 1890]
+      },
+      {
+        "sostanza": "Aria",
+        "formula_chimica": null,
+        "equazione_cp": "0.917 + 2.58e-4*T - 3.97e-8*T^2",
+        "campo_validita_K": [278, 1500]
+      },
+      {
+        "sostanza": "Azoto",
+        "formula_chimica": "N2",
+        "equazione_cp": "1.42 - 288*T^-1 + 5.36e4*T^-2",
+        "campo_validita_K": [300, 5000]
+      },
+      {
+        "sostanza": "Butano (n)",
+        "formula_chimica": "C4H10",
+        "equazione_cp": "0.314 + 52.3e-4*T - 160e-8*T^2",
+        "campo_validita_K": [300, 1500]
+      },
+      {
+        "sostanza": "Etano",
+        "formula_chimica": "C2H6",
+        "equazione_cp": "0.306 + 53.2e-4*T - 153e-8*T^2",
+        "campo_validita_K": [300, 1500]
+      },
+      {
+        "sostanza": "Etilene",
+        "formula_chimica": "C2H4",
+        "equazione_cp": "0.404 + 43.5e-4*T - 135e-8*T^2",
+        "campo_validita_K": [300, 1500]
+      },
+      {
+        "sostanza": "Idrogeno",
+        "formula_chimica": "H2",
+        "equazione_cp": "11.96 + 21.61e-4*T - 30.9*T^-0.5",
+        "campo_validita_K": [300, 2220]
+      },
+      {
+        "sostanza": "Metano",
+        "formula_chimica": "CH4",
+        "equazione_cp": "0.883 + 47.1e-4*T - 112e-8*T^2",
+        "campo_validita_K": [300, 1500]
+      },
+      {
+        "sostanza": "Ossido di carbonio",
+        "formula_chimica": "CO",
+        "equazione_cp": "1.42 - 273.3*T^-1 + 4.94e4*T^-2",
+        "campo_validita_K": [300, 5000]
+      },
+      {
+        "sostanza": "Ossigeno",
+        "formula_chimica": "O2",
+        "equazione_cp": "1.51 - 16.77*T^-0.5 + 111*T^-1",
+        "campo_validita_K": [300, 2780]
+      },
+      {
+        "sostanza": "Propano",
+        "formula_chimica": "C3H8",
+        "equazione_cp": "0.214 + 54.8e-4*T - 167e-8*T^2",
+        "campo_validita_K": [300, 1500]
+      }
+    ]
+  },
+  "parametri_fondamentali_sostanze_pure": {
+    "unita_di_misura": {
+      "M": "kg/kmol",
+      "tf": "°C",
+      "tb": "°C",
+      "tt": "°C",
+      "tc": "°C",
+      "pc": "bar",
+      "vc": "dm³/kg"
+    },
+    "dati": [
+      {
+        "sostanza": "Acqua",
+        "formula_chimica": "H2O",
+        "M": 18.016,
+        "tf": 0.0,
+        "tb": 100.0,
+        "tt": 0.01,
+        "tc": 374.1,
+        "pc": 221.36,
+        "vc": 3.15
+      },
+      {
+        "sostanza": "Ammoniaca",
+        "formula_chimica": "NH3",
+        "M": 17.03,
+        "tf": null,
+        "tb": -33.35,
+        "tt": -77.9,
+        "tc": 132.4,
+        "pc": 112.97,
+        "vc": 4.26
+      },
+      {
+        "sostanza": "Anidride carbonica",
+        "formula_chimica": "CO2",
+        "M": 44.01,
+        "tf": null,
+        "tb": -78.5,
+        "note_tb": "sublimazione",
+        "tt": -56.6,
+        "tc": 31.04,
+        "pc": 73.77,
+        "vc": 2.15
+      },
+      {
+        "sostanza": "Anidride solforosa",
+        "formula_chimica": "SO2",
+        "M": 64.06,
+        "tf": null,
+        "tb": -10.01,
+        "tt": -75.5,
+        "tc": 157.5,
+        "pc": 78.8,
+        "vc": 1.91
+      },
+      {
+        "sostanza": "Argo",
+        "formula_chimica": "A",
+        "M": 39.94,
+        "tf": null,
+        "tb": -185.86,
+        "tt": -189.35,
+        "tc": -122.43,
+        "pc": 48.64,
+        "vc": 1.883
+      },
+      {
+        "sostanza": "Azoto",
+        "formula_chimica": "N2",
+        "M": 28.02,
+        "tf": null,
+        "tb": -195.8,
+        "tt": -210.01,
+        "tc": -147.05,
+        "pc": 33.94,
+        "vc": 3.215
+      },
+      {
+        "sostanza": "Butano (n)",
+        "formula_chimica": "C4H10",
+        "M": 58.12,
+        "tf": -138.3,
+        "tb": -0.5,
+        "tt": null,
+        "tc": 152.0,
+        "pc": 37.97,
+        "vc": 4.385
+      },
+      {
+        "sostanza": "Cloruro di metile (R-40)",
+        "formula_chimica": "CH3Cl",
+        "M": 50.49,
+        "tf": -97.6,
+        "tb": -24.0,
+        "tt": null,
+        "tc": 143.0,
+        "pc": 66.7,
+        "vc": 2.8
+      },
+      {
+        "sostanza": "Elio",
+        "formula_chimica": "He",
+        "M": 4.003,
+        "tf": null,
+        "tb": -268.93,
+        "tt": null,
+        "tc": -267.95,
+        "pc": 2.29,
+        "vc": 14.43
+      },
+      {
+        "sostanza": "Etano",
+        "formula_chimica": "C2H6",
+        "M": 30.06,
+        "tf": -183.3,
+        "tb": -88.6,
+        "tt": null,
+        "tc": 32.2,
+        "pc": 48.9,
+        "vc": 4.8
+      },
+      {
+        "sostanza": "Etilene",
+        "formula_chimica": "C2H4",
+        "M": 28.05,
+        "tf": -169.1,
+        "tb": -103.7,
+        "tt": null,
+        "tc": 9.5,
+        "pc": 50.6,
+        "vc": 4.6
+      },
+      {
+        "sostanza": "Idrogeno (n)",
+        "formula_chimica": "H2",
+        "M": 2.016,
+        "tf": -259.2,
+        "tb": -252.76,
+        "tt": null,
+        "tc": -239.95,
+        "pc": 12.97,
+        "vc": 32.6
+      },
+      {
+        "sostanza": "Isobutano",
+        "formula_chimica": "(CH3)3CH",
+        "M": 58.12,
+        "tf": -159.6,
+        "tb": -11.7,
+        "tt": null,
+        "tc": 135.0,
+        "pc": 36.47,
+        "vc": 4.5
+      },
+      {
+        "sostanza": "Isopentano",
+        "formula_chimica": "C5H12",
+        "M": 72.15,
+        "tf": -159.9,
+        "tb": 27.8,
+        "tt": null,
+        "tc": 187.2,
+        "pc": 33.3,
+        "vc": 4.27
+      },
+      {
+        "sostanza": "Kripton",
+        "formula_chimica": "Kr",
+        "M": 83.7,
+        "tf": -157.38,
+        "tb": -153.3,
+        "tt": -63.25,
+        "tc": 55.01,
+        "pc": 1.10,
+        "vc": null
+      },
+      {
+        "sostanza": "Metano",
+        "formula_chimica": "CH4",
+        "M": 16.04,
+        "tf": -182.5,
+        "tb": -161.4,
+        "tt": null,
+        "tc": -82.4,
+        "pc": 46.4,
+        "vc": 6.17
+      },
+      {
+        "sostanza": "Neon",
+        "formula_chimica": "Ne",
+        "M": 20.18,
+        "tf": -248.58,
+        "tb": -246.05,
+        "tt": null,
+        "tc": -228.75,
+        "pc": 27.25,
+        "vc": 2.06
+      },
+      {
+        "sostanza": "Ossigeno",
+        "formula_chimica": "O2",
+        "M": 32.00,
+        "tf": -218.79,
+        "tb": -182.96,
+        "tt": null,
+        "tc": -118.38,
+        "pc": 50.8,
+        "vc": 2.326
+      },
+      {
+        "sostanza": "Pentano (n)",
+        "formula_chimica": "C5H12",
+        "M": 72.15,
+        "tf": -129.7,
+        "tb": 36.1,
+        "tt": null,
+        "tc": 196.6,
+        "pc": 33.7,
+        "vc": 4.2
+      },
+      {
+        "sostanza": "Propano",
+        "formula_chimica": "C3H8",
+        "M": 44.09,
+        "tf": -187.1,
+        "tb": -42.2,
+        "tt": null,
+        "tc": 96.8,
+        "pc": 42.5,
+        "vc": 4.5
+      },
+      {
+        "sostanza": "Propilene",
+        "formula_chimica": "C3H6",
+        "M": 42.08,
+        "tf": -185.0,
+        "tb": -47.7,
+        "tt": null,
+        "tc": 91.5,
+        "pc": 46.0,
+        "vc": 4.29
+      },
+      {
+        "sostanza": "R-11 (Fluorotriclorometano)",
+        "formula_chimica": "CFCl3",
+        "M": 137.38,
+        "tf": -111.0,
+        "tb": 23.7,
+        "tt": null,
+        "tc": 198.0,
+        "pc": 44.0,
+        "vc": 1.80
+      },
+      {
+        "sostanza": "R-12 (Difluorodiclorometano)",
+        "formula_chimica": "CF2Cl2",
+        "M": 120.92,
+        "tf": -158.0,
+        "tb": -29.8,
+        "tt": null,
+        "tc": 112.0,
+        "pc": 41.2,
+        "vc": 1.792
+      },
+      {
+        "sostanza": "R-13 (Trifluoroclorometano)",
+        "formula_chimica": "CF3Cl",
+        "M": 104.47,
+        "tf": -181.0,
+        "tb": -81.5,
+        "tt": null,
+        "tc": 28.8,
+        "pc": 38.6,
+        "vc": 1.721
+      },
+      {
+        "sostanza": "R-13B1 (Trifluorobromometano)",
+        "formula_chimica": "CF3Br",
+        "M": 148.9,
+        "tf": -168.0,
+        "tb": -57.8,
+        "tt": null,
+        "tc": 67.0,
+        "pc": 39.7,
+        "vc": 1.342
+      },
+      {
+        "sostanza": "R-14 (Tetrafluorometano)",
+        "formula_chimica": "CF4",
+        "M": 88.01,
+        "tf": -184.0,
+        "tb": -128.0,
+        "tt": null,
+        "tc": -45.5,
+        "pc": 37.4,
+        "vc": 1.57
+      },
+      {
+        "sostanza": "R-21 (Fluorodiclorometano)",
+        "formula_chimica": "CHFCl2",
+        "M": 102.92,
+        "tf": -135.0,
+        "tb": 8.9,
+        "tt": null,
+        "tc": 178.5,
+        "pc": 51.7,
+        "vc": 1.915
+      },
+      {
+        "sostanza": "R-22 (Difluoroclorometano)",
+        "formula_chimica": "CHF2Cl",
+        "M": 86.48,
+        "tf": -160.0,
+        "tb": -40.8,
+        "tt": null,
+        "tc": 96.0,
+        "pc": 49.8,
+        "vc": 1.905
+      },
+      {
+        "sostanza": "R-23 (Trifluorometano)",
+        "formula_chimica": "CHF3",
+        "M": 70.01,
+        "tf": -155.2,
+        "tb": -82.2,
+        "tt": null,
+        "tc": 25.6,
+        "pc": 48.3,
+        "vc": 2.0
+      },
+      {
+        "sostanza": "R-113 (Trifluorotricloroetano)",
+        "formula_chimica": "C2F3Cl3",
+        "M": 187.39,
+        "tf": -36.6,
+        "tb": 47.6,
+        "tt": null,
+        "tc": 214.1,
+        "pc": 34.13,
+        "vc": 1.735
+      },
+      {
+        "sostanza": "R-114 (Tetrafluorodicloroetano)",
+        "formula_chimica": "C2F4Cl2",
+        "M": 170.93,
+        "tf": -94.0,
+        "tb": 3.3,
+        "tt": null,
+        "tc": 145.7,
+        "pc": 32.7,
+        "vc": 1.715
+      }
+    ]
+  },
+  "proprieta_vapor_d_acqua_saturo": {
+    "fonte": "Schmidt, Properties of Water and Steam in SI-Units, Springer-Verlag, Berlin (1969)",
+    "unita_di_misura": {
+      "t": "°C",
+      "T": "K",
+      "p": "bar",
+      "v_prime": "m³/kg (liquido)",
+      "v_second": "m³/kg (vapore)",
+      "rho_second": "kg/m³ (densità vapore)",
+      "h_prime": "kJ/kg (entalpia liquido)",
+      "h_second": "kJ/kg (entalpia vapore)",
+      "r": "kJ/kg (calore di vaporizzazione)",
+      "s_prime": "kJ/kg K (entropia liquido)",
+      "s_second": "kJ/kg K (entropia vapore)"
+    },
+    "dati": [
+      { "t": 0.00, "T": 273.15, "p": 0.006108, "v_prime": 0.0010002, "v_second": 206.3, "rho_second": 0.004847, "h_prime": -0.04, "h_second": 2501.6, "r": 2501.6, "s_prime": -0.0002, "s_second": 9.1577 },
+      { "t": 0.01, "T": 273.16, "p": 0.006112, "v_prime": 0.0010002, "v_second": 206.2, "rho_second": 0.004851, "h_prime": 0.00, "h_second": 2501.6, "r": 2501.6, "s_prime": 0.0000, "s_second": 9.1575 },
+      { "t": 1.0, "T": 274.15, "p": 0.006566, "v_prime": 0.0010001, "v_second": 192.6, "rho_second": 0.005192, "h_prime": 4.17, "h_second": 2503.4, "r": 2499.2, "s_prime": 0.0152, "s_second": 9.1311 },
+      { "t": 2.0, "T": 275.15, "p": 0.007055, "v_prime": 0.0010001, "v_second": 179.9, "rho_second": 0.005558, "h_prime": 8.39, "h_second": 2505.2, "r": 2496.8, "s_prime": 0.0306, "s_second": 9.1047 },
+      { "t": 3.0, "T": 276.15, "p": 0.007575, "v_prime": 0.0010001, "v_second": 168.2, "rho_second": 0.005946, "h_prime": 12.60, "h_second": 2507.1, "r": 2494.5, "s_prime": 0.0459, "s_second": 9.0785 },
+      { "t": 4.0, "T": 277.15, "p": 0.008129, "v_prime": 0.0010000, "v_second": 157.3, "rho_second": 0.006358, "h_prime": 16.80, "h_second": 2508.9, "r": 2492.1, "s_prime": 0.0611, "s_second": 9.0526 },
+      { "t": 5.0, "T": 278.15, "p": 0.008718, "v_prime": 0.0010000, "v_second": 147.2, "rho_second": 0.006795, "h_prime": 21.01, "h_second": 2510.7, "r": 2489.7, "s_prime": 0.0762, "s_second": 9.0269 },
+      { "t": 6.0, "T": 279.15, "p": 0.009345, "v_prime": 0.0010000, "v_second": 137.8, "rho_second": 0.007258, "h_prime": 25.21, "h_second": 2512.6, "r": 2487.4, "s_prime": 0.0913, "s_second": 9.0015 },
+      { "t": 7.0, "T": 280.15, "p": 0.010012, "v_prime": 0.0010001, "v_second": 129.1, "rho_second": 0.007748, "h_prime": 29.41, "h_second": 2514.4, "r": 2485.0, "s_prime": 0.1063, "s_second": 8.9762 },
+      { "t": 8.0, "T": 281.15, "p": 0.010720, "v_prime": 0.0010001, "v_second": 121.0, "rho_second": 0.008267, "h_prime": 33.60, "h_second": 2516.2, "r": 2482.6, "s_prime": 0.1213, "s_second": 8.9513 },
+      { "t": 9.0, "T": 282.15, "p": 0.011472, "v_prime": 0.0010002, "v_second": 113.4, "rho_second": 0.008816, "h_prime": 37.80, "h_second": 2518.1, "r": 2480.3, "s_prime": 0.1361, "s_second": 8.9265 },
+      { "t": 10.0, "T": 283.15, "p": 0.012270, "v_prime": 0.0010003, "v_second": 106.4, "rho_second": 0.009396, "h_prime": 41.99, "h_second": 2519.9, "r": 2477.9, "s_prime": 0.1510, "s_second": 8.9020 },
+      { "t": 11.0, "T": 284.15, "p": 0.013116, "v_prime": 0.0010003, "v_second": 99.91, "rho_second": 0.01001, "h_prime": 46.19, "h_second": 2521.7, "r": 2475.5, "s_prime": 0.1658, "s_second": 8.8776 },
+      { "t": 12.0, "T": 285.15, "p": 0.014014, "v_prime": 0.0010004, "v_second": 93.84, "rho_second": 0.01066, "h_prime": 50.38, "h_second": 2523.6, "r": 2473.2, "s_prime": 0.1805, "s_second": 8.8536 },
+      { "t": 13.0, "T": 286.15, "p": 0.014965, "v_prime": 0.0010006, "v_second": 88.18, "rho_second": 0.01134, "h_prime": 54.57, "h_second": 2525.4, "r": 2470.8, "s_prime": 0.1952, "s_second": 8.8297 },
+      { "t": 14.0, "T": 287.15, "p": 0.015973, "v_prime": 0.0010007, "v_second": 82.90, "rho_second": 0.01206, "h_prime": 58.75, "h_second": 2527.2, "r": 2468.5, "s_prime": 0.2098, "s_second": 8.8060 },
+      { "t": 15.0, "T": 288.15, "p": 0.017039, "v_prime": 0.0010008, "v_second": 77.98, "rho_second": 0.01282, "h_prime": 62.94, "h_second": 2529.1, "r": 2466.1, "s_prime": 0.2243, "s_second": 8.7826 },
+      { "t": 16.0, "T": 289.15, "p": 0.018168, "v_prime": 0.0010010, "v_second": 73.38, "rho_second": 0.01363, "h_prime": 67.13, "h_second": 2530.9, "r": 2463.8, "s_prime": 0.2388, "s_second": 8.7593 },
+      { "t": 17.0, "T": 290.15, "p": 0.019362, "v_prime": 0.0010012, "v_second": 69.09, "rho_second": 0.01447, "h_prime": 71.31, "h_second": 2532.7, "r": 2461.4, "s_prime": 0.2533, "s_second": 8.7363 },
+      { "t": 18.0, "T": 291.15, "p": 0.02062, "v_prime": 0.0010013, "v_second": 65.09, "rho_second": 0.01536, "h_prime": 75.50, "h_second": 2534.5, "r": 2459.0, "s_prime": 0.2677, "s_second": 8.7135 },
+      { "t": 19.0, "T": 292.15, "p": 0.02196, "v_prime": 0.0010015, "v_second": 61.34, "rho_second": 0.01630, "h_prime": 79.68, "h_second": 2536.4, "r": 2456.7, "s_prime": 0.2820, "s_second": 8.6908 },
+      { "t": 20.0, "T": 293.15, "p": 0.02337, "v_prime": 0.0010017, "v_second": 57.84, "rho_second": 0.01729, "h_prime": 83.86, "h_second": 2538.2, "r": 2454.3, "s_prime": 0.2963, "s_second": 8.6684 },
+      { "t": 21.0, "T": 294.15, "p": 0.02485, "v_prime": 0.0010019, "v_second": 54.56, "rho_second": 0.01833, "h_prime": 88.04, "h_second": 2540.0, "r": 2452.0, "s_prime": 0.3105, "s_second": 8.6462 },
+      { "t": 22.0, "T": 295.15, "p": 0.02642, "v_prime": 0.0010022, "v_second": 51.49, "rho_second": 0.01942, "h_prime": 92.23, "h_second": 2541.8, "r": 2449.6, "s_prime": 0.3247, "s_second": 8.6241 },
+      { "t": 23.0, "T": 296.15, "p": 0.02808, "v_prime": 0.0010024, "v_second": 48.62, "rho_second": 0.02057, "h_prime": 96.41, "h_second": 2543.6, "r": 2447.2, "s_prime": 0.3389, "s_second": 8.6023 },
+      { "t": 24.0, "T": 297.15, "p": 0.02982, "v_prime": 0.0010026, "v_second": 45.93, "rho_second": 0.02177, "h_prime": 100.59, "h_second": 2545.5, "r": 2444.9, "s_prime": 0.3530, "s_second": 8.5806 },
+      { "t": 25.0, "T": 298.15, "p": 0.03166, "v_prime": 0.0010029, "v_second": 43.40, "rho_second": 0.02304, "h_prime": 104.77, "h_second": 2547.3, "r": 2442.5, "s_prime": 0.3670, "s_second": 8.5592 },
+      { "t": 26.0, "T": 299.15, "p": 0.03360, "v_prime": 0.0010032, "v_second": 41.03, "rho_second": 0.02437, "h_prime": 108.95, "h_second": 2549.1, "r": 2440.2, "s_prime": 0.3810, "s_second": 8.5379 },
+      { "t": 27.0, "T": 300.15, "p": 0.03564, "v_prime": 0.0010034, "v_second": 38.81, "rho_second": 0.02576, "h_prime": 113.13, "h_second": 2550.9, "r": 2437.8, "s_prime": 0.3949, "s_second": 8.5168 },
+      { "t": 28.0, "T": 301.15, "p": 0.03778, "v_prime": 0.0010037, "v_second": 36.73, "rho_second": 0.02723, "h_prime": 117.31, "h_second": 2552.7, "r": 2435.4, "s_prime": 0.4088, "s_second": 8.4959 },
+      { "t": 29.0, "T": 302.15, "p": 0.04004, "v_prime": 0.0010040, "v_second": 34.77, "rho_second": 0.02876, "h_prime": 121.48, "h_second": 2554.5, "r": 2433.1, "s_prime": 0.4227, "s_second": 8.4751 },
+      { "t": 30.0, "T": 303.15, "p": 0.04241, "v_prime": 0.0010043, "v_second": 32.93, "rho_second": 0.03037, "h_prime": 125.66, "h_second": 2556.4, "r": 2430.7, "s_prime": 0.4365, "s_second": 8.4546 },
+      { "t": 31.0, "T": 304.15, "p": 0.04491, "v_prime": 0.0010046, "v_second": 31.20, "rho_second": 0.03205, "h_prime": 129.84, "h_second": 2558.2, "r": 2428.3, "s_prime": 0.4503, "s_second": 8.4342 },
+      { "t": 94.0, "T": 367.15, "p": 0.8146, "v_prime": 0.0010391, "v_second": 2.052, "rho_second": 0.4873, "h_prime": 393.78, "h_second": 2666.6, "r": 2272.8, "s_prime": 1.2386, "s_second": 7.4291 },
+      { "t": 96.0, "T": 369.15, "p": 0.8769, "v_prime": 0.0010406, "v_second": 1.915, "rho_second": 0.5221, "h_prime": 402.20, "h_second": 2669.7, "r": 2267.5, "s_prime": 1.2615, "s_second": 7.4042 },
+      { "t": 98.0, "T": 371.15, "p": 0.9430, "v_prime": 0.0010421, "v_second": 1.789, "rho_second": 0.5589, "h_prime": 410.63, "h_second": 2672.9, "r": 2262.2, "s_prime": 1.2842, "s_second": 7.3796 },
+      { "t": 100.0, "T": 373.15, "p": 1.0133, "v_prime": 0.0010437, "v_second": 1.673, "rho_second": 0.5977, "h_prime": 419.06, "h_second": 2676.0, "r": 2256.9, "s_prime": 1.3069, "s_second": 7.3554 },
+      { "t": 105.0, "T": 378.15, "p": 1.2080, "v_prime": 0.0010477, "v_second": 1.419, "rho_second": 0.7046, "h_prime": 440.17, "h_second": 2683.7, "r": 2243.6, "s_prime": 1.3630, "s_second": 7.2962 },
+      { "t": 110.0, "T": 383.15, "p": 1.4327, "v_prime": 0.0010519, "v_second": 1.210, "rho_second": 0.8265, "h_prime": 461.32, "h_second": 2691.3, "r": 2230.0, "s_prime": 1.4185, "s_second": 7.2388 },
+      { "t": 115.0, "T": 388.15, "p": 1.6906, "v_prime": 0.0010562, "v_second": 1.036, "rho_second": 0.9650, "h_prime": 482.50, "h_second": 2698.7, "r": 2216.2, "s_prime": 1.4733, "s_second": 7.1832 },
+      { "t": 120.0, "T": 393.15, "p": 1.9854, "v_prime": 0.0010606, "v_second": 0.8915, "rho_second": 1.122, "h_prime": 503.72, "h_second": 2706.0, "r": 2202.2, "s_prime": 1.5276, "s_second": 7.1293 },
+      { "t": 125.0, "T": 398.15, "p": 2.3210, "v_prime": 0.0010652, "v_second": 0.7702, "rho_second": 1.298, "h_prime": 524.99, "h_second": 2713.0, "r": 2188.0, "s_prime": 1.5813, "s_second": 7.0769 },
+      { "t": 130.0, "T": 403.15, "p": 2.7013, "v_prime": 0.0010700, "v_second": 0.6681, "rho_second": 1.497, "h_prime": 546.31, "h_second": 2719.9, "r": 2173.6, "s_prime": 1.6344, "s_second": 7.0261 },
+      { "t": 135.0, "T": 408.15, "p": 3.131, "v_prime": 0.0010750, "v_second": 0.5818, "rho_second": 1.719, "h_prime": 567.68, "h_second": 2726.6, "r": 2158.9, "s_prime": 1.6869, "s_second": 6.9766 },
+      { "t": 140.0, "T": 413.15, "p": 3.614, "v_prime": 0.0010801, "v_second": 0.5085, "rho_second": 1.967, "h_prime": 589.10, "h_second": 2733.1, "r": 2144.0, "s_prime": 1.7390, "s_second": 6.9284 },
+      { "t": 145.0, "T": 418.15, "p": 4.155, "v_prime": 0.0010853, "v_second": 0.4460, "rho_second": 2.242, "h_prime": 610.60, "h_second": 2739.3, "r": 2128.7, "s_prime": 1.7906, "s_second": 6.8815 },
+      { "t": 150.0, "T": 423.15, "p": 4.760, "v_prime": 0.0010908, "v_second": 0.3924, "rho_second": 2.548, "h_prime": 632.15, "h_second": 2745.4, "r": 2113.2, "s_prime": 1.8416, "s_second": 6.8358 },
+      { "t": 155.0, "T": 428.15, "p": 5.433, "v_prime": 0.0010964, "v_second": 0.3464, "rho_second": 2.886, "h_prime": 653.78, "h_second": 2751.2, "r": 2097.4, "s_prime": 1.8923, "s_second": 6.7911 },
+      { "t": 160.0, "T": 433.15, "p": 6.181, "v_prime": 0.0011022, "v_second": 0.3068, "rho_second": 3.260, "h_prime": 675.47, "h_second": 2756.7, "r": 2081.3, "s_prime": 1.9425, "s_second": 6.7475 },
+      { "t": 165.0, "T": 438.15, "p": 7.008, "v_prime": 0.0011082, "v_second": 0.2724, "rho_second": 3.671, "h_prime": 697.25, "h_second": 2762.0, "r": 2064.8, "s_prime": 1.9923, "s_second": 6.7048 },
+      { "t": 170.0, "T": 443.15, "p": 7.920, "v_prime": 0.0011145, "v_second": 0.2426, "rho_second": 4.123, "h_prime": 719.12, "h_second": 2767.1, "r": 2047.9, "s_prime": 2.0416, "s_second": 6.6630 },
+      { "t": 175.0, "T": 448.15, "p": 8.924, "v_prime": 0.0011209, "v_second": 0.2165, "rho_second": 4.618, "h_prime": 741.07, "h_second": 2771.8, "r": 2030.7, "s_prime": 2.0906, "s_second": 6.6221 },
+      { "t": 180.0, "T": 453.15, "p": 10.027, "v_prime": 0.0011275, "v_second": 0.1938, "rho_second": 5.160, "h_prime": 763.12, "h_second": 2776.3, "r": 2013.1, "s_prime": 2.1393, "s_second": 6.5819 },
+      { "t": 185.0, "T": 458.15, "p": 11.233, "v_prime": 0.0011344, "v_second": 0.1739, "rho_second": 5.752, "h_prime": 785.26, "h_second": 2780.4, "r": 1995.2, "s_prime": 2.1876, "s_second": 6.5424 },
+      { "t": 190.0, "T": 463.15, "p": 12.551, "v_prime": 0.0011415, "v_second": 0.1563, "rho_second": 6.397, "h_prime": 807.52, "h_second": 2784.3, "r": 1976.7, "s_prime": 2.2356, "s_second": 6.5036 },
+      { "t": 195.0, "T": 468.15, "p": 13.987, "v_prime": 0.0011489, "v_second": 0.1408, "rho_second": 7.100, "h_prime": 829.88, "h_second": 2787.8, "r": 1957.9, "s_prime": 2.2833, "s_second": 6.4654 },
+      { "t": 200.0, "T": 473.15, "p": 15.549, "v_prime": 0.0011565, "v_second": 0.1272, "rho_second": 7.864, "h_prime": 852.37, "h_second": 2790.9, "r": 1938.6, "s_prime": 2.3307, "s_second": 6.4278 },
+      { "t": 210.0, "T": 483.15, "p": 19.077, "v_prime": 0.0011726, "v_second": 0.1042, "rho_second": 9.593, "h_prime": 897.74, "h_second": 2796.2, "r": 1898.5, "s_prime": 2.4247, "s_second": 6.3539 },
+      { "t": 220.0, "T": 493.15, "p": 23.198, "v_prime": 0.0011900, "v_second": 0.08604, "rho_second": 11.62, "h_prime": 943.67, "h_second": 2799.9, "r": 1856.2, "s_prime": 2.5178, "s_second": 6.2817 },
+      { "t": 230.0, "T": 503.15, "p": 27.976, "v_prime": 0.0012087, "v_second": 0.07145, "rho_second": 14.00, "h_prime": 990.26, "h_second": 2802.0, "r": 1811.7, "s_prime": 2.6102, "s_second": 6.2107 },
+      { "t": 240.0, "T": 513.15, "p": 33.478, "v_prime": 0.0012291, "v_second": 0.05965, "rho_second": 16.76, "h_prime": 1037.6, "h_second": 2802.2, "r": 1764.6, "s_prime": 2.7020, "s_second": 6.1406 },
+      { "t": 250.0, "T": 523.15, "p": 39.776, "v_prime": 0.0012513, "v_second": 0.05004, "rho_second": 19.99, "h_prime": 1085.8, "h_second": 2800.4, "r": 1714.6, "s_prime": 2.7935, "s_second": 6.0708 },
+      { "t": 260.0, "T": 533.15, "p": 46.943, "v_prime": 0.0012756, "v_second": 0.04213, "rho_second": 23.73, "h_prime": 1134.9, "h_second": 2796.4, "r": 1661.5, "s_prime": 2.8848, "s_second": 6.0010 },
+      { "t": 270.0, "T": 543.15, "p": 55.058, "v_prime": 0.0013025, "v_second": 0.03559, "rho_second": 28.10, "h_prime": 1185.2, "h_second": 2789.9, "r": 1604.6, "s_prime": 2.9763, "s_second": 5.9304 },
+      { "t": 280.0, "T": 553.15, "p": 64.202, "v_prime": 0.0013324, "v_second": 0.03013, "rho_second": 33.19, "h_prime": 1236.8, "h_second": 2780.4, "r": 1543.6, "s_prime": 3.0683, "s_second": 5.8586 },
+      { "t": 290.0, "T": 563.15, "p": 74.461, "v_prime": 0.0013659, "v_second": 0.02554, "rho_second": 39.16, "h_prime": 1290.0, "h_second": 2767.6, "r": 1477.6, "s_prime": 3.1611, "s_second": 5.7848 },
+      { "t": 300.0, "T": 573.15, "p": 85.927, "v_prime": 0.0014041, "v_second": 0.02165, "rho_second": 46.19, "h_prime": 1345.0, "h_second": 2751.0, "r": 1406.0, "s_prime": 3.2552, "s_second": 5.7081 },
+      { "t": 310.0, "T": 583.15, "p": 98.700, "v_prime": 0.0014480, "v_second": 0.01833, "rho_second": 54.54, "h_prime": 1402.4, "h_second": 2730.0, "r": 1327.6, "s_prime": 3.3512, "s_second": 5.6278 },
+      { "t": 320.0, "T": 593.15, "p": 112.89, "v_prime": 0.0014995, "v_second": 0.01548, "rho_second": 64.60, "h_prime": 1462.6, "h_second": 2703.7, "r": 1241.1, "s_prime": 3.4500, "s_second": 5.5423 },
+      { "t": 330.0, "T": 603.15, "p": 128.63, "v_prime": 0.0015615, "v_second": 0.01299, "rho_second": 76.99, "h_prime": 1526.5, "h_second": 2670.2, "r": 1143.6, "s_prime": 3.5528, "s_second": 5.4490 },
+      { "t": 340.0, "T": 613.15, "p": 146.05, "v_prime": 0.0016387, "v_second": 0.01078, "rho_second": 92.76, "h_prime": 1595.5, "h_second": 2626.2, "r": 1030.7, "s_prime": 3.6616, "s_second": 5.3427 },
+      { "t": 350.0, "T": 623.15, "p": 165.35, "v_prime": 0.0017411, "v_second": 0.008799, "rho_second": 113.6, "h_prime": 1671.9, "h_second": 2567.7, "r": 895.7, "s_prime": 3.7800, "s_second": 5.2177 },
+      { "t": 360.0, "T": 633.15, "p": 186.75, "v_prime": 0.0018959, "v_second": 0.006940, "rho_second": 144.1, "h_prime": 1764.2, "h_second": 2485.4, "r": 721.3, "s_prime": 3.9210, "s_second": 5.0600 },
+      { "t": 370.0, "T": 643.15, "p": 210.54, "v_prime": 0.0022136, "v_second": 0.004973, "rho_second": 201.1, "h_prime": 1890.2, "h_second": 2342.8, "r": 452.6, "s_prime": 4.1108, "s_second": 4.8144 },
+      { "t": 371.0, "T": 644.15, "p": 213.06, "v_prime": 0.0022778, "v_second": 0.004723, "rho_second": 211.7, "h_prime": 1910.5, "h_second": 2317.9, "r": 407.4, "s_prime": 4.1414, "s_second": 4.7738 },
+      { "t": 372.0, "T": 645.15, "p": 215.62, "v_prime": 0.0023636, "v_second": 0.004439, "rho_second": 225.3, "h_prime": 1935.6, "h_second": 2286.9, "r": 351.4, "s_prime": 4.1794, "s_second": 4.7240 },
+      { "t": 373.0, "T": 646.15, "p": 218.20, "v_prime": 0.0024963, "v_second": 0.004084, "rho_second": 244.9, "h_prime": 1970.5, "h_second": 2244.0, "r": 273.5, "s_prime": 4.2325, "s_second": 4.6559 },
+      { "t": 374.0, "T": 647.15, "p": 220.81, "v_prime": 0.0028407, "v_second": 0.003458, "rho_second": 289.2, "h_prime": 2046.3, "h_second": 2155.0, "r": 108.6, "s_prime": 4.3487, "s_second": 4.5166 },
+      { "t": 374.15, "T": 647.30, "p": 221.20, "v_prime": 0.00317, "v_second": 0.00317, "rho_second": 315.5, "h_prime": 2107.4, "h_second": 2107.4, "r": 0.0, "s_prime": 4.4429, "s_second": 4.4429 }
+    ]
+  },
+  "caratteristiche_combustibili": {
+    "solidi": {
+      "descrizione": "Valori tipici per combustibili solidi",
+      "unita_di_misura": {
+        "umidita_massa_pct": "% in massa",
+        "composizione_secco_pct": "% in massa su combustibile secco (sul grezzo)",
+        "sostanze_volatili_secco_pct": "% in massa su combustibile secco",
+        "potere_calorifico_15C_kJ_kg": "kJ/kg"
+      },
+      "dati": [
+        {
+          "combustibile": "Antracite",
+          "umidita_massa_pct": 1,
+          "composizione_secco_pct": { "C": 90.27, "H": 3.00, "O": 2.32, "N_S": 1.44, "ceneri": 2.97 },
+          "sostanze_volatili_secco_pct": 4,
+          "potere_calorifico_15C_kJ_kg": { "superiore": 34600, "inferiore": 34000 }
+        },
+        {
+          "combustibile": "Carbone bituminoso",
+          "umidita_massa_pct": 2,
+          "composizione_secco_pct": { "C": 81.93, "H": 4.87, "O": 5.98, "N_S": 2.32, "ceneri": 4.90 },
+          "sostanze_volatili_secco_pct": 25,
+          "potere_calorifico_15C_kJ_kg": { "superiore": 33500, "inferiore": 32400 }
+        },
+        {
+          "combustibile": "Lignite",
+          "umidita_massa_pct": 15,
+          "composizione_secco_pct": { "C": 56.52, "H": 5.72, "O": 31.89, "N_S": 1.62, "ceneri": 4.25 },
+          "sostanze_volatili_secco_pct": 50,
+          "potere_calorifico_15C_kJ_kg": { "superiore": 21600, "inferiore": 20400 }
+        },
+        {
+          "combustibile": "Torba",
+          "umidita_massa_pct": 20,
+          "composizione_secco_pct": { "C": 43.70, "H": 6.42, "O": 44.36, "N_S": 1.52, "ceneri": 4.00 },
+          "sostanze_volatili_secco_pct": 65,
+          "potere_calorifico_15C_kJ_kg": { "superiore": 15900, "inferiore": 14500 }
+        },
+        {
+          "combustibile": "Legno",
+          "umidita_massa_pct": 15,
+          "composizione_secco_pct": { "C": 42.50, "H": 6.78, "O": 49.87, "N_S": 0.85, "ceneri": "tracce" },
+          "sostanze_volatili_secco_pct": 80,
+          "potere_calorifico_15C_kJ_kg": { "superiore": 15800, "inferiore": 14300 }
+        },
+        {
+          "combustibile": "Coke",
+          "umidita_massa_pct": 2,
+          "composizione_secco_pct": { "C": 86.58, "H": 1.13, "O": 3.61, "N_S": 1.82, "ceneri": 6.86 },
+          "sostanze_volatili_secco_pct": 1,
+          "potere_calorifico_15C_kJ_kg": { "superiore": 30700, "inferiore": 30500 }
+        }
+      ]
+    },
+    "liquidi": {
+      "descrizione": "Valori tipici per combustibili liquidi",
+      "unita_di_misura": {
+        "composizione_massa_pct": "frazione di massa %",
+        "potere_calorifico_15C_kJ_kg": "kJ/kg"
+      },
+      "dati": [
+        {
+          "combustibile": "Benzina avio",
+          "composizione_massa_pct": { "C": 85.1, "H": 14.9, "S": 0.01, "ceneri": null },
+          "potere_calorifico_15C_kJ_kg": { "superiore": 47310, "inferiore": 44000 }
+        },
+        {
+          "combustibile": "Benzina autotrazione",
+          "composizione_massa_pct": { "C": 85.5, "H": 14.4, "S": 0.1, "ceneri": null },
+          "potere_calorifico_15C_kJ_kg": { "superiore": 46890, "inferiore": 43710 }
+        },
+        {
+          "combustibile": "Petrolio",
+          "composizione_massa_pct": { "C": 86.2, "H": 12.9, "S": 0.3, "ceneri": null },
+          "potere_calorifico_15C_kJ_kg": { "superiore": 46050, "inferiore": 43210 }
+        },
+        {
+          "combustibile": "Benzolo commerciale",
+          "composizione_massa_pct": { "C": 91.7, "H": 8.0, "S": 0.3, "ceneri": null },
+          "potere_calorifico_15C_kJ_kg": { "superiore": 41970, "inferiore": 40190 }
+        },
+        {
+          "combustibile": "Cherosene",
+          "composizione_massa_pct": { "C": 86.3, "H": 13.6, "S": 0.1, "ceneri": null },
+          "potere_calorifico_15C_kJ_kg": { "superiore": 46180, "inferiore": 43170 }
+        },
+        {
+          "combustibile": "Gasolio autotrazione",
+          "composizione_massa_pct": { "C": 86.3, "H": 12.8, "S": 0.9, "ceneri": null },
+          "potere_calorifico_15C_kJ_kg": { "superiore": 45970, "inferiore": 43170 }
+        },
+        {
+          "combustibile": "Olio comb. leggero",
+          "composizione_massa_pct": { "C": 86.2, "H": 12.4, "S": 1.4, "ceneri": null },
+          "potere_calorifico_15C_kJ_kg": { "superiore": 44800, "inferiore": 42080 }
+        },
+        {
+          "combustibile": "Olio comb. pesante",
+          "composizione_massa_pct": { "C": 86.1, "H": 11.8, "S": 2.1, "ceneri": null },
+          "potere_calorifico_15C_kJ_kg": { "superiore": 43960, "inferiore": 41370 }
+        },
+        {
+          "combustibile": "Bunker C",
+          "composizione_massa_pct": { "C": 88.3, "H": 9.5, "S": 1.2, "ceneri": 1.0 },
+          "potere_calorifico_15C_kJ_kg": { "superiore": 42050, "inferiore": 39960 }
+        }
+      ]
+    },
+    "gassosi": {
+      "descrizione": "Valori tipici per combustibili gassosi (a 15°C, 1 atm)",
+      "unita_di_misura": {
+        "composizione_volumetrica_pct": "frazione volumetrica %",
+        "potere_calorifico_15C_1atm_kJ_m3": "kJ/m³"
+      },
+      "dati": [
+        {
+          "combustibile": "Gas di città (variante 1)",
+          "composizione_volumetrica_pct": { "CO": 9.0, "H2": 53.6, "CH4": 25.0, "C2H6": null, "C4H8": 3.0, "O2": 0.4, "CO2": 3.0, "N2": 6.0 },
+          "potere_calorifico_15C_1atm_kJ_m3": { "superiore": 20100, "inferiore": 17900 }
+        },
+        {
+          "combustibile": "Gas di città (variante 2)",
+          "composizione_volumetrica_pct": { "CO": 24.9, "H2": 53.1, "CH4": 17.3, "C2H6": null, "C4H8": 0.7, "O2": null, "CO2": 3.2, "N2": 0.8 },
+          "potere_calorifico_15C_1atm_kJ_m3": { "superiore": 16400, "inferiore": 14700 }
+        },
+        {
+          "combustibile": "Gas d'altoforno",
+          "composizione_volumetrica_pct": { "CO": 27.0, "H2": 2.0, "CH4": null, "C2H6": null, "C4H8": null, "O2": null, "CO2": 11.0, "N2": 60.0 },
+          "potere_calorifico_15C_1atm_kJ_m3": { "superiore": 3440, "inferiore": 3400 }
+        },
+        {
+          "combustibile": "Gas naturale (URSS)",
+          "composizione_volumetrica_pct": { "CO": null, "H2": null, "CH4": 92.3, "C2H6": 3.2, "C4H8": null, "O2": null, "CO2": null, "N2": 3.0 },
+          "potere_calorifico_15C_1atm_kJ_m3": { "superiore": 38200, "inferiore": 34400 }
+        },
+        {
+          "combustibile": "Ossido di carbonio",
+          "composizione_volumetrica_pct": { "CO": 100.0, "H2": null, "CH4": null, "C2H6": null, "C4H8": null, "O2": null, "CO2": null, "N2": null },
+          "potere_calorifico_15C_1atm_kJ_m3": { "superiore": 11840, "inferiore": 11840 }
+        },
+        {
+          "combustibile": "Idrogeno",
+          "composizione_volumetrica_pct": { "CO": null, "H2": 100.0, "CH4": null, "C2H6": null, "C4H8": null, "O2": null, "CO2": null, "N2": null },
+          "potere_calorifico_15C_1atm_kJ_m3": { "superiore": 11920, "inferiore": 10050 }
+        },
+        {
+          "combustibile": "Metano",
+          "composizione_volumetrica_pct": { "CO": null, "H2": null, "CH4": 100.0, "C2H6": null, "C4H8": null, "O2": null, "CO2": null, "N2": null },
+          "potere_calorifico_15C_1atm_kJ_m3": { "superiore": 37800, "inferiore": 34000 }
+        }
+      ]
+    }
+  },
+  "fattori_di_conversione": {
+    "unita_lunghezza": {
+      "dimensione": "L",
+      "matrice": [
+        { "unita": "1 m", "m": 1.0, "in": 39.3701, "ft": 3.28084, "miglio_marino": 5.39957e-4, "miglio_inglese": 6.21371e-4 },
+        { "unita": "1 in", "m": 2.54e-2, "in": 1.0, "ft": 8.3333e-2, "miglio_marino": 1.37149e-5, "miglio_inglese": 1.57828e-5 },
+        { "unita": "1 ft", "m": 3.048e-1, "in": 12.0, "ft": 1.0, "miglio_marino": 1.64579e-4, "miglio_inglese": 1.89394e-4 },
+        { "unita": "1 miglio marino", "m": 1852.0, "in": 72913.4, "ft": 6076.12, "miglio_marino": 1.0, "miglio_inglese": 1.15078 },
+        { "unita": "1 miglio inglese", "m": 1609.34, "in": 63360.0, "ft": 5280.0, "miglio_marino": 8.68974e-1, "miglio_inglese": 1.0 }
+      ]
+    },
+    "unita_massa": {
+      "dimensione": "M",
+      "matrice": [
+        { "unita": "1 kg", "kg": 1.0, "g": 1000.0, "kgf_s2_m": 1.01972e-1, "lb": 2.20462, "lbf_s2_ft": 6.85218e-2 },
+        { "unita": "1 g", "kg": 1e-3, "g": 1.0, "kgf_s2_m": 1.01972e-4, "lb": 2.20462e-3, "lbf_s2_ft": 6.85218e-5 },
+        { "unita": "1 kgf s²/m (u.p.m.)", "kg": 9.80665, "g": 9806.65, "kgf_s2_m": 1.0, "lb": 21.6200, "lbf_s2_ft": 6.71969e-1 },
+        { "unita": "1 lb", "kg": 4.53592e-1, "g": 453.592, "kgf_s2_m": 4.62535e-2, "lb": 1.0, "lbf_s2_ft": 3.10810e-2 },
+        { "unita": "1 lbf s²/ft (slug)", "kg": 14.5939, "g": 14593.9, "kgf_s2_m": 1.48816, "lb": 32.1740, "lbf_s2_ft": 1.0 }
+      ]
+    },
+    "unita_intervallo_temperatura": {
+      "dimensione": "θ",
+      "formule": {
+        "T_K": "t_C + 273.15",
+        "T_oR": "t_oF + 459.67",
+        "t_oF": "1.8 * (T_K - 255.38)",
+        "t_oC": "(t_oF - 32) / 1.8",
+        "t_oF_da_C": "1.8 * t_oC + 32"
+      },
+      "matrice": [
+        { "unita": "1 K", "K": 1.0, "oC": 1.0, "oR": 1.8, "oF": 1.8 },
+        { "unita": "1 °C", "K": 1.0, "oC": 1.0, "oR": 1.8, "oF": 1.8 },
+        { "unita": "1 °R", "K": 5.55556e-1, "oC": 5.55556e-1, "oR": 1.0, "oF": 1.0 },
+        { "unita": "1 °F", "K": 5.55556e-1, "oC": 5.55556e-1, "oR": 1.0, "oF": 1.0 }
+      ]
+    },
+    "unita_forza": {
+      "dimensione": "L M T^-2",
+      "matrice": [
+        { "unita": "1 N", "N": 1.0, "dyn": 1e5, "kgf": 1.01972e-1, "lb_ft_s2": 7.23301, "lbf": 2.24809e-1 },
+        { "unita": "1 dyn", "N": 1e-5, "dyn": 1.0, "kgf": 1.01972e-6, "lb_ft_s2": 7.23301e-5, "lbf": 2.24809e-6 },
+        { "unita": "1 kgf", "N": 9.80665, "dyn": 980665.0, "kgf": 1.0, "lb_ft_s2": 70.9316, "lbf": 2.20462 },
+        { "unita": "1 lb ft/s² (pdl)", "N": 1.38255e-1, "dyn": 13825.5, "kgf": 1.40981e-2, "lb_ft_s2": 1.0, "lbf": 3.10810e-2 },
+        { "unita": "1 lbf", "N": 4.44822, "dyn": 444822.0, "kgf": 4.53592e-1, "lb_ft_s2": 32.1740, "lbf": 1.0 }
+      ]
+    },
+    "unita_pressione": {
+      "dimensione": "L^-1 M T^-2",
+      "matrice": [
+        { "unita": "1 Pa (N/m²)", "Pa": 1.0, "dyn_cm2": 10.0, "bar": 1e-5, "kgf_m2": 1.01972e-1, "kgf_cm2": 1.01972e-5, "atm": 9.86923e-6, "torr": 7.50064e-3, "lbf_ft2": 2.08854e-2, "lbf_in2": 1.45038e-4 },
+        { "unita": "1 dyn/cm² (baria)", "Pa": 1e-1, "dyn_cm2": 1.0, "bar": 1e-6, "kgf_m2": 1.01972e-2, "kgf_cm2": 1.01972e-6, "atm": 9.86923e-7, "torr": 7.50064e-4, "lbf_ft2": 2.08854e-3, "lbf_in2": 1.45038e-5 },
+        { "unita": "1 bar", "Pa": 1e5, "dyn_cm2": 1e6, "bar": 1.0, "kgf_m2": 10197.2, "kgf_cm2": 1.01972, "atm": 9.86923e-1, "torr": 750.064, "lbf_ft2": 2088.54, "lbf_in2": 14.5038 },
+        { "unita": "1 kgf/m² (mm H2O)", "Pa": 9.80665, "dyn_cm2": 98.0665, "bar": 9.80665e-5, "kgf_m2": 1.0, "kgf_cm2": 1e-4, "atm": 9.67841e-5, "torr": 7.35561e-2, "lbf_ft2": 2.04816e-1, "lbf_in2": 1.42233e-3 },
+        { "unita": "1 kgf/cm² (at)", "Pa": 98066.5, "dyn_cm2": 980665.0, "bar": 9.80665e-1, "kgf_m2": 10000.0, "kgf_cm2": 1.0, "atm": 9.67841e-1, "torr": 735.561, "lbf_ft2": 2048.16, "lbf_in2": 14.2233 },
+        { "unita": "1 atm", "Pa": 101325.0, "dyn_cm2": 1.01325e6, "bar": 1.01325, "kgf_m2": 10332.3, "kgf_cm2": 1.03323, "atm": 1.0, "torr": 760.0, "lbf_ft2": 2116.21, "lbf_in2": 14.6959 },
+        { "unita": "1 torr (mm Hg)", "Pa": 133.322, "dyn_cm2": 1333.22, "bar": 1.33322e-3, "kgf_m2": 13.5951, "kgf_cm2": 1.35951e-3, "atm": 1.31579e-3, "torr": 1.0, "lbf_ft2": 2.78449, "lbf_in2": 1.93367e-2 },
+        { "unita": "1 lbf/ft²", "Pa": 47.8803, "dyn_cm2": 478.803, "bar": 4.78803e-4, "kgf_m2": 4.88243, "kgf_cm2": 4.88243e-4, "atm": 4.72542e-4, "torr": 3.59133e-1, "lbf_ft2": 1.0, "lbf_in2": 6.94444e-3 },
+        { "unita": "1 lbf/in² (p.s.i.)", "Pa": 6894.76, "dyn_cm2": 68947.6, "bar": 6.89476e-2, "kgf_m2": 703.070, "kgf_cm2": 7.03070e-2, "atm": 6.80460e-2, "torr": 51.7151, "lbf_ft2": 144.0, "lbf_in2": 1.0 }
+      ]
+    },
+    "unita_energia": {
+      "dimensione": "L² M T^-2",
+      "matrice": [
+        { "unita": "1 J", "J": 1.0, "erg": 1e7, "kgf_m": 1.01972e-1, "kWh": 2.77778e-7, "l_atm": 9.86923e-3, "CV_h": 3.72506e-7, "HP_h": 3.72506e-7, "kcal": 2.38846e-4, "Btu": 9.47817e-4, "lb_ft2_s2": 23.7304, "lbf_ft": 7.37562e-1 },
+        { "unita": "1 erg", "J": 1e-7, "erg": 1.0, "kgf_m": 1.01972e-8, "kWh": 2.77778e-14, "l_atm": 9.86923e-10, "CV_h": 3.72506e-14, "HP_h": 3.72506e-14, "kcal": 2.38846e-11, "Btu": 9.47817e-11, "lb_ft2_s2": 2.37304e-6, "lbf_ft": 7.37562e-8 },
+        { "unita": "1 kgf m", "J": 9.80665, "erg": 9.80665e7, "kgf_m": 1.0, "kWh": 2.72407e-6, "l_atm": 9.67841e-2, "CV_h": 3.70370e-6, "HP_h": 3.65304e-6, "kcal": 2.34228e-3, "Btu": 9.29487e-3, "lb_ft2_s2": 232.715, "lbf_ft": 7.23301 },
+        { "unita": "1 kWh", "J": 3.6e6, "erg": 3.6e13, "kgf_m": 367098.0, "kWh": 1.0, "l_atm": 35529.2, "CV_h": 1.35962, "HP_h": 1.34102, "kcal": 859.845, "Btu": 3412.14, "lb_ft2_s2": 8.54293e7, "lbf_ft": 2.65522e6 },
+        { "unita": "1 l atm", "J": 101.325, "erg": 1.01325e9, "kgf_m": 10.3323, "kWh": 2.81458e-5, "l_atm": 1.0, "CV_h": 3.82676e-5, "HP_h": 3.77442e-5, "kcal": 2.42011e-2, "Btu": 9.60372e-2, "lb_ft2_s2": 2404.48, "lbf_ft": 74.7334 },
+        { "unita": "1 CV h", "J": 2.64780e6, "erg": 2.64780e13, "kgf_m": 270000.0, "kWh": 7.35499e-1, "l_atm": 26131.8, "CV_h": 1.0, "HP_h": 9.86322e-1, "kcal": 632.416, "Btu": 2509.62, "lb_ft2_s2": 6.28333e7, "lbf_ft": 1.95292e6 },
+        { "unita": "1 HP h", "J": 2.68452e6, "erg": 2.68452e13, "kgf_m": 273745.0, "kWh": 7.45700e-1, "l_atm": 26494.2, "CV_h": 1.01387, "HP_h": 1.0, "kcal": 641.186, "Btu": 2544.43, "lb_ft2_s2": 6.37046e7, "lbf_ft": 1.98e6 },
+        { "unita": "1 kcal", "J": 4186.8, "erg": 4.1868e10, "kgf_m": 426.935, "kWh": 1.163e-3, "l_atm": 41.3205, "CV_h": 1.58124e-3, "HP_h": 1.55961e-3, "kcal": 1.0, "Btu": 3.96832, "lb_ft2_s2": 99354.3, "lbf_ft": 3088.03 },
+        { "unita": "1 Btu", "J": 1055.06, "erg": 1.05506e10, "kgf_m": 107.586, "kWh": 2.93071e-4, "l_atm": 10.4126, "CV_h": 3.98467e-4, "HP_h": 3.93015e-4, "kcal": 2.51996e-1, "Btu": 1.0, "lb_ft2_s2": 25037.0, "lbf_ft": 778.170 },
+        { "unita": "1 lb ft²/s² (pdl ft)", "J": 4.21401e-2, "erg": 421401.0, "kgf_m": 4.29709e-3, "kWh": 1.17056e-8, "l_atm": 4.15891e-4, "CV_h": 1.59151e-8, "HP_h": 1.56975e-8, "kcal": 1.00650e-5, "Btu": 3.99410e-5, "lb_ft2_s2": 1.0, "lbf_ft": 3.10809e-2 },
+        { "unita": "1 lbf ft", "J": 1.35582, "erg": 1.35582e7, "kgf_m": 1.38255e-1, "kWh": 3.76616e-7, "l_atm": 1.33809e-1, "CV_h": 5.12065e-7, "HP_h": 5.05051e-7, "kcal": 3.23832e-4, "Btu": 1.28507e-3, "lb_ft2_s2": 32.1740, "lbf_ft": 1.0 }
+      ]
+    },
+    "unita_energia_specifica": {
+      "dimensione": "L² T^-2",
+      "matrice": [
+        { "unita": "1 J/kg", "J_kg": 1.0, "erg_g": 1e4, "kgf_m_kg": 1.01972e-1, "kWh_kg": 2.77778e-7, "kcal_kg": 2.38846e-4, "lbf_ft_lb": 3.34552e-1, "Btu_lb": 4.29923e-4, "ft2_s2": 10.7639 },
+        { "unita": "1 erg/g", "J_kg": 1e-4, "erg_g": 1.0, "kgf_m_kg": 1.01972e-5, "kWh_kg": 2.77778e-11, "kcal_kg": 2.38846e-8, "lbf_ft_lb": 3.34552e-5, "Btu_lb": 4.29923e-8, "ft2_s2": 1.07639e-3 },
+        { "unita": "1 kgf m/kg", "J_kg": 9.80665, "erg_g": 98066.5, "kgf_m_kg": 1.0, "kWh_kg": 2.72407e-6, "kcal_kg": 2.34228e-3, "lbf_ft_lb": 3.28084, "Btu_lb": 4.21610e-3, "ft2_s2": 105.558 },
+        { "unita": "1 kWh/kg", "J_kg": 3.6e6, "erg_g": 3.6e10, "kgf_m_kg": 367098.0, "kWh_kg": 1.0, "kcal_kg": 859.845, "lbf_ft_lb": 1.20439e6, "Btu_lb": 1547.72, "ft2_s2": 3.87501e7 },
+        { "unita": "1 kcal/kg", "J_kg": 4186.8, "erg_g": 4.1868e7, "kgf_m_kg": 426.935, "kWh_kg": 1.163e-3, "kcal_kg": 1.0, "lbf_ft_lb": 1400.70, "Btu_lb": 1.8, "ft2_s2": 45066.4 },
+        { "unita": "1 lbf ft/lb", "J_kg": 2.98907, "erg_g": 29890.7, "kgf_m_kg": 0.3048, "kWh_kg": 8.30297e-7, "kcal_kg": 7.13927e-4, "lbf_ft_lb": 1.0, "Btu_lb": 1.28507e-3, "ft2_s2": 32.1740 },
+        { "unita": "1 Btu/lb", "J_kg": 2326.0, "erg_g": 2.326e7, "kgf_m_kg": 237.186, "kWh_kg": 6.46111e-4, "kcal_kg": 5.55556e-1, "lbf_ft_lb": 778.168, "Btu_lb": 1.0, "ft2_s2": 25036.9 },
+        { "unita": "1 ft²/s²", "J_kg": 9.29030e-2, "erg_g": 929.030, "kgf_m_kg": 9.47347e-3, "kWh_kg": 2.58064e-8, "kcal_kg": 2.21895e-5, "lbf_ft_lb": 3.10810e-2, "Btu_lb": 3.99411e-5, "ft2_s2": 1.0 }
+      ]
+    },
+    "unita_potenza": {
+      "dimensione": "L² M T^-3",
+      "matrice": [
+        { "unita": "1 W", "W": 1.0, "kW": 1e-3, "erg_s": 1e7, "kgf_m_s": 1.01972e-1, "CV": 1.35962e-3, "HP": 1.34102e-3, "kcal_h": 8.59845e-1, "lbf_ft_s": 7.37561e-1, "Btu_h": 3.41214 },
+        { "unita": "1 kW", "W": 1000.0, "kW": 1.0, "erg_s": 1e10, "kgf_m_s": 101.972, "CV": 1.35962, "HP": 1.34102, "kcal_h": 859.845, "lbf_ft_s": 737.561, "Btu_h": 3412.14 },
+        { "unita": "1 erg/s", "W": 1e-7, "kW": 1e-10, "erg_s": 1.0, "kgf_m_s": 1.01972e-8, "CV": 1.35962e-10, "HP": 1.34102e-10, "kcal_h": 8.59845e-8, "lbf_ft_s": 7.37561e-8, "Btu_h": 3.41214e-7 },
+        { "unita": "1 kgf m/s", "W": 9.80665, "kW": 9.80665e-3, "erg_s": 9.80665e7, "kgf_m_s": 1.0, "CV": 1.33333e-2, "HP": 1.31509e-2, "kcal_h": 8.43220, "lbf_ft_s": 7.23300, "Btu_h": 33.4617 },
+        { "unita": "1 CV", "W": 735.499, "kW": 7.35499e-1, "erg_s": 7.35499e9, "kgf_m_s": 75.0, "CV": 1.0, "HP": 9.86320e-1, "kcal_h": 632.415, "lbf_ft_s": 542.475, "Btu_h": 2509.63 },
+        { "unita": "1 HP", "W": 745.700, "kW": 7.45700e-1, "erg_s": 7.45700e9, "kgf_m_s": 76.0402, "CV": 1.01387, "HP": 1.0, "kcal_h": 641.187, "lbf_ft_s": 550.0, "Btu_h": 2544.43 },
+        { "unita": "1 kcal/h", "W": 1.163, "kW": 1.163e-3, "erg_s": 1.163e7, "kgf_m_s": 1.18393e-1, "CV": 1.58124e-3, "HP": 1.55961e-3, "kcal_h": 1.0, "lbf_ft_s": 8.57783e-1, "Btu_h": 3.96832 },
+        { "unita": "1 lbf ft/s", "W": 1.35582, "kW": 1.35582e-3, "erg_s": 1.35582e7, "kgf_m_s": 1.38255e-1, "CV": 1.84340e-3, "HP": 1.81818e-3, "kcal_h": 1.16580, "lbf_ft_s": 1.0, "Btu_h": 4.62625 },
+        { "unita": "1 Btu/h", "W": 2.93071e-1, "kW": 2.93071e-4, "erg_s": 2.93071e6, "kgf_m_s": 2.98849e-2, "CV": 3.98466e-4, "HP": 3.93015e-4, "kcal_h": 2.51996e-1, "lbf_ft_s": 2.16158e-1, "Btu_h": 1.0 }
+      ]
+    }
+  }
+}
