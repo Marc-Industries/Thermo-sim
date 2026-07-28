@@ -249,8 +249,10 @@ function generateCycleReport(p: ProfessorPayload): ProfessorOutput {
 }
 
 function rankineDerivation(states: ThermodynamicState[], per: any[]) {
+  const isReheat = states.length >= 6
   const steps: ProfessorOutput['steps'] = []
   const s1 = states[0] || {}, s2 = states[1] || {}, s3 = states[2] || {}, s4 = states[3] || {}
+  const s5 = states[4] || {}, s6 = states[5] || {}
   steps.push({
     title: 'Processo 1→2: Compressione (pompa)',
     explanation: 'La pompa è isentropica (reversibile+adiabatica). Il lavoro specifico è approssimato da w_p = v_1 (P_2 − P_1) per liquidi incomprimibili.',
@@ -259,27 +261,54 @@ function rankineDerivation(states: ThermodynamicState[], per: any[]) {
   })
   steps.push({
     title: 'Processo 2→3: Riscaldamento (caldaia)',
-    explanation: 'In caldaia il fluido riceve calore a pressione circa costante. Per fluido bifase saturo (Rankine semplice) h_3 = h_g(T_3).',
-    latex: 'q_{in} = h_3 - h_2',
-    numeric: `q_in = ${NUM(s3.h)} − ${NUM(s2.h)} = ${(per[1]?.Q ?? 0).toFixed(2)} J/kg`,
+    explanation: 'In caldaia il fluido riceve calore a pressione circa costante. Per fluido bifase saturo (Rankine semplice) h_3 = h_g(T_3); per ciclo surriscaldato/risurriscaldato, h_3 dipende dal grado di surriscaldamento.',
+    latex: 'q_{in,1} = h_3 - h_2',
+    numeric: `q_in,1 = ${NUM(s3.h)} − ${NUM(s2.h)} = ${(per[1]?.Q ?? 0).toFixed(2)} J/kg`,
   })
   steps.push({
-    title: 'Processo 3→4: Espansione (turbina)',
-    explanation: 'Turbina isoentropica: la variazione di entalpia fornisce il lavoro specifico.',
-    latex: 'w_{turb} = h_3 - h_4',
-    numeric: `w_t = ${NUM(s3.h)} − ${NUM(s4.h)} = ${(per[2]?.W ?? 0).toFixed(2)} J/kg`,
+    title: 'Processo 3→4: Espansione (turbina AP)',
+    explanation: 'Espansione isoentropica ad alta pressione fino alla pressione intermedia.',
+    latex: 'w_{turb,AP} = h_3 - h_4',
+    numeric: `w_t,AP = ${NUM(s3.h)} − ${NUM(s4.h)} = ${(per[2]?.W ?? 0).toFixed(2)} J/kg`,
   })
-  steps.push({
-    title: 'Processo 4→1: Condensazione (condensatore)',
-    explanation: 'Calore ceduto a pressione costante. Per il titolo in uscita: x_4 = (h_4 − h_f) / (h_g − h_f).',
-    latex: 'q_{out} = h_4 - h_1',
-    numeric: `q_out = ${NUM(s4.h)} − ${NUM(s1.h)} = ${(per[3]?.Q ?? 0).toFixed(2)} J/kg`,
-  })
-  steps.push({
-    title: 'Bilancio del ciclo',
-    explanation: 'Il rendimento termico del Rankine è dato dal rapporto tra lavoro netto e calore introdotto:',
-    latex: '\\eta = \\frac{w_{net}}{q_{in}} = \\frac{(h_3 - h_4) - (h_2 - h_1)}{h_3 - h_2}',
-  })
+
+  if (isReheat) {
+    steps.push({
+      title: 'Processo 4→5: Risurriscaldamento',
+      explanation: 'Il vapore espanso viene riportato a temperatura più alta in caldaia a pressione intermedia, aumentando il titolo medio in turbina e migliorando il rendimento.',
+      latex: 'q_{reheat} = h_5 - h_4',
+      numeric: `q_reheat = ${NUM(s5.h)} − ${NUM(s4.h)} = ${(per[3]?.Q ?? 0).toFixed(2)} J/kg`,
+    })
+    steps.push({
+      title: 'Processo 5→6: Espansione (turbina BP)',
+      explanation: 'Seconda espansione isoentropica fino alla pressione del condensatore.',
+      latex: 'w_{turb,BP} = h_5 - h_6',
+      numeric: `w_t,BP = ${NUM(s5.h)} − ${NUM(s6.h)} = ${(per[4]?.W ?? 0).toFixed(2)} J/kg`,
+    })
+    steps.push({
+      title: 'Processo 6→1: Condensazione',
+      explanation: 'Calore ceduto a pressione costante nel condensatore.',
+      latex: 'q_{out} = h_6 - h_1',
+      numeric: `q_out = ${NUM(s6.h)} − ${NUM(s1.h)} = ${(per[5]?.Q ?? 0).toFixed(2)} J/kg`,
+    })
+    steps.push({
+      title: 'Bilancio del ciclo con risurriscaldamento',
+      explanation: 'Il rendimento del Rankine risurriscaldato è dato dal rapporto tra il lavoro netto totale e il calore totale introdotto (caldaia + risurriscaldamento).',
+      latex: '\\eta = \\frac{w_{t,AP} + w_{t,BP} - w_{pump}}{q_{in,1} + q_{reheat}}',
+    })
+  } else {
+    steps.push({
+      title: 'Processo 4→1: Condensazione (condensatore)',
+      explanation: 'Calore ceduto a pressione costante. Per il titolo in uscita: x_4 = (h_4 − h_f) / (h_g − h_f).',
+      latex: 'q_{out} = h_4 - h_1',
+      numeric: `q_out = ${NUM(s4.h)} − ${NUM(s1.h)} = ${(per[3]?.Q ?? 0).toFixed(2)} J/kg`,
+    })
+    steps.push({
+      title: 'Bilancio del ciclo',
+      explanation: 'Il rendimento termico del Rankine è dato dal rapporto tra lavoro netto e calore introdotto:',
+      latex: '\\eta = \\frac{w_{net}}{q_{in}} = \\frac{(h_3 - h_4) - (h_2 - h_1)}{h_3 - h_2}',
+    })
+  }
   return steps
 }
 

@@ -85,6 +85,74 @@ export async function GET(req: Request) {
       } catch (e: any) {
         results.push({ name: 'professor_mode', ok: false, error: e.message })
       }
+
+      // Test 7: rankine_superheated cycle
+      try {
+        const states = [
+          { P: 10000, T: 319, v: 0.00101, h: 191800, u: 191790, s: 0.6492, phase: 'liquid' },
+          { P: 8000000, T: 320, v: 0.00101, h: 199800, u: 191720, s: 0.6492, phase: 'liquid (compressed)' },
+          { P: 8000000, T: 773, v: 0.0418, h: 3140000, u: 2806000, s: 6.3630, phase: 'gas (superheated)' },
+          { P: 10000, T: 319, v: 0.03078, h: 1922500, u: 1922400, s: 5.7450, phase: 'two-phase' },
+        ]
+        const cyc = analyzeCycle('rankine_superheated', states)
+        const ok = cyc.eta > 0 && cyc.Wnet > 0
+        results.push({ name: 'rankine_superheated', ok, res: cyc })
+      } catch (e: any) {
+        results.push({ name: 'rankine_superheated', ok: false, error: e.message })
+      }
+
+      // Test 8: rankine_reheat cycle
+      try {
+        const states = [
+          { P: 10000, T: 319, v: 0.00101, h: 191800, u: 191790, s: 0.6492, phase: 'liquid' },
+          { P: 8000000, T: 320, v: 0.00101, h: 199800, u: 191720, s: 0.6492, phase: 'liquid (compressed)' },
+          { P: 8000000, T: 773, v: 0.0418, h: 3140000, u: 2806000, s: 6.3630, phase: 'gas (superheated)' },
+          { P: 4000000, T: 568, v: 0.0498, h: 2890000, u: 2691000, s: 6.5980, phase: 'gas' },
+          { P: 4000000, T: 773, v: 0.0632, h: 3340000, u: 3087000, s: 6.9290, phase: 'gas (superheated)' },
+          { P: 10000, T: 319, v: 0.03078, h: 1922500, u: 1922400, s: 5.7450, phase: 'two-phase' },
+        ]
+        const cyc = analyzeCycle('rankine_reheat', states)
+        const ok = cyc.eta > 0 && cyc.Wnet > 0
+        results.push({ name: 'rankine_reheat', ok, res: cyc })
+      } catch (e: any) {
+        results.push({ name: 'rankine_reheat', ok: false, error: e.message })
+      }
+
+      // Test 9: professor mode for reheat
+      try {
+        const out = generateProfessorReport({
+          type: 'cycle',
+          cycle: 'rankine_reheat',
+          substance: 'Water',
+          model: 'real',
+          states: [
+            { P: 10000, T: 319, v: 0.00101, h: 191800, u: 191790, s: 0.6492, phase: 'liquid' },
+            { P: 8000000, T: 320, v: 0.00101, h: 199800, u: 191720, s: 0.6492, phase: 'liquid (compressed)' },
+            { P: 8000000, T: 773, v: 0.0418, h: 3140000, u: 2806000, s: 6.3630, phase: 'gas (superheated)' },
+            { P: 4000000, T: 568, v: 0.0498, h: 2890000, u: 2691000, s: 6.5980, phase: 'gas' },
+            { P: 4000000, T: 773, v: 0.0632, h: 3340000, u: 3087000, s: 6.9290, phase: 'gas (superheated)' },
+            { P: 10000, T: 319, v: 0.03078, h: 1922500, u: 1922400, s: 5.7450, phase: 'two-phase' },
+          ],
+        })
+        const ok = out.steps.length >= 4 && /reheat/i.test(out.markdown)
+        results.push({ name: 'professor_reheat', ok, summary: out.summary })
+      } catch (e: any) {
+        results.push({ name: 'professor_reheat', ok: false, error: e.message })
+      }
+
+      // Test 10: real-fluid state from (P, h) without T — exercises the iteration path
+      try {
+        const r = computeThermodynamicState(
+          'real',
+          'Water',
+          { name: 'P', value: 1000000 },
+          { name: 'h', value: 762000 }
+        )
+        const ok = r.state && typeof r.state.T === 'number' && r.state.phase
+        results.push({ name: 'real_fluid_P_h', ok: !!ok, res: r })
+      } catch (e: any) {
+        results.push({ name: 'real_fluid_P_h', ok: false, error: e.message })
+      }
     }
 
     return NextResponse.json({ ok: true, results })

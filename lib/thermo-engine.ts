@@ -458,6 +458,80 @@ export function calculateRealState(
     return { P, T, v, h, u, s, x, phase }
   }
 
+  // (P, h) or (P, s) without T → iterate over T to match the requested property.
+  // Two-phase: h_in ∈ [hf(T), hg(T)] ⇒ bracketed bisection; one secant step
+  // for speed. Outside that range → superheated branch, ideal-gas extrapolation.
+  if (P !== undefined && T === undefined && (h !== undefined || s !== undefined)) {
+    const target = h !== undefined ? h : s!
+    const kind = h !== undefined ? 'h' : 's'
+    const pLow = findSatByP(entries, P)
+    if (!pLow) {
+      throw new Error(`Pressure ${P} Pa is outside saturation table range`)
+    }
+    const valAt = (TT: number) => {
+      const sat = findSatByT(entries, TT)
+      return kind === 'h' ? sat.hf + 0.5 * (sat.hg - sat.hf) : sat.sf + 0.5 * (sat.sg - sat.sf)
+    }
+
+    const targetIsTwoPhase = target >= pLow[kind + 'f'] && target <= pLow[kind + 'g']
+    if (targetIsTwoPhase) {
+      // Bisection on T over the saturation table range.
+      let lo = entries[0].T
+      let hi = entries[entries.length - 1].T
+      for (let i = 0; i < 60; i++) {
+        const mid = 0.5 * (lo + hi)
+        const midVal = valAt(mid)
+        if (Math.abs(midVal - target) / Math.max(1, Math.abs(target)) < 1e-6) {
+          lo = hi = mid
+          break
+        }
+        if (midVal < target) lo = mid
+        else hi = mid
+      }
+      const Tguess = 0.5 * (lo + hi)
+      const sat = findSatByT(entries, Tguess)
+      if (kind === 'h') x = clampX((target - sat.hf) / (sat.hg - sat.hf))
+      else x = clampX((target - sat.sf) / (sat.sg - sat.sf))
+      v = sat.vf + x * (sat.vg - sat.vf)
+      h = kind === 'h' ? target : sat.hf + x * (sat.hg - sat.hf)
+      s = kind === 's' ? target : sat.sf + x * (sat.sg - sat.sf)
+      u = h - P * v
+      return { P, T: Tguess, v, h, u, s, x, phase: 'two-phase' }
+    }
+
+    // Superheated branch: treat the vapour as ideal gas and back-solve T.
+    // h(T) ≈ hg(Tsat) + cp_vap · (T − Tsat), s(T) ≈ sg(Tsat) + cp·ln(T/Tsat) − R·ln(P/Psat).
+    const cp = 2000
+    const R = 8314.462618 / data.molar_mass
+    const baseline = entries[entries.length - 1]
+    if (kind === 'h') {
+      const Tguess = baseline.T + (target - baseline.hg) / cp
+      if (Tguess <= baseline.T) {
+        // Below the table: treat as compressed liquid.
+        const sat = findSatByT(entries, baseline.T)
+        v = sat.vf
+        h = baseline.hg + cp * (Tguess - baseline.T)
+        s = sat.sf
+        u = h - P * v
+        return { P, T: Tguess, v, h, u, s, phase: 'compressed liquid (approx)' }
+      }
+      v = (R * Tguess) / P
+      h = target
+      s = baseline.sg + cp * Math.log(Tguess / baseline.T) - R * Math.log(P / baseline.P)
+      u = h - P * v
+      return { P, T: Tguess, v, h, u, s, phase: 'gas (approx)' }
+    } else {
+      // s given: solve sg(Tsat) + cp·ln(T/Tsat) − R·ln(P/Psat) = s
+      const arg = Math.exp((target - baseline.sg + R * Math.log(P / baseline.P)) / cp)
+      const Tguess = baseline.T * arg
+      v = (R * Tguess) / P
+      h = baseline.hg + cp * (Tguess - baseline.T)
+      s = target
+      u = h - P * v
+      return { P, T: Tguess, v, h, u, s, phase: 'gas (approx)' }
+    }
+  }
+
   // Single-phase: pick the closest saturation point and approximate.
   if (phase === 'liquid') {
     const sat = satByT || satByP
