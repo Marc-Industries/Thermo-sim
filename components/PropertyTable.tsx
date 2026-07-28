@@ -7,6 +7,11 @@ interface PropertyTableProps {
   units: Record<string, string>
 }
 
+/**
+ * Renders a thermodynamic state as a vertical table. Values arriving from the
+ * server are already in the user's chosen units, so no client-side conversion
+ * is applied here — the `units` prop is used only to label each row.
+ */
 export default function PropertyTable({ state, units }: PropertyTableProps) {
   const properties = [
     { key: 'P', label: 'Pressione' },
@@ -25,13 +30,7 @@ export default function PropertyTable({ state, units }: PropertyTableProps) {
         const value = state[key]
         if (value === undefined || value === null) return null
         const unit = (units as Record<string, string>)[key] || ''
-        let displayValue: string
-        if (typeof value === 'number') {
-          const displayed = unit ? convertFromSI(key, value, unit) : value
-          displayValue = fmt(displayed)
-        } else {
-          displayValue = String(value)
-        }
+        const displayValue = typeof value === 'number' ? fmt(value) : String(value)
         return (
           <div key={key} className="flex justify-between text-sm border-b border-slate-700 pb-1">
             <span className="text-slate-500">{label}:</span>

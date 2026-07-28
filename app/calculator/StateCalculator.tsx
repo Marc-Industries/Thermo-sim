@@ -14,7 +14,7 @@ import { unitsFor, convertFromSI } from '@/lib/units'
 type Model = 'ideal_gas' | 'ideal_gas_cp_t' | 'real'
 
 export default function StateCalculator() {
-  const { t, substances } = useStore()
+  const { t, substances, setCurrentState } = useStore()
   const [model, setModel] = React.useState<Model>('real')
   const [substance, setSubstance] = React.useState('Water')
   const [prop1, setProp1] = React.useState<{ name: string; value: number | string; unit?: string }>({ name: 'P', value: 101325, unit: 'Pa' })
@@ -46,18 +46,29 @@ export default function StateCalculator() {
   const run = async () => {
     setBusy(true)
     try {
-      // PropField already stores `value` in SI internally (it converts through
-      // `convertToSI` on every input change). Sending the same `unit` again to
-      // the server would cause a double conversion. Pass an empty unit so the
-      // server treats the value as SI directly.
+      // Pass the user's unit verbatim. The server converts to SI internally
+      // for the calculation, then returns the derived properties in the same
+      // units the user picked — so what they see on screen matches what they
+      // typed.
       const body = {
         model,
         substance,
-        prop1: { name: prop1.name, value: parseFloat(String(prop1.value)), unit: '' },
-        prop2: { name: prop2.name, value: parseFloat(String(prop2.value)), unit: '' },
+        prop1: { name: prop1.name, value: parseFloat(String(prop1.value)), unit: prop1.unit ?? '' },
+        prop2: { name: prop2.name, value: parseFloat(String(prop2.value)), unit: prop2.unit ?? '' },
       }
       const data = await computeState(body)
       setResult(data)
+      if (data?.state) {
+        // Save to the store so Cycle Builder can read the state in user units.
+        // The server has already returned the state in the user's chosen units,
+        // and `output_units` records which units were used.
+        setCurrentState({
+          ...data.state,
+          output_units: data.output_units,
+          substance,
+          model,
+        })
+      }
       toast.success('Stato calcolato')
     } catch (e: any) {
       toast.error(e?.message || t('saveErr'))

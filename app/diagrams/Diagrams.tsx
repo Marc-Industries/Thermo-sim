@@ -47,7 +47,15 @@ export default function Diagrams() {
   const substances = ['Water', 'R134a', 'R410a', 'R22', 'Ammoniaca', 'Metanolo']
 
   // Build the saturation envelope for the chosen substance / diagram.
-  // All six planes supported: Ts/Pv/Ph/Hs/Tv/Ps.
+  // All six planes supported: Ts/Pv/Ph/Hs/Tv/Ps. The envelope is always in SI;
+  // we choose the user-friendly axis labels based on the cycle's preferred
+  // units (fallback: SI labels).
+  const cycleUnits = useMemo(() => {
+    if (!cycle.length) return null
+    const first = cycle[0] as any
+    return first.output_units ?? first._units ?? null
+  }, [cycle])
+
   const satSeries = useMemo(() => {
     const pts = buildSaturationCurve(substance, selectedDiagram as any)
     if (!pts.length) return []
@@ -58,6 +66,24 @@ export default function Diagrams() {
       { name: 'sat. vapor', color: '#f97316', points: vapor, showDots: false, showLine: true },
     ]
   }, [substance, selectedDiagram])
+
+  // Pick axis units. Default: SI labels. If the user has a cycle loaded, use
+  // those (so the envelope plots converted via `convertFromSI`).
+  const axisUnits = useMemo(() => {
+    const ax = {
+      Ts: { x: 's', y: 'T' },
+      Pv: { x: 'v', y: 'P' },
+      Ph: { x: 'h', y: 'P' },
+      Tv: { x: 'v', y: 'T' },
+      Ps: { x: 's', y: 'P' },
+      Hs: { x: 's', y: 'h' },
+    }[selectedDiagram] ?? { x: 's', y: 'T' }
+    if (!cycleUnits) return {}
+    return {
+      x: cycleUnits[ax.x] || '',
+      y: cycleUnits[ax.y] || '',
+    }
+  }, [cycleUnits, selectedDiagram])
 
   // Andrew's curve is closed by the critical point — overlay it as a marker
   // so the user can see where the vapour dome terminates.

@@ -10,9 +10,9 @@
     "semantic_hash": "83334a75fc3f9d8758fb6ad26b163bd7"
   },
   "app/analysis/ProcessAnalysis.tsx": {
-    "mtime": 1785276330.5885549,
-    "ast_hash": "cfe86c3d9cf7c1b82e0590b10718750f",
-    "semantic_hash": ""
+    "mtime": 1785274059.4694777,
+    "ast_hash": "c11495273313daa44ce04afd5c253d91",
+    "semantic_hash": "c11495273313daa44ce04afd5c253d91"
   },
   "app/api/analyze-cycle/route.ts": {
     "mtime": 1785265037.697979,
@@ -25,9 +25,9 @@
     "semantic_hash": "a94115c0d9ed3c1ffba73a1658acc48d"
   },
   "app/api/compute-state/route.ts": {
-    "mtime": 1785276286.4074008,
-    "ast_hash": "d286ced57fdfd0758de6f04730acf2d5",
-    "semantic_hash": ""
+    "mtime": 1785254305.5194614,
+    "ast_hash": "e067da5560848983b7f6ab06f7db28a0",
+    "semantic_hash": "e067da5560848983b7f6ab06f7db28a0"
   },
   "app/api/export-report/route.ts": {
     "mtime": 1785267454.8496847,
@@ -50,19 +50,19 @@
     "semantic_hash": "797ed787d9eabae39efb5ce81fe21f29"
   },
   "app/calculator/StateCalculator.tsx": {
-    "mtime": 1785276502.3427112,
-    "ast_hash": "7332c4753fc91946c1074b3a7e8b73bf",
-    "semantic_hash": ""
+    "mtime": 1785274789.4132268,
+    "ast_hash": "d16b6c7dd80a59f4ffbeb2c3171be0f7",
+    "semantic_hash": "d16b6c7dd80a59f4ffbeb2c3171be0f7"
   },
   "app/cycles/CycleBuilder.tsx": {
-    "mtime": 1785276461.566447,
-    "ast_hash": "471a51acaec8c4e19580bf2f418bb905",
-    "semantic_hash": ""
+    "mtime": 1785267464.1345162,
+    "ast_hash": "0e9622a13e284d37a9fe454e63ea2373",
+    "semantic_hash": "0e9622a13e284d37a9fe454e63ea2373"
   },
   "app/diagrams/Diagrams.tsx": {
-    "mtime": 1785276478.1683545,
-    "ast_hash": "6d9c26e816b97001b6d76548f29655e1",
-    "semantic_hash": ""
+    "mtime": 1785267315.547407,
+    "ast_hash": "31236e3e65249b490a62e7f798d9ff61",
+    "semantic_hash": "31236e3e65249b490a62e7f798d9ff61"
   },
   "app/layout.tsx": {
     "mtime": 1785267457.6437073,
@@ -80,14 +80,14 @@
     "semantic_hash": "915a41ed65fc919fbb093347cf8295b7"
   },
   "components/PropField.tsx": {
-    "mtime": 1785276246.7617173,
-    "ast_hash": "e2498f91568cb6c9c2d8b7994f675725",
-    "semantic_hash": ""
+    "mtime": 1785254097.8695993,
+    "ast_hash": "c44c381d98a75f710e526a00dd34b309",
+    "semantic_hash": "c44c381d98a75f710e526a00dd34b309"
   },
   "components/PropertyTable.tsx": {
-    "mtime": 1785276275.9028397,
-    "ast_hash": "31acaf52783c731725da47f2e279672d",
-    "semantic_hash": ""
+    "mtime": 1785264486.9726295,
+    "ast_hash": "6f7a52e01db96a3591c778936efe2cc2",
+    "semantic_hash": "6f7a52e01db96a3591c778936efe2cc2"
   },
   "components/RootProvider.tsx": {
     "mtime": 1785265498.3069286,
@@ -105,9 +105,9 @@
     "semantic_hash": "cb48417bf35bfbaada013959bc8bf5dd"
   },
   "components/ThermoChart.tsx": {
-    "mtime": 1785276453.239698,
-    "ast_hash": "17c0adf208e965bc6244a073891f1fc7",
-    "semantic_hash": ""
+    "mtime": 1785274128.210038,
+    "ast_hash": "05778cd5f5e3fc49244154be09a7d98b",
+    "semantic_hash": "05778cd5f5e3fc49244154be09a7d98b"
   },
   "lib/api.ts": {
     "mtime": 1785266072.3971572,

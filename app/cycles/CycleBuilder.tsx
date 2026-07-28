@@ -7,6 +7,48 @@ import ThermoChart from '@/components/ThermoChart'
 import { toast } from 'sonner'
 import { analyzeCycle, CycleType } from '@/lib/thermo-engine'
 import { generateProfessorReport } from '@/lib/professor'
+import { convertFromSI, convertToSI } from '@/lib/units'
+
+/**
+ * Pick the units used to display cycle work / heat (W, Q) and per-state
+ * properties (P, T, h, s, v, u, x). Defaults match what the user picked in
+ * PropField for the *first* state in the cycle, falling back to SI.
+ */
+function deriveUnits(cycle: any[]): Record<string, string> {
+  if (!cycle.length) return {}
+  const first = cycle[0] as any
+  return {
+    P: first.output_units?.P || first._units?.P || 'Pa',
+    T: first.output_units?.T || first._units?.T || 'K',
+    v: first.output_units?.v || first._units?.v || 'm³/kg',
+    h: first.output_units?.h || first._units?.h || 'J/kg',
+    u: first.output_units?.u || first._units?.u || 'J/kg',
+    s: first.output_units?.s || first._units?.s || 'J/(kg·K)',
+    x: first.output_units?.x || first._units?.x || '',
+    Power: 'W',
+    Q: first.output_units?.h || first._units?.h || 'J/kg',
+    W: first.output_units?.h || first._units?.h || 'J/kg',
+  }
+}
+
+/** Convert a state in user units to SI for the engine. */
+function stateToSI(s: any, units: Record<string, string>): any {
+  const out: any = { ...s }
+  for (const k of Object.keys(out)) {
+    const v = out[k]
+    const u = units[k]
+    if (typeof v === 'number' && u) out[k] = convertToSI(k, v, u)
+  }
+  return out
+}
+
+/** Convert a scalar from SI to user unit. */
+function fmtSI(key: string, value: number, units: Record<string, string>): string {
+  const u = units[key]
+  if (!u) return `${value.toFixed(2)}`
+  const v = convertFromSI(key, value, u)
+  return `${v.toFixed(2)} ${u}`.trim()
+}
 
 const CYCLE_TYPES: CycleType[] = ['rankine', 'rankine_superheated', 'rankine_reheat', 'otto', 'diesel', 'brayton', 'carnot']
 
@@ -21,7 +63,10 @@ export default function CycleBuilder() {
   const cycleResult = React.useMemo(() => {
     if (cycle.length < 4) return null
     try {
-      return analyzeCycle(selectedCycle, cycle as any)
+      const units = deriveUnits(cycle as any[])
+      const statesSI = (cycle as any[]).map((s) => stateToSI(s, units))
+      const r = analyzeCycle(selectedCycle, statesSI as any)
+      return { ...r, units }
     } catch (e: any) {
       return { error: e.message }
     }
@@ -308,6 +353,18 @@ export default function CycleBuilder() {
             <ThermoChart
               diagram={diagram}
               height={320}
+              units={(() => {
+                const u = deriveUnits(cycle as any[])
+                const ax = {
+                  Ts: { x: 's', y: 'T' },
+                  Pv: { x: 'v', y: 'P' },
+                  Ph: { x: 'h', y: 'P' },
+                  Tv: { x: 'v', y: 'T' },
+                  Ps: { x: 's', y: 'P' },
+                  Hs: { x: 's', y: 'h' },
+                }[diagram]
+                return { x: u[ax.x], y: u[ax.y], convertFromSI: false }
+              })()}
               series={[
                 {
                   name: 'ciclo',
@@ -321,15 +378,19 @@ export default function CycleBuilder() {
 
             {cycleResult && !('error' in cycleResult) && (
               <div className="grid grid-cols-2 gap-2 border border-slate-700 p-3 rounded text-sm">
-                <div><span className="text-slate-500">W net:</span> <span className="font-mono text-signal-red">{cycleResult.Wnet.toFixed(2)} J/kg</span></div>
-                <div><span className="text-slate-500">Q in:</span> <span className="font-mono text-signal-blue">{cycleResult.Qin.toFixed(2)} J/kg</span></div>
-                <div><span className="text-slate-500">Q out:</span> <span className="font-mono text-signal-blue">{cycleResult.Qout.toFixed(2)} J/kg</span></div>
+                <div><span className="text-slate-500">W net:</span> <span className="font-mono text-signal-red">{fmtSI('W', cycleResult.Wnet, cycleResult.units)}</span></div>
+                <div><span className="text-slate-500">Q in:</span> <span className="font-mono text-signal-blue">{fmtSI('Q', cycleResult.Qin, cycleResult.units)}</span></div>
+                <div><span className="text-slate-500">Q out:</span> <span className="font-mono text-signal-blue">{fmtSI('Q', cycleResult.Qout, cycleResult.units)}</span></div>
                 <div><span className="text-slate-500">η:</span> <span className="font-mono text-emerald-400">{cycleResult.eta.toFixed(4)}</span></div>
               </div>
             )}
 
             <div className="space-y-2">
-              {cycle.map((st: any, idx: number) => (
+              {cycle.map((st: any, idx: number) => {
+                const units = deriveUnits(cycle as any[])
+                const pStr = st.P !== undefined ? fmtSI('P', st.P, units) : '–'
+                const tStr = st.T !== undefined ? fmtSI('T', st.T, units) : '–'
+                return (
                 <div
                   key={idx}
                   draggable
@@ -340,13 +401,13 @@ export default function CycleBuilder() {
                 >
                   <div className="text-xs">
                     <div className="font-semibold">Stato {idx + 1}</div>
-                    <div className="text-slate-400">P: {st.P?.toFixed(0) ?? '-'}, T: {st.T?.toFixed(1) ?? '-'}</div>
+                    <div className="text-slate-400">P: {pStr}, T: {tStr}</div>
                   </div>
                   <div className="flex gap-2">
                     <Button onClick={() => removeFromCycle(idx)} variant="outline">Rimuovi</Button>
                   </div>
                 </div>
-              ))}
+              )})}
             </div>
 
             {report && (

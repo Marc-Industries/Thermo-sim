@@ -25,6 +25,8 @@ export interface StateResponse {
     x?: number
     phase?: string
   }
+  /** Units the server returned each property in (matches the user's choice). */
+  output_units?: Record<string, string>
   extra?: Record<string, number | string>
 }
 

@@ -57,7 +57,6 @@
       "_origin": "ast",
       "id": "app_analysis_processanalysis",
       "community": 0,
-      "community_name": "React UI Components",
       "norm_label": "processanalysis.tsx"
     },
     {
@@ -68,7 +67,6 @@
       "_origin": "ast",
       "id": "app_analysis_processanalysis_processanalysis",
       "community": 0,
-      "community_name": "React UI Components",
       "norm_label": "processanalysis()"
     },
     {
@@ -79,7 +77,6 @@
       "_origin": "ast",
       "id": "app_api_analyze_cycle_route",
       "community": 1,
-      "community_name": "Thermodynamic Engine + API Routes",
       "norm_label": "route.ts"
     },
     {
@@ -90,7 +87,6 @@
       "_origin": "ast",
       "id": "app_api_analyze_cycle_route_post",
       "community": 1,
-      "community_name": "Thermodynamic Engine + API Routes",
       "norm_label": "post()"
     },
     {
@@ -101,7 +97,6 @@
       "_origin": "ast",
       "id": "app_api_analyze_process_route",
       "community": 1,
-      "community_name": "Thermodynamic Engine + API Routes",
       "norm_label": "route.ts"
     },
     {
@@ -112,7 +107,6 @@
       "_origin": "ast",
       "id": "app_api_analyze_process_route_post",
       "community": 1,
-      "community_name": "Thermodynamic Engine + API Routes",
       "norm_label": "post()"
     },
     {
@@ -123,7 +117,6 @@
       "_origin": "ast",
       "id": "app_api_compute_state_route",
       "community": 7,
-      "community_name": "Unit Conversion Logic",
       "norm_label": "route.ts"
     },
     {
@@ -134,19 +127,7 @@
       "_origin": "ast",
       "id": "app_api_compute_state_route_post",
       "community": 7,
-      "community_name": "Unit Conversion Logic",
       "norm_label": "post()"
-    },
-    {
-      "label": "resultUnitsFor()",
-      "file_type": "code",
-      "source_file": "app/api/compute-state/route.ts",
-      "source_location": "L58",
-      "_origin": "ast",
-      "id": "app_api_compute_state_route_resultunitsfor",
-      "community": 7,
-      "community_name": "Unit Conversion Logic",
-      "norm_label": "resultunitsfor()"
     },
     {
       "label": "route.ts",
@@ -156,7 +137,6 @@
       "_origin": "ast",
       "id": "app_api_export_report_route",
       "community": 18,
-      "community_name": "route.ts",
       "norm_label": "route.ts"
     },
     {
@@ -167,7 +147,6 @@
       "_origin": "ast",
       "id": "app_api_export_report_route_post",
       "community": 18,
-      "community_name": "route.ts",
       "norm_label": "post()"
     },
     {
@@ -178,7 +157,6 @@
       "_origin": "ast",
       "id": "app_api_professor_pdf_route",
       "community": 15,
-      "community_name": "LaTeX/PDF Route",
       "norm_label": "route.ts"
     },
     {
@@ -189,7 +167,6 @@
       "_origin": "ast",
       "id": "app_api_professor_pdf_route_post",
       "community": 15,
-      "community_name": "LaTeX/PDF Route",
       "norm_label": "post()"
     },
     {
@@ -200,7 +177,6 @@
       "_origin": "ast",
       "id": "app_api_professor_pdf_route_findlatexbinary",
       "community": 15,
-      "community_name": "LaTeX/PDF Route",
       "norm_label": "findlatexbinary()"
     },
     {
@@ -211,7 +187,6 @@
       "_origin": "ast",
       "id": "app_api_professor_pdf_route_compilelatex",
       "community": 15,
-      "community_name": "LaTeX/PDF Route",
       "norm_label": "compilelatex()"
     },
     {
@@ -222,7 +197,6 @@
       "_origin": "ast",
       "id": "app_api_professor_route",
       "community": 8,
-      "community_name": "Professor Derivation Generators",
       "norm_label": "route.ts"
     },
     {
@@ -233,7 +207,6 @@
       "_origin": "ast",
       "id": "app_api_professor_route_post",
       "community": 8,
-      "community_name": "Professor Derivation Generators",
       "norm_label": "post()"
     },
     {
@@ -244,7 +217,6 @@
       "_origin": "ast",
       "id": "app_api_professor_route_get",
       "community": 8,
-      "community_name": "Professor Derivation Generators",
       "norm_label": "get()"
     },
     {
@@ -255,7 +227,6 @@
       "_origin": "ast",
       "id": "app_api_professor_route_samplerankine",
       "community": 8,
-      "community_name": "Professor Derivation Generators",
       "norm_label": "samplerankine()"
     },
     {
@@ -266,7 +237,6 @@
       "_origin": "ast",
       "id": "app_api_self_check_route",
       "community": 1,
-      "community_name": "Thermodynamic Engine + API Routes",
       "norm_label": "route.ts"
     },
     {
@@ -277,7 +247,6 @@
       "_origin": "ast",
       "id": "app_api_self_check_route_get",
       "community": 1,
-      "community_name": "Thermodynamic Engine + API Routes",
       "norm_label": "get()"
     },
     {
@@ -288,7 +257,6 @@
       "_origin": "ast",
       "id": "app_calculator_statecalculator",
       "community": 0,
-      "community_name": "React UI Components",
       "norm_label": "statecalculator.tsx"
     },
     {
@@ -299,7 +267,6 @@
       "_origin": "ast",
       "id": "app_calculator_statecalculator_model",
       "community": 0,
-      "community_name": "React UI Components",
       "norm_label": "model"
     },
     {
@@ -310,7 +277,6 @@
       "_origin": "ast",
       "id": "app_calculator_statecalculator_statecalculator",
       "community": 0,
-      "community_name": "React UI Components",
       "norm_label": "statecalculator()"
     },
     {
@@ -320,85 +286,47 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_cycles_cyclebuilder",
-      "community": 7,
-      "community_name": "Unit Conversion Logic",
+      "community": 0,
       "norm_label": "cyclebuilder.tsx"
-    },
-    {
-      "label": "deriveUnits()",
-      "file_type": "code",
-      "source_file": "app/cycles/CycleBuilder.tsx",
-      "source_location": "L17",
-      "_origin": "ast",
-      "id": "app_cycles_cyclebuilder_deriveunits",
-      "community": 7,
-      "community_name": "Unit Conversion Logic",
-      "norm_label": "deriveunits()"
-    },
-    {
-      "label": "stateToSI()",
-      "file_type": "code",
-      "source_file": "app/cycles/CycleBuilder.tsx",
-      "source_location": "L35",
-      "_origin": "ast",
-      "id": "app_cycles_cyclebuilder_statetosi",
-      "community": 7,
-      "community_name": "Unit Conversion Logic",
-      "norm_label": "statetosi()"
-    },
-    {
-      "label": "fmtSI()",
-      "file_type": "code",
-      "source_file": "app/cycles/CycleBuilder.tsx",
-      "source_location": "L46",
-      "_origin": "ast",
-      "id": "app_cycles_cyclebuilder_fmtsi",
-      "community": 7,
-      "community_name": "Unit Conversion Logic",
-      "norm_label": "fmtsi()"
     },
     {
       "label": "CYCLE_TYPES",
       "file_type": "code",
       "source_file": "app/cycles/CycleBuilder.tsx",
-      "source_location": "L53",
+      "source_location": "L11",
       "_origin": "ast",
       "id": "app_cycles_cyclebuilder_cycle_types",
-      "community": 7,
-      "community_name": "Unit Conversion Logic",
+      "community": 0,
       "norm_label": "cycle_types"
     },
     {
       "label": "CycleBuilder()",
       "file_type": "code",
       "source_file": "app/cycles/CycleBuilder.tsx",
-      "source_location": "L55",
+      "source_location": "L13",
       "_origin": "ast",
       "id": "app_cycles_cyclebuilder_cyclebuilder",
-      "community": 7,
-      "community_name": "Unit Conversion Logic",
+      "community": 0,
       "norm_label": "cyclebuilder()"
     },
     {
       "label": "reportMarkdownToHTML()",
       "file_type": "code",
       "source_file": "app/cycles/CycleBuilder.tsx",
-      "source_location": "L447",
+      "source_location": "L386",
       "_origin": "ast",
       "id": "app_cycles_cyclebuilder_reportmarkdowntohtml",
-      "community": 7,
-      "community_name": "Unit Conversion Logic",
+      "community": 0,
       "norm_label": "reportmarkdowntohtml()"
     },
     {
       "label": "triggerDownload()",
       "file_type": "code",
       "source_file": "app/cycles/CycleBuilder.tsx",
-      "source_location": "L460",
+      "source_location": "L399",
       "_origin": "ast",
       "id": "app_cycles_cyclebuilder_triggerdownload",
-      "community": 7,
-      "community_name": "Unit Conversion Logic",
+      "community": 0,
       "norm_label": "triggerdownload()"
     },
     {
@@ -409,7 +337,6 @@
       "_origin": "ast",
       "id": "app_diagrams_diagrams",
       "community": 0,
-      "community_name": "React UI Components",
       "norm_label": "diagrams.tsx"
     },
     {
@@ -420,7 +347,6 @@
       "_origin": "ast",
       "id": "app_diagrams_diagrams_criticalpointforplane",
       "community": 0,
-      "community_name": "React UI Components",
       "norm_label": "criticalpointforplane()"
     },
     {
@@ -431,7 +357,6 @@
       "_origin": "ast",
       "id": "app_diagrams_diagrams_diagrams",
       "community": 0,
-      "community_name": "React UI Components",
       "norm_label": "diagrams()"
     },
     {
@@ -442,7 +367,6 @@
       "_origin": "ast",
       "id": "app_layout",
       "community": 11,
-      "community_name": "WASM Loader Bridge",
       "norm_label": "layout.tsx"
     },
     {
@@ -453,7 +377,6 @@
       "_origin": "ast",
       "id": "app_layout_metadata",
       "community": 11,
-      "community_name": "WASM Loader Bridge",
       "norm_label": "metadata"
     },
     {
@@ -464,7 +387,6 @@
       "_origin": "ast",
       "id": "app_layout_rootlayout",
       "community": 11,
-      "community_name": "WASM Loader Bridge",
       "norm_label": "rootlayout()"
     },
     {
@@ -475,7 +397,6 @@
       "_origin": "ast",
       "id": "app_page",
       "community": 0,
-      "community_name": "React UI Components",
       "norm_label": "page.tsx"
     },
     {
@@ -486,7 +407,6 @@
       "_origin": "ast",
       "id": "app_page_nav",
       "community": 0,
-      "community_name": "React UI Components",
       "norm_label": "nav"
     },
     {
@@ -497,7 +417,6 @@
       "_origin": "ast",
       "id": "app_page_pages",
       "community": 0,
-      "community_name": "React UI Components",
       "norm_label": "pages"
     },
     {
@@ -508,7 +427,6 @@
       "_origin": "ast",
       "id": "app_page_shell",
       "community": 0,
-      "community_name": "React UI Components",
       "norm_label": "shell()"
     },
     {
@@ -518,8 +436,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "components_button",
-      "community": 10,
-      "community_name": "Radix UI Primitives",
+      "community": 0,
       "norm_label": "button.tsx"
     },
     {
@@ -529,8 +446,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "components_button_buttonvariants",
-      "community": 10,
-      "community_name": "Radix UI Primitives",
+      "community": 0,
       "norm_label": "buttonvariants"
     },
     {
@@ -540,8 +456,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "components_button_buttonprops",
-      "community": 10,
-      "community_name": "Radix UI Primitives",
+      "community": 0,
       "norm_label": "buttonprops"
     },
     {
@@ -552,7 +467,6 @@
       "_origin": "ast",
       "id": "components_button_button",
       "community": 0,
-      "community_name": "React UI Components",
       "norm_label": "button"
     },
     {
@@ -563,7 +477,6 @@
       "_origin": "ast",
       "id": "components_propfield",
       "community": 7,
-      "community_name": "Unit Conversion Logic",
       "norm_label": "propfield.tsx"
     },
     {
@@ -574,29 +487,26 @@
       "_origin": "ast",
       "id": "components_propfield_propfieldprops",
       "community": 7,
-      "community_name": "Unit Conversion Logic",
       "norm_label": "propfieldprops"
     },
     {
       "label": "PropField()",
       "file_type": "code",
       "source_file": "components/PropField.tsx",
-      "source_location": "L33",
+      "source_location": "L27",
       "_origin": "ast",
       "id": "components_propfield_propfield",
       "community": 7,
-      "community_name": "Unit Conversion Logic",
       "norm_label": "propfield()"
     },
     {
       "label": "unitHintSI()",
       "file_type": "code",
       "source_file": "components/PropField.tsx",
-      "source_location": "L149",
+      "source_location": "L128",
       "_origin": "ast",
       "id": "components_propfield_unithintsi",
       "community": 7,
-      "community_name": "Unit Conversion Logic",
       "norm_label": "unithintsi()"
     },
     {
@@ -607,7 +517,6 @@
       "_origin": "ast",
       "id": "components_propertytable",
       "community": 0,
-      "community_name": "React UI Components",
       "norm_label": "propertytable.tsx"
     },
     {
@@ -618,18 +527,16 @@
       "_origin": "ast",
       "id": "components_propertytable_propertytableprops",
       "community": 0,
-      "community_name": "React UI Components",
       "norm_label": "propertytableprops"
     },
     {
       "label": "PropertyTable()",
       "file_type": "code",
       "source_file": "components/PropertyTable.tsx",
-      "source_location": "L15",
+      "source_location": "L10",
       "_origin": "ast",
       "id": "components_propertytable_propertytable",
       "community": 0,
-      "community_name": "React UI Components",
       "norm_label": "propertytable()"
     },
     {
@@ -640,7 +547,6 @@
       "_origin": "ast",
       "id": "components_rootprovider",
       "community": 11,
-      "community_name": "WASM Loader Bridge",
       "norm_label": "rootprovider.tsx"
     },
     {
@@ -651,7 +557,6 @@
       "_origin": "ast",
       "id": "components_rootprovider_rootprovider",
       "community": 11,
-      "community_name": "WASM Loader Bridge",
       "norm_label": "rootprovider()"
     },
     {
@@ -662,7 +567,6 @@
       "_origin": "ast",
       "id": "components_select",
       "community": 10,
-      "community_name": "Radix UI Primitives",
       "norm_label": "select.tsx"
     },
     {
@@ -673,7 +577,6 @@
       "_origin": "ast",
       "id": "components_select_selecttriggerprops",
       "community": 10,
-      "community_name": "Radix UI Primitives",
       "norm_label": "selecttriggerprops"
     },
     {
@@ -684,7 +587,6 @@
       "_origin": "ast",
       "id": "components_select_selecttrigger",
       "community": 10,
-      "community_name": "Radix UI Primitives",
       "norm_label": "selecttrigger"
     },
     {
@@ -695,7 +597,6 @@
       "_origin": "ast",
       "id": "components_select_selectvalueprops",
       "community": 10,
-      "community_name": "Radix UI Primitives",
       "norm_label": "selectvalueprops"
     },
     {
@@ -706,7 +607,6 @@
       "_origin": "ast",
       "id": "components_select_selectvalue",
       "community": 10,
-      "community_name": "Radix UI Primitives",
       "norm_label": "selectvalue"
     },
     {
@@ -717,7 +617,6 @@
       "_origin": "ast",
       "id": "components_select_selectcontentprops",
       "community": 10,
-      "community_name": "Radix UI Primitives",
       "norm_label": "selectcontentprops"
     },
     {
@@ -728,7 +627,6 @@
       "_origin": "ast",
       "id": "components_select_selectcontent",
       "community": 10,
-      "community_name": "Radix UI Primitives",
       "norm_label": "selectcontent"
     },
     {
@@ -739,7 +637,6 @@
       "_origin": "ast",
       "id": "components_select_selectitemprops",
       "community": 10,
-      "community_name": "Radix UI Primitives",
       "norm_label": "selectitemprops"
     },
     {
@@ -750,7 +647,6 @@
       "_origin": "ast",
       "id": "components_select_selectitem",
       "community": 10,
-      "community_name": "Radix UI Primitives",
       "norm_label": "selectitem"
     },
     {
@@ -761,7 +657,6 @@
       "_origin": "ast",
       "id": "components_tabs",
       "community": 10,
-      "community_name": "Radix UI Primitives",
       "norm_label": "tabs.tsx"
     },
     {
@@ -772,7 +667,6 @@
       "_origin": "ast",
       "id": "components_tabs_tabsprops",
       "community": 10,
-      "community_name": "Radix UI Primitives",
       "norm_label": "tabsprops"
     },
     {
@@ -783,7 +677,6 @@
       "_origin": "ast",
       "id": "components_tabs_tabs",
       "community": 10,
-      "community_name": "Radix UI Primitives",
       "norm_label": "tabs"
     },
     {
@@ -794,7 +687,6 @@
       "_origin": "ast",
       "id": "components_tabs_tabslistprops",
       "community": 10,
-      "community_name": "Radix UI Primitives",
       "norm_label": "tabslistprops"
     },
     {
@@ -805,7 +697,6 @@
       "_origin": "ast",
       "id": "components_tabs_tabslist",
       "community": 10,
-      "community_name": "Radix UI Primitives",
       "norm_label": "tabslist"
     },
     {
@@ -816,7 +707,6 @@
       "_origin": "ast",
       "id": "components_tabs_tabstriggerprops",
       "community": 10,
-      "community_name": "Radix UI Primitives",
       "norm_label": "tabstriggerprops"
     },
     {
@@ -827,7 +717,6 @@
       "_origin": "ast",
       "id": "components_tabs_tabstrigger",
       "community": 10,
-      "community_name": "Radix UI Primitives",
       "norm_label": "tabstrigger"
     },
     {
@@ -837,8 +726,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "components_thermochart",
-      "community": 7,
-      "community_name": "Unit Conversion Logic",
+      "community": 0,
       "norm_label": "thermochart.tsx"
     },
     {
@@ -848,8 +736,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "components_thermochart_chartpoint",
-      "community": 7,
-      "community_name": "Unit Conversion Logic",
+      "community": 0,
       "norm_label": "chartpoint"
     },
     {
@@ -859,8 +746,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "components_thermochart_seriesdata",
-      "community": 7,
-      "community_name": "Unit Conversion Logic",
+      "community": 0,
       "norm_label": "seriesdata"
     },
     {
@@ -870,19 +756,17 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "components_thermochart_thermochartprops",
-      "community": 7,
-      "community_name": "Unit Conversion Logic",
+      "community": 0,
       "norm_label": "thermochartprops"
     },
     {
       "label": "ThermoChart()",
       "file_type": "code",
       "source_file": "components/ThermoChart.tsx",
-      "source_location": "L37",
+      "source_location": "L33",
       "_origin": "ast",
       "id": "components_thermochart_thermochart",
-      "community": 7,
-      "community_name": "Unit Conversion Logic",
+      "community": 0,
       "norm_label": "thermochart()"
     },
     {
@@ -893,7 +777,6 @@
       "_origin": "ast",
       "id": "lib_api",
       "community": 0,
-      "community_name": "React UI Components",
       "norm_label": "api.ts"
     },
     {
@@ -904,7 +787,6 @@
       "_origin": "ast",
       "id": "lib_api_api",
       "community": 0,
-      "community_name": "React UI Components",
       "norm_label": "api"
     },
     {
@@ -915,7 +797,6 @@
       "_origin": "ast",
       "id": "lib_api_thermomodel",
       "community": 0,
-      "community_name": "React UI Components",
       "norm_label": "thermomodel"
     },
     {
@@ -926,7 +807,6 @@
       "_origin": "ast",
       "id": "lib_api_statepayload",
       "community": 0,
-      "community_name": "React UI Components",
       "norm_label": "statepayload"
     },
     {
@@ -937,7 +817,6 @@
       "_origin": "ast",
       "id": "lib_api_stateresponse",
       "community": 0,
-      "community_name": "React UI Components",
       "norm_label": "stateresponse"
     },
     {
@@ -948,7 +827,6 @@
       "_origin": "ast",
       "id": "lib_api_computestate",
       "community": 0,
-      "community_name": "React UI Components",
       "norm_label": "computestate()"
     },
     {
@@ -959,7 +837,6 @@
       "_origin": "ast",
       "id": "lib_format",
       "community": 0,
-      "community_name": "React UI Components",
       "norm_label": "format.ts"
     },
     {
@@ -970,7 +847,6 @@
       "_origin": "ast",
       "id": "lib_format_fmt",
       "community": 0,
-      "community_name": "React UI Components",
       "norm_label": "fmt()"
     },
     {
@@ -981,7 +857,6 @@
       "_origin": "ast",
       "id": "lib_format_formatvalue",
       "community": 0,
-      "community_name": "React UI Components",
       "norm_label": "formatvalue()"
     },
     {
@@ -992,7 +867,6 @@
       "_origin": "ast",
       "id": "lib_professor",
       "community": 8,
-      "community_name": "Professor Derivation Generators",
       "norm_label": "professor.ts"
     },
     {
@@ -1003,7 +877,6 @@
       "_origin": "ast",
       "id": "lib_professor_professorpayload",
       "community": 8,
-      "community_name": "Professor Derivation Generators",
       "norm_label": "professorpayload"
     },
     {
@@ -1014,7 +887,6 @@
       "_origin": "ast",
       "id": "lib_professor_professoroutput",
       "community": 8,
-      "community_name": "Professor Derivation Generators",
       "norm_label": "professoroutput"
     },
     {
@@ -1025,7 +897,6 @@
       "_origin": "ast",
       "id": "lib_professor_num",
       "community": 8,
-      "community_name": "Professor Derivation Generators",
       "norm_label": "num()"
     },
     {
@@ -1036,7 +907,6 @@
       "_origin": "ast",
       "id": "lib_professor_generateprofessorreport",
       "community": 8,
-      "community_name": "Professor Derivation Generators",
       "norm_label": "generateprofessorreport()"
     },
     {
@@ -1047,7 +917,6 @@
       "_origin": "ast",
       "id": "lib_professor_generateprocessreport",
       "community": 8,
-      "community_name": "Professor Derivation Generators",
       "norm_label": "generateprocessreport()"
     },
     {
@@ -1058,7 +927,6 @@
       "_origin": "ast",
       "id": "lib_professor_generatestatereport",
       "community": 8,
-      "community_name": "Professor Derivation Generators",
       "norm_label": "generatestatereport()"
     },
     {
@@ -1069,7 +937,6 @@
       "_origin": "ast",
       "id": "lib_professor_generatecyclereport",
       "community": 8,
-      "community_name": "Professor Derivation Generators",
       "norm_label": "generatecyclereport()"
     },
     {
@@ -1080,7 +947,6 @@
       "_origin": "ast",
       "id": "lib_professor_rankinederivation",
       "community": 8,
-      "community_name": "Professor Derivation Generators",
       "norm_label": "rankinederivation()"
     },
     {
@@ -1091,7 +957,6 @@
       "_origin": "ast",
       "id": "lib_professor_ottoderivation",
       "community": 8,
-      "community_name": "Professor Derivation Generators",
       "norm_label": "ottoderivation()"
     },
     {
@@ -1102,7 +967,6 @@
       "_origin": "ast",
       "id": "lib_professor_dieselderivation",
       "community": 8,
-      "community_name": "Professor Derivation Generators",
       "norm_label": "dieselderivation()"
     },
     {
@@ -1113,7 +977,6 @@
       "_origin": "ast",
       "id": "lib_professor_braytonderivation",
       "community": 8,
-      "community_name": "Professor Derivation Generators",
       "norm_label": "braytonderivation()"
     },
     {
@@ -1124,7 +987,6 @@
       "_origin": "ast",
       "id": "lib_professor_carnotderivation",
       "community": 8,
-      "community_name": "Professor Derivation Generators",
       "norm_label": "carnotderivation()"
     },
     {
@@ -1135,7 +997,6 @@
       "_origin": "ast",
       "id": "lib_professor_buildfulllatexdoc",
       "community": 8,
-      "community_name": "Professor Derivation Generators",
       "norm_label": "buildfulllatexdoc()"
     },
     {
@@ -1146,7 +1007,6 @@
       "_origin": "ast",
       "id": "lib_professor_escape",
       "community": 8,
-      "community_name": "Professor Derivation Generators",
       "norm_label": "escape()"
     },
     {
@@ -1157,7 +1017,6 @@
       "_origin": "ast",
       "id": "lib_store",
       "community": 0,
-      "community_name": "React UI Components",
       "norm_label": "store.ts"
     },
     {
@@ -1168,7 +1027,6 @@
       "_origin": "ast",
       "id": "lib_store_propvalue",
       "community": 0,
-      "community_name": "React UI Components",
       "norm_label": "propvalue"
     },
     {
@@ -1179,7 +1037,6 @@
       "_origin": "ast",
       "id": "lib_store_thermostate",
       "community": 0,
-      "community_name": "React UI Components",
       "norm_label": "thermostate"
     },
     {
@@ -1190,7 +1047,6 @@
       "_origin": "ast",
       "id": "lib_store_unitsystem",
       "community": 0,
-      "community_name": "React UI Components",
       "norm_label": "unitsystem"
     },
     {
@@ -1201,7 +1057,6 @@
       "_origin": "ast",
       "id": "lib_store_substance",
       "community": 0,
-      "community_name": "React UI Components",
       "norm_label": "substance"
     },
     {
@@ -1212,7 +1067,6 @@
       "_origin": "ast",
       "id": "lib_store_store",
       "community": 0,
-      "community_name": "React UI Components",
       "norm_label": "store"
     },
     {
@@ -1223,7 +1077,6 @@
       "_origin": "ast",
       "id": "lib_store_translations",
       "community": 0,
-      "community_name": "React UI Components",
       "norm_label": "translations"
     },
     {
@@ -1234,7 +1087,6 @@
       "_origin": "ast",
       "id": "lib_store_unitsystems",
       "community": 0,
-      "community_name": "React UI Components",
       "norm_label": "unitsystems"
     },
     {
@@ -1245,7 +1097,6 @@
       "_origin": "ast",
       "id": "lib_store_usestore",
       "community": 0,
-      "community_name": "React UI Components",
       "norm_label": "usestore"
     },
     {
@@ -1256,7 +1107,6 @@
       "_origin": "ast",
       "id": "lib_thermo_engine",
       "community": 1,
-      "community_name": "Thermodynamic Engine + API Routes",
       "norm_label": "thermo-engine.ts"
     },
     {
@@ -1267,7 +1117,6 @@
       "_origin": "ast",
       "id": "lib_thermo_engine_thermodynamicstate",
       "community": 8,
-      "community_name": "Professor Derivation Generators",
       "norm_label": "thermodynamicstate"
     },
     {
@@ -1278,7 +1127,6 @@
       "_origin": "ast",
       "id": "lib_thermo_engine_idealgasproperties",
       "community": 1,
-      "community_name": "Thermodynamic Engine + API Routes",
       "norm_label": "idealgasproperties"
     },
     {
@@ -1289,7 +1137,6 @@
       "_origin": "ast",
       "id": "lib_thermo_engine_formulacache",
       "community": 1,
-      "community_name": "Thermodynamic Engine + API Routes",
       "norm_label": "formulacache"
     },
     {
@@ -1300,7 +1147,6 @@
       "_origin": "ast",
       "id": "lib_thermo_engine_compilecpformula",
       "community": 1,
-      "community_name": "Thermodynamic Engine + API Routes",
       "norm_label": "compilecpformula()"
     },
     {
@@ -1311,7 +1157,6 @@
       "_origin": "ast",
       "id": "lib_thermo_engine_tokennumber",
       "community": 1,
-      "community_name": "Thermodynamic Engine + API Routes",
       "norm_label": "tokennumber"
     },
     {
@@ -1322,7 +1167,6 @@
       "_origin": "ast",
       "id": "lib_thermo_engine_tokenop",
       "community": 1,
-      "community_name": "Thermodynamic Engine + API Routes",
       "norm_label": "tokenop"
     },
     {
@@ -1333,7 +1177,6 @@
       "_origin": "ast",
       "id": "lib_thermo_engine_tokenpow",
       "community": 1,
-      "community_name": "Thermodynamic Engine + API Routes",
       "norm_label": "tokenpow"
     },
     {
@@ -1344,7 +1187,6 @@
       "_origin": "ast",
       "id": "lib_thermo_engine_tokenvar",
       "community": 1,
-      "community_name": "Thermodynamic Engine + API Routes",
       "norm_label": "tokenvar"
     },
     {
@@ -1355,7 +1197,6 @@
       "_origin": "ast",
       "id": "lib_thermo_engine_tokenlparen",
       "community": 1,
-      "community_name": "Thermodynamic Engine + API Routes",
       "norm_label": "tokenlparen"
     },
     {
@@ -1366,7 +1207,6 @@
       "_origin": "ast",
       "id": "lib_thermo_engine_tokenrparen",
       "community": 1,
-      "community_name": "Thermodynamic Engine + API Routes",
       "norm_label": "tokenrparen"
     },
     {
@@ -1377,7 +1217,6 @@
       "_origin": "ast",
       "id": "lib_thermo_engine_token",
       "community": 1,
-      "community_name": "Thermodynamic Engine + API Routes",
       "norm_label": "token"
     },
     {
@@ -1388,7 +1227,6 @@
       "_origin": "ast",
       "id": "lib_thermo_engine_tokenize",
       "community": 1,
-      "community_name": "Thermodynamic Engine + API Routes",
       "norm_label": "tokenize()"
     },
     {
@@ -1399,7 +1237,6 @@
       "_origin": "ast",
       "id": "lib_thermo_engine_parser",
       "community": 12,
-      "community_name": "Parser",
       "norm_label": "parser"
     },
     {
@@ -1410,7 +1247,6 @@
       "_origin": "ast",
       "id": "lib_thermo_engine_parser_constructor",
       "community": 12,
-      "community_name": "Parser",
       "norm_label": ".constructor()"
     },
     {
@@ -1421,7 +1257,6 @@
       "_origin": "ast",
       "id": "lib_thermo_engine_parser_peek",
       "community": 12,
-      "community_name": "Parser",
       "norm_label": ".peek()"
     },
     {
@@ -1432,7 +1267,6 @@
       "_origin": "ast",
       "id": "lib_thermo_engine_parser_eat",
       "community": 12,
-      "community_name": "Parser",
       "norm_label": ".eat()"
     },
     {
@@ -1443,7 +1277,6 @@
       "_origin": "ast",
       "id": "lib_thermo_engine_parser_parseexpression",
       "community": 12,
-      "community_name": "Parser",
       "norm_label": ".parseexpression()"
     },
     {
@@ -1454,7 +1287,6 @@
       "_origin": "ast",
       "id": "lib_thermo_engine_parser_parseterm",
       "community": 12,
-      "community_name": "Parser",
       "norm_label": ".parseterm()"
     },
     {
@@ -1465,7 +1297,6 @@
       "_origin": "ast",
       "id": "lib_thermo_engine_parser_parsepower",
       "community": 12,
-      "community_name": "Parser",
       "norm_label": ".parsepower()"
     },
     {
@@ -1476,7 +1307,6 @@
       "_origin": "ast",
       "id": "lib_thermo_engine_parser_parseunary",
       "community": 12,
-      "community_name": "Parser",
       "norm_label": ".parseunary()"
     },
     {
@@ -1487,7 +1317,6 @@
       "_origin": "ast",
       "id": "lib_thermo_engine_parser_parseprimary",
       "community": 12,
-      "community_name": "Parser",
       "norm_label": ".parseprimary()"
     },
     {
@@ -1498,7 +1327,6 @@
       "_origin": "ast",
       "id": "lib_thermo_engine_idealgasdata",
       "community": 1,
-      "community_name": "Thermodynamic Engine + API Routes",
       "norm_label": "idealgasdata"
     },
     {
@@ -1509,7 +1337,6 @@
       "_origin": "ast",
       "id": "lib_thermo_engine_realsubstances",
       "community": 1,
-      "community_name": "Thermodynamic Engine + API Routes",
       "norm_label": "realsubstances"
     },
     {
@@ -1520,7 +1347,6 @@
       "_origin": "ast",
       "id": "lib_thermo_engine_buildsaturationmaps",
       "community": 1,
-      "community_name": "Thermodynamic Engine + API Routes",
       "norm_label": "buildsaturationmaps()"
     },
     {
@@ -1531,7 +1357,6 @@
       "_origin": "ast",
       "id": "lib_thermo_engine_findsatbyt",
       "community": 1,
-      "community_name": "Thermodynamic Engine + API Routes",
       "norm_label": "findsatbyt()"
     },
     {
@@ -1542,7 +1367,6 @@
       "_origin": "ast",
       "id": "lib_thermo_engine_findsatbyp",
       "community": 1,
-      "community_name": "Thermodynamic Engine + API Routes",
       "norm_label": "findsatbyp()"
     },
     {
@@ -1553,7 +1377,6 @@
       "_origin": "ast",
       "id": "lib_thermo_engine_calculateidealgasstate",
       "community": 1,
-      "community_name": "Thermodynamic Engine + API Routes",
       "norm_label": "calculateidealgasstate()"
     },
     {
@@ -1564,7 +1387,6 @@
       "_origin": "ast",
       "id": "lib_thermo_engine_integratecp",
       "community": 1,
-      "community_name": "Thermodynamic Engine + API Routes",
       "norm_label": "integratecp()"
     },
     {
@@ -1575,7 +1397,6 @@
       "_origin": "ast",
       "id": "lib_thermo_engine_calculateidealgascptstate",
       "community": 1,
-      "community_name": "Thermodynamic Engine + API Routes",
       "norm_label": "calculateidealgascptstate()"
     },
     {
@@ -1586,7 +1407,6 @@
       "_origin": "ast",
       "id": "lib_thermo_engine_composehfn",
       "community": 1,
-      "community_name": "Thermodynamic Engine + API Routes",
       "norm_label": "composehfn()"
     },
     {
@@ -1597,7 +1417,6 @@
       "_origin": "ast",
       "id": "lib_thermo_engine_inverth",
       "community": 1,
-      "community_name": "Thermodynamic Engine + API Routes",
       "norm_label": "inverth()"
     },
     {
@@ -1608,7 +1427,6 @@
       "_origin": "ast",
       "id": "lib_thermo_engine_simpsonintegrate",
       "community": 1,
-      "community_name": "Thermodynamic Engine + API Routes",
       "norm_label": "simpsonintegrate()"
     },
     {
@@ -1619,7 +1437,6 @@
       "_origin": "ast",
       "id": "lib_thermo_engine_calculaterealstate",
       "community": 1,
-      "community_name": "Thermodynamic Engine + API Routes",
       "norm_label": "calculaterealstate()"
     },
     {
@@ -1630,7 +1447,6 @@
       "_origin": "ast",
       "id": "lib_thermo_engine_clampx",
       "community": 1,
-      "community_name": "Thermodynamic Engine + API Routes",
       "norm_label": "clampx()"
     },
     {
@@ -1641,7 +1457,6 @@
       "_origin": "ast",
       "id": "lib_thermo_engine_computethermodynamicstate",
       "community": 1,
-      "community_name": "Thermodynamic Engine + API Routes",
       "norm_label": "computethermodynamicstate()"
     },
     {
@@ -1652,7 +1467,6 @@
       "_origin": "ast",
       "id": "lib_thermo_engine_processtype",
       "community": 0,
-      "community_name": "React UI Components",
       "norm_label": "processtype"
     },
     {
@@ -1663,7 +1477,6 @@
       "_origin": "ast",
       "id": "lib_thermo_engine_analyzeprocess",
       "community": 1,
-      "community_name": "Thermodynamic Engine + API Routes",
       "norm_label": "analyzeprocess()"
     },
     {
@@ -1674,7 +1487,6 @@
       "_origin": "ast",
       "id": "lib_thermo_engine_polytropic_from_state",
       "community": 1,
-      "community_name": "Thermodynamic Engine + API Routes",
       "norm_label": "polytropic_from_state()"
     },
     {
@@ -1685,7 +1497,6 @@
       "_origin": "ast",
       "id": "lib_thermo_engine_cycletype",
       "community": 1,
-      "community_name": "Thermodynamic Engine + API Routes",
       "norm_label": "cycletype"
     },
     {
@@ -1696,7 +1507,6 @@
       "_origin": "ast",
       "id": "lib_thermo_engine_cycleresult",
       "community": 1,
-      "community_name": "Thermodynamic Engine + API Routes",
       "norm_label": "cycleresult"
     },
     {
@@ -1707,7 +1517,6 @@
       "_origin": "ast",
       "id": "lib_thermo_engine_analyzecycle",
       "community": 1,
-      "community_name": "Thermodynamic Engine + API Routes",
       "norm_label": "analyzecycle()"
     },
     {
@@ -1718,7 +1527,6 @@
       "_origin": "ast",
       "id": "lib_thermo_engine_buildsaturationcurve",
       "community": 0,
-      "community_name": "React UI Components",
       "norm_label": "buildsaturationcurve()"
     },
     {
@@ -1729,7 +1537,6 @@
       "_origin": "ast",
       "id": "lib_thermo_engine_listsubstances",
       "community": 1,
-      "community_name": "Thermodynamic Engine + API Routes",
       "norm_label": "listsubstances()"
     },
     {
@@ -1740,7 +1547,6 @@
       "_origin": "ast",
       "id": "lib_thermo_engine_getidealgasproperties",
       "community": 1,
-      "community_name": "Thermodynamic Engine + API Routes",
       "norm_label": "getidealgasproperties()"
     },
     {
@@ -1751,7 +1557,6 @@
       "_origin": "ast",
       "id": "lib_thermo_engine_getrealsubstance",
       "community": 0,
-      "community_name": "React UI Components",
       "norm_label": "getrealsubstance()"
     },
     {
@@ -1762,7 +1567,6 @@
       "_origin": "ast",
       "id": "lib_units",
       "community": 7,
-      "community_name": "Unit Conversion Logic",
       "norm_label": "units.ts"
     },
     {
@@ -1773,7 +1577,6 @@
       "_origin": "ast",
       "id": "lib_units_matrix",
       "community": 7,
-      "community_name": "Unit Conversion Logic",
       "norm_label": "matrix"
     },
     {
@@ -1784,7 +1587,6 @@
       "_origin": "ast",
       "id": "lib_units_conversiontables",
       "community": 7,
-      "community_name": "Unit Conversion Logic",
       "norm_label": "conversiontables"
     },
     {
@@ -1795,7 +1597,6 @@
       "_origin": "ast",
       "id": "lib_units_loadmatrix",
       "community": 7,
-      "community_name": "Unit Conversion Logic",
       "norm_label": "loadmatrix()"
     },
     {
@@ -1806,7 +1607,6 @@
       "_origin": "ast",
       "id": "lib_units_tables",
       "community": 7,
-      "community_name": "Unit Conversion Logic",
       "norm_label": "tables"
     },
     {
@@ -1817,7 +1617,6 @@
       "_origin": "ast",
       "id": "lib_units_pressure_aliases",
       "community": 7,
-      "community_name": "Unit Conversion Logic",
       "norm_label": "pressure_aliases"
     },
     {
@@ -1828,7 +1627,6 @@
       "_origin": "ast",
       "id": "lib_units_energy_per_mass_aliases",
       "community": 7,
-      "community_name": "Unit Conversion Logic",
       "norm_label": "energy_per_mass_aliases"
     },
     {
@@ -1839,7 +1637,6 @@
       "_origin": "ast",
       "id": "lib_units_energy_aliases",
       "community": 7,
-      "community_name": "Unit Conversion Logic",
       "norm_label": "energy_aliases"
     },
     {
@@ -1850,7 +1647,6 @@
       "_origin": "ast",
       "id": "lib_units_power_aliases",
       "community": 7,
-      "community_name": "Unit Conversion Logic",
       "norm_label": "power_aliases"
     },
     {
@@ -1861,7 +1657,6 @@
       "_origin": "ast",
       "id": "lib_units_temp_aliases",
       "community": 7,
-      "community_name": "Unit Conversion Logic",
       "norm_label": "temp_aliases"
     },
     {
@@ -1872,7 +1667,6 @@
       "_origin": "ast",
       "id": "lib_units_specific_volume_aliases",
       "community": 7,
-      "community_name": "Unit Conversion Logic",
       "norm_label": "specific_volume_aliases"
     },
     {
@@ -1883,7 +1677,6 @@
       "_origin": "ast",
       "id": "lib_units_factortosi",
       "community": 7,
-      "community_name": "Unit Conversion Logic",
       "norm_label": "factortosi()"
     },
     {
@@ -1894,7 +1687,6 @@
       "_origin": "ast",
       "id": "lib_units_converttosi",
       "community": 7,
-      "community_name": "Unit Conversion Logic",
       "norm_label": "converttosi()"
     },
     {
@@ -1904,8 +1696,7 @@
       "source_location": "L222",
       "_origin": "ast",
       "id": "lib_units_convertfromsi",
-      "community": 7,
-      "community_name": "Unit Conversion Logic",
+      "community": 0,
       "norm_label": "convertfromsi()"
     },
     {
@@ -1916,7 +1707,6 @@
       "_origin": "ast",
       "id": "lib_units_unitsfor",
       "community": 7,
-      "community_name": "Unit Conversion Logic",
       "norm_label": "unitsfor()"
     },
     {
@@ -1927,7 +1717,6 @@
       "_origin": "ast",
       "id": "lib_units_defaultunitfor",
       "community": 7,
-      "community_name": "Unit Conversion Logic",
       "norm_label": "defaultunitfor()"
     },
     {
@@ -1938,7 +1727,6 @@
       "_origin": "ast",
       "id": "lib_units_normalizepayloadunits",
       "community": 7,
-      "community_name": "Unit Conversion Logic",
       "norm_label": "normalizepayloadunits()"
     },
     {
@@ -1949,7 +1737,6 @@
       "_origin": "ast",
       "id": "lib_utils",
       "community": 10,
-      "community_name": "Radix UI Primitives",
       "norm_label": "utils.ts"
     },
     {
@@ -1960,7 +1747,6 @@
       "_origin": "ast",
       "id": "lib_utils_cn",
       "community": 10,
-      "community_name": "Radix UI Primitives",
       "norm_label": "cn()"
     },
     {
@@ -1971,7 +1757,6 @@
       "_origin": "ast",
       "id": "lib_wasm_loader",
       "community": 11,
-      "community_name": "WASM Loader Bridge",
       "norm_label": "wasm-loader.ts"
     },
     {
@@ -1982,7 +1767,6 @@
       "_origin": "ast",
       "id": "lib_wasm_loader_wasmcore",
       "community": 11,
-      "community_name": "WASM Loader Bridge",
       "norm_label": "wasmcore"
     },
     {
@@ -1993,7 +1777,6 @@
       "_origin": "ast",
       "id": "lib_wasm_loader_loadwasmcore",
       "community": 11,
-      "community_name": "WASM Loader Bridge",
       "norm_label": "loadwasmcore()"
     },
     {
@@ -2004,7 +1787,6 @@
       "_origin": "ast",
       "id": "lib_wasm_loader_haswasmcore",
       "community": 11,
-      "community_name": "WASM Loader Bridge",
       "norm_label": "haswasmcore()"
     },
     {
@@ -2015,7 +1797,6 @@
       "_origin": "ast",
       "id": "next_env_d",
       "community": 20,
-      "community_name": "next-env.d.ts",
       "norm_label": "next-env.d.ts"
     },
     {
@@ -2026,7 +1807,6 @@
       "_origin": "ast",
       "id": "next_env_d_rationale_4",
       "community": 20,
-      "community_name": "next-env.d.ts",
       "norm_label": "note: this file should not be edited"
     },
     {
@@ -2037,7 +1817,6 @@
       "_origin": "ast",
       "id": "next_config",
       "community": 19,
-      "community_name": "next.config.js",
       "norm_label": "next.config.js"
     },
     {
@@ -2048,7 +1827,6 @@
       "_origin": "ast",
       "id": "next_config_nextconfig",
       "community": 19,
-      "community_name": "next.config.js",
       "norm_label": "nextconfig"
     },
     {
@@ -2059,7 +1837,6 @@
       "_origin": "ast",
       "id": "package",
       "community": 3,
-      "community_name": "Dev Tooling Config",
       "norm_label": "package.json"
     },
     {
@@ -2070,7 +1847,6 @@
       "_origin": "ast",
       "id": "package_name",
       "community": 3,
-      "community_name": "Dev Tooling Config",
       "norm_label": "name"
     },
     {
@@ -2081,7 +1857,6 @@
       "_origin": "ast",
       "id": "package_version",
       "community": 3,
-      "community_name": "Dev Tooling Config",
       "norm_label": "version"
     },
     {
@@ -2092,7 +1867,6 @@
       "_origin": "ast",
       "id": "package_description",
       "community": 3,
-      "community_name": "Dev Tooling Config",
       "norm_label": "description"
     },
     {
@@ -2103,7 +1877,6 @@
       "_origin": "ast",
       "id": "package_private",
       "community": 3,
-      "community_name": "Dev Tooling Config",
       "norm_label": "private"
     },
     {
@@ -2114,7 +1887,6 @@
       "_origin": "ast",
       "id": "package_scripts",
       "community": 3,
-      "community_name": "Dev Tooling Config",
       "norm_label": "scripts"
     },
     {
@@ -2125,7 +1897,6 @@
       "_origin": "ast",
       "id": "package_scripts_dev",
       "community": 3,
-      "community_name": "Dev Tooling Config",
       "norm_label": "dev"
     },
     {
@@ -2136,7 +1907,6 @@
       "_origin": "ast",
       "id": "package_scripts_build",
       "community": 3,
-      "community_name": "Dev Tooling Config",
       "norm_label": "build"
     },
     {
@@ -2147,7 +1917,6 @@
       "_origin": "ast",
       "id": "package_scripts_start",
       "community": 3,
-      "community_name": "Dev Tooling Config",
       "norm_label": "start"
     },
     {
@@ -2158,7 +1927,6 @@
       "_origin": "ast",
       "id": "package_scripts_lint",
       "community": 3,
-      "community_name": "Dev Tooling Config",
       "norm_label": "lint"
     },
     {
@@ -2169,7 +1937,6 @@
       "_origin": "ast",
       "id": "package_scripts_type_check",
       "community": 3,
-      "community_name": "Dev Tooling Config",
       "norm_label": "type-check"
     },
     {
@@ -2180,7 +1947,6 @@
       "_origin": "ast",
       "id": "package_scripts_build_substances",
       "community": 3,
-      "community_name": "Dev Tooling Config",
       "norm_label": "build-substances"
     },
     {
@@ -2191,7 +1957,6 @@
       "_origin": "ast",
       "id": "package_scripts_self_check",
       "community": 3,
-      "community_name": "Dev Tooling Config",
       "norm_label": "self-check"
     },
     {
@@ -2202,7 +1967,6 @@
       "_origin": "ast",
       "id": "package_scripts_smoke",
       "community": 3,
-      "community_name": "Dev Tooling Config",
       "norm_label": "smoke"
     },
     {
@@ -2213,7 +1977,6 @@
       "_origin": "ast",
       "id": "package_scripts_wasm_build",
       "community": 3,
-      "community_name": "Dev Tooling Config",
       "norm_label": "wasm:build"
     },
     {
@@ -2224,7 +1987,6 @@
       "_origin": "ast",
       "id": "package_scripts_wasm_test",
       "community": 3,
-      "community_name": "Dev Tooling Config",
       "norm_label": "wasm:test"
     },
     {
@@ -2235,7 +1997,6 @@
       "_origin": "ast",
       "id": "package_dependencies",
       "community": 2,
-      "community_name": "npm Dependencies",
       "norm_label": "dependencies"
     },
     {
@@ -2246,7 +2007,6 @@
       "_origin": "ast",
       "id": "package_dependencies_phosphor_icons_react",
       "community": 2,
-      "community_name": "npm Dependencies",
       "norm_label": "@phosphor-icons/react"
     },
     {
@@ -2257,7 +2017,6 @@
       "_origin": "ast",
       "id": "phosphor_icons_react",
       "community": 2,
-      "community_name": "npm Dependencies",
       "norm_label": "@phosphor-icons/react"
     },
     {
@@ -2268,7 +2027,6 @@
       "_origin": "ast",
       "id": "package_dependencies_radix_ui_react_alert_dialog",
       "community": 2,
-      "community_name": "npm Dependencies",
       "norm_label": "@radix-ui/react-alert-dialog"
     },
     {
@@ -2279,7 +2037,6 @@
       "_origin": "ast",
       "id": "radix_ui_react_alert_dialog",
       "community": 2,
-      "community_name": "npm Dependencies",
       "norm_label": "@radix-ui/react-alert-dialog"
     },
     {
@@ -2290,7 +2047,6 @@
       "_origin": "ast",
       "id": "package_dependencies_radix_ui_react_checkbox",
       "community": 2,
-      "community_name": "npm Dependencies",
       "norm_label": "@radix-ui/react-checkbox"
     },
     {
@@ -2301,7 +2057,6 @@
       "_origin": "ast",
       "id": "radix_ui_react_checkbox",
       "community": 2,
-      "community_name": "npm Dependencies",
       "norm_label": "@radix-ui/react-checkbox"
     },
     {
@@ -2312,7 +2067,6 @@
       "_origin": "ast",
       "id": "package_dependencies_radix_ui_react_dialog",
       "community": 2,
-      "community_name": "npm Dependencies",
       "norm_label": "@radix-ui/react-dialog"
     },
     {
@@ -2323,7 +2077,6 @@
       "_origin": "ast",
       "id": "radix_ui_react_dialog",
       "community": 2,
-      "community_name": "npm Dependencies",
       "norm_label": "@radix-ui/react-dialog"
     },
     {
@@ -2334,7 +2087,6 @@
       "_origin": "ast",
       "id": "package_dependencies_radix_ui_react_select",
       "community": 2,
-      "community_name": "npm Dependencies",
       "norm_label": "@radix-ui/react-select"
     },
     {
@@ -2345,7 +2097,6 @@
       "_origin": "ast",
       "id": "radix_ui_react_select",
       "community": 2,
-      "community_name": "npm Dependencies",
       "norm_label": "@radix-ui/react-select"
     },
     {
@@ -2356,7 +2107,6 @@
       "_origin": "ast",
       "id": "package_dependencies_radix_ui_react_slot",
       "community": 2,
-      "community_name": "npm Dependencies",
       "norm_label": "@radix-ui/react-slot"
     },
     {
@@ -2367,7 +2117,6 @@
       "_origin": "ast",
       "id": "radix_ui_react_slot",
       "community": 2,
-      "community_name": "npm Dependencies",
       "norm_label": "@radix-ui/react-slot"
     },
     {
@@ -2378,7 +2127,6 @@
       "_origin": "ast",
       "id": "package_dependencies_radix_ui_react_tabs",
       "community": 2,
-      "community_name": "npm Dependencies",
       "norm_label": "@radix-ui/react-tabs"
     },
     {
@@ -2389,7 +2137,6 @@
       "_origin": "ast",
       "id": "radix_ui_react_tabs",
       "community": 2,
-      "community_name": "npm Dependencies",
       "norm_label": "@radix-ui/react-tabs"
     },
     {
@@ -2400,7 +2147,6 @@
       "_origin": "ast",
       "id": "package_dependencies_axios",
       "community": 2,
-      "community_name": "npm Dependencies",
       "norm_label": "axios"
     },
     {
@@ -2411,7 +2157,6 @@
       "_origin": "ast",
       "id": "axios",
       "community": 2,
-      "community_name": "npm Dependencies",
       "norm_label": "axios"
     },
     {
@@ -2422,7 +2167,6 @@
       "_origin": "ast",
       "id": "package_dependencies_class_variance_authority",
       "community": 2,
-      "community_name": "npm Dependencies",
       "norm_label": "class-variance-authority"
     },
     {
@@ -2433,7 +2177,6 @@
       "_origin": "ast",
       "id": "class_variance_authority",
       "community": 2,
-      "community_name": "npm Dependencies",
       "norm_label": "class-variance-authority"
     },
     {
@@ -2444,7 +2187,6 @@
       "_origin": "ast",
       "id": "package_dependencies_clsx",
       "community": 2,
-      "community_name": "npm Dependencies",
       "norm_label": "clsx"
     },
     {
@@ -2455,7 +2197,6 @@
       "_origin": "ast",
       "id": "clsx",
       "community": 2,
-      "community_name": "npm Dependencies",
       "norm_label": "clsx"
     },
     {
@@ -2466,7 +2207,6 @@
       "_origin": "ast",
       "id": "package_dependencies_jspdf",
       "community": 2,
-      "community_name": "npm Dependencies",
       "norm_label": "jspdf"
     },
     {
@@ -2477,7 +2217,6 @@
       "_origin": "ast",
       "id": "jspdf",
       "community": 2,
-      "community_name": "npm Dependencies",
       "norm_label": "jspdf"
     },
     {
@@ -2488,7 +2227,6 @@
       "_origin": "ast",
       "id": "package_dependencies_lucide_react",
       "community": 2,
-      "community_name": "npm Dependencies",
       "norm_label": "lucide-react"
     },
     {
@@ -2499,7 +2237,6 @@
       "_origin": "ast",
       "id": "lucide_react",
       "community": 2,
-      "community_name": "npm Dependencies",
       "norm_label": "lucide-react"
     },
     {
@@ -2510,7 +2247,6 @@
       "_origin": "ast",
       "id": "package_dependencies_next",
       "community": 2,
-      "community_name": "npm Dependencies",
       "norm_label": "next"
     },
     {
@@ -2521,7 +2257,6 @@
       "_origin": "ast",
       "id": "next",
       "community": 2,
-      "community_name": "npm Dependencies",
       "norm_label": "next"
     },
     {
@@ -2532,7 +2267,6 @@
       "_origin": "ast",
       "id": "package_dependencies_react",
       "community": 0,
-      "community_name": "React UI Components",
       "norm_label": "react"
     },
     {
@@ -2543,7 +2277,6 @@
       "_origin": "ast",
       "id": "react",
       "community": 0,
-      "community_name": "React UI Components",
       "norm_label": "react"
     },
     {
@@ -2554,7 +2287,6 @@
       "_origin": "ast",
       "id": "package_dependencies_react_dom",
       "community": 2,
-      "community_name": "npm Dependencies",
       "norm_label": "react-dom"
     },
     {
@@ -2565,7 +2297,6 @@
       "_origin": "ast",
       "id": "react_dom",
       "community": 2,
-      "community_name": "npm Dependencies",
       "norm_label": "react-dom"
     },
     {
@@ -2576,7 +2307,6 @@
       "_origin": "ast",
       "id": "package_dependencies_recharts",
       "community": 2,
-      "community_name": "npm Dependencies",
       "norm_label": "recharts"
     },
     {
@@ -2587,7 +2317,6 @@
       "_origin": "ast",
       "id": "recharts",
       "community": 2,
-      "community_name": "npm Dependencies",
       "norm_label": "recharts"
     },
     {
@@ -2598,7 +2327,6 @@
       "_origin": "ast",
       "id": "package_dependencies_sonner",
       "community": 2,
-      "community_name": "npm Dependencies",
       "norm_label": "sonner"
     },
     {
@@ -2609,7 +2337,6 @@
       "_origin": "ast",
       "id": "sonner",
       "community": 2,
-      "community_name": "npm Dependencies",
       "norm_label": "sonner"
     },
     {
@@ -2620,7 +2347,6 @@
       "_origin": "ast",
       "id": "package_dependencies_swr",
       "community": 2,
-      "community_name": "npm Dependencies",
       "norm_label": "swr"
     },
     {
@@ -2631,7 +2357,6 @@
       "_origin": "ast",
       "id": "swr",
       "community": 2,
-      "community_name": "npm Dependencies",
       "norm_label": "swr"
     },
     {
@@ -2642,7 +2367,6 @@
       "_origin": "ast",
       "id": "package_dependencies_tailwind_merge",
       "community": 2,
-      "community_name": "npm Dependencies",
       "norm_label": "tailwind-merge"
     },
     {
@@ -2653,7 +2377,6 @@
       "_origin": "ast",
       "id": "tailwind_merge",
       "community": 2,
-      "community_name": "npm Dependencies",
       "norm_label": "tailwind-merge"
     },
     {
@@ -2664,7 +2387,6 @@
       "_origin": "ast",
       "id": "package_dependencies_zustand",
       "community": 2,
-      "community_name": "npm Dependencies",
       "norm_label": "zustand"
     },
     {
@@ -2675,7 +2397,6 @@
       "_origin": "ast",
       "id": "zustand",
       "community": 2,
-      "community_name": "npm Dependencies",
       "norm_label": "zustand"
     },
     {
@@ -2686,7 +2407,6 @@
       "_origin": "ast",
       "id": "package_devdependencies",
       "community": 3,
-      "community_name": "Dev Tooling Config",
       "norm_label": "devdependencies"
     },
     {
@@ -2697,7 +2417,6 @@
       "_origin": "ast",
       "id": "package_devdependencies_types_node",
       "community": 3,
-      "community_name": "Dev Tooling Config",
       "norm_label": "@types/node"
     },
     {
@@ -2708,7 +2427,6 @@
       "_origin": "ast",
       "id": "types_node",
       "community": 3,
-      "community_name": "Dev Tooling Config",
       "norm_label": "@types/node"
     },
     {
@@ -2719,7 +2437,6 @@
       "_origin": "ast",
       "id": "package_devdependencies_types_react",
       "community": 3,
-      "community_name": "Dev Tooling Config",
       "norm_label": "@types/react"
     },
     {
@@ -2730,7 +2447,6 @@
       "_origin": "ast",
       "id": "types_react",
       "community": 3,
-      "community_name": "Dev Tooling Config",
       "norm_label": "@types/react"
     },
     {
@@ -2741,7 +2457,6 @@
       "_origin": "ast",
       "id": "package_devdependencies_types_react_dom",
       "community": 3,
-      "community_name": "Dev Tooling Config",
       "norm_label": "@types/react-dom"
     },
     {
@@ -2752,7 +2467,6 @@
       "_origin": "ast",
       "id": "types_react_dom",
       "community": 3,
-      "community_name": "Dev Tooling Config",
       "norm_label": "@types/react-dom"
     },
     {
@@ -2763,7 +2477,6 @@
       "_origin": "ast",
       "id": "package_devdependencies_autoprefixer",
       "community": 3,
-      "community_name": "Dev Tooling Config",
       "norm_label": "autoprefixer"
     },
     {
@@ -2774,7 +2487,6 @@
       "_origin": "ast",
       "id": "autoprefixer",
       "community": 3,
-      "community_name": "Dev Tooling Config",
       "norm_label": "autoprefixer"
     },
     {
@@ -2785,7 +2497,6 @@
       "_origin": "ast",
       "id": "package_devdependencies_eslint",
       "community": 3,
-      "community_name": "Dev Tooling Config",
       "norm_label": "eslint"
     },
     {
@@ -2796,7 +2507,6 @@
       "_origin": "ast",
       "id": "eslint",
       "community": 3,
-      "community_name": "Dev Tooling Config",
       "norm_label": "eslint"
     },
     {
@@ -2807,7 +2517,6 @@
       "_origin": "ast",
       "id": "package_devdependencies_eslint_config_next",
       "community": 3,
-      "community_name": "Dev Tooling Config",
       "norm_label": "eslint-config-next"
     },
     {
@@ -2818,7 +2527,6 @@
       "_origin": "ast",
       "id": "eslint_config_next",
       "community": 3,
-      "community_name": "Dev Tooling Config",
       "norm_label": "eslint-config-next"
     },
     {
@@ -2829,7 +2537,6 @@
       "_origin": "ast",
       "id": "package_devdependencies_postcss",
       "community": 3,
-      "community_name": "Dev Tooling Config",
       "norm_label": "postcss"
     },
     {
@@ -2840,7 +2547,6 @@
       "_origin": "ast",
       "id": "postcss",
       "community": 3,
-      "community_name": "Dev Tooling Config",
       "norm_label": "postcss"
     },
     {
@@ -2851,7 +2557,6 @@
       "_origin": "ast",
       "id": "package_devdependencies_tailwindcss",
       "community": 3,
-      "community_name": "Dev Tooling Config",
       "norm_label": "tailwindcss"
     },
     {
@@ -2862,7 +2567,6 @@
       "_origin": "ast",
       "id": "tailwindcss",
       "community": 3,
-      "community_name": "Dev Tooling Config",
       "norm_label": "tailwindcss"
     },
     {
@@ -2873,7 +2577,6 @@
       "_origin": "ast",
       "id": "package_devdependencies_tailwindcss_animate",
       "community": 3,
-      "community_name": "Dev Tooling Config",
       "norm_label": "tailwindcss-animate"
     },
     {
@@ -2884,7 +2587,6 @@
       "_origin": "ast",
       "id": "tailwindcss_animate",
       "community": 3,
-      "community_name": "Dev Tooling Config",
       "norm_label": "tailwindcss-animate"
     },
     {
@@ -2895,7 +2597,6 @@
       "_origin": "ast",
       "id": "package_devdependencies_typescript",
       "community": 3,
-      "community_name": "Dev Tooling Config",
       "norm_label": "typescript"
     },
     {
@@ -2906,7 +2607,6 @@
       "_origin": "ast",
       "id": "typescript",
       "community": 3,
-      "community_name": "Dev Tooling Config",
       "norm_label": "typescript"
     },
     {
@@ -2917,7 +2617,6 @@
       "_origin": "ast",
       "id": "package_packagemanager",
       "community": 3,
-      "community_name": "Dev Tooling Config",
       "norm_label": "packagemanager"
     },
     {
@@ -2928,7 +2627,6 @@
       "_origin": "ast",
       "id": "postcss_config",
       "community": 23,
-      "community_name": "postcss.config.js",
       "norm_label": "postcss.config.js"
     },
     {
@@ -2939,7 +2637,6 @@
       "_origin": "ast",
       "id": "rust_wasm_src_lib",
       "community": 6,
-      "community_name": "Rust WASM Core",
       "norm_label": "lib.rs"
     },
     {
@@ -2950,7 +2647,6 @@
       "_origin": "ast",
       "id": "rust_wasm_src_lib_thermoerror",
       "community": 6,
-      "community_name": "Rust WASM Core",
       "norm_label": "thermoerror"
     },
     {
@@ -2961,7 +2657,6 @@
       "_origin": "ast",
       "id": "string",
       "community": 6,
-      "community_name": "Rust WASM Core",
       "norm_label": "string"
     },
     {
@@ -2972,7 +2667,6 @@
       "_origin": "ast",
       "id": "rust_wasm_src_lib_state",
       "community": 6,
-      "community_name": "Rust WASM Core",
       "norm_label": "state"
     },
     {
@@ -2983,7 +2677,6 @@
       "_origin": "ast",
       "id": "option",
       "community": 6,
-      "community_name": "Rust WASM Core",
       "norm_label": "option"
     },
     {
@@ -2994,7 +2687,6 @@
       "_origin": "ast",
       "id": "rust_wasm_src_lib_computeresult",
       "community": 6,
-      "community_name": "Rust WASM Core",
       "norm_label": "computeresult"
     },
     {
@@ -3005,7 +2697,6 @@
       "_origin": "ast",
       "id": "value",
       "community": 6,
-      "community_name": "Rust WASM Core",
       "norm_label": "value"
     },
     {
@@ -3016,7 +2707,6 @@
       "_origin": "ast",
       "id": "rust_wasm_src_lib_substance",
       "community": 6,
-      "community_name": "Rust WASM Core",
       "norm_label": "substance"
     },
     {
@@ -3027,7 +2717,6 @@
       "_origin": "ast",
       "id": "rust_wasm_src_lib_registry",
       "community": 6,
-      "community_name": "Rust WASM Core",
       "norm_label": "registry()"
     },
     {
@@ -3038,7 +2727,6 @@
       "_origin": "ast",
       "id": "hashmap",
       "community": 6,
-      "community_name": "Rust WASM Core",
       "norm_label": "hashmap"
     },
     {
@@ -3049,7 +2737,6 @@
       "_origin": "ast",
       "id": "rust_wasm_src_lib_validate_inputs",
       "community": 6,
-      "community_name": "Rust WASM Core",
       "norm_label": "validate_inputs()"
     },
     {
@@ -3060,7 +2747,6 @@
       "_origin": "ast",
       "id": "result",
       "community": 6,
-      "community_name": "Rust WASM Core",
       "norm_label": "result"
     },
     {
@@ -3071,7 +2757,6 @@
       "_origin": "ast",
       "id": "rust_wasm_src_lib_ideal_gas",
       "community": 6,
-      "community_name": "Rust WASM Core",
       "norm_label": "ideal_gas()"
     },
     {
@@ -3082,7 +2767,6 @@
       "_origin": "ast",
       "id": "rust_wasm_src_lib_rankine_eta",
       "community": 6,
-      "community_name": "Rust WASM Core",
       "norm_label": "rankine_eta()"
     },
     {
@@ -3093,7 +2777,6 @@
       "_origin": "ast",
       "id": "rust_wasm_src_lib_polytropic",
       "community": 6,
-      "community_name": "Rust WASM Core",
       "norm_label": "polytropic()"
     },
     {
@@ -3104,7 +2787,6 @@
       "_origin": "ast",
       "id": "rust_wasm_src_lib_ideal_gas_basic",
       "community": 6,
-      "community_name": "Rust WASM Core",
       "norm_label": "ideal_gas_basic()"
     },
     {
@@ -3115,7 +2797,6 @@
       "_origin": "ast",
       "id": "rust_wasm_src_lib_rankine_eta_check",
       "community": 6,
-      "community_name": "Rust WASM Core",
       "norm_label": "rankine_eta_check()"
     },
     {
@@ -3126,7 +2807,6 @@
       "_origin": "ast",
       "id": "rust_wasm_src_lib_polytropic_check",
       "community": 6,
-      "community_name": "Rust WASM Core",
       "norm_label": "polytropic_check()"
     },
     {
@@ -3137,7 +2817,6 @@
       "_origin": "ast",
       "id": "rust_wasm_src_lib_compute_state_js",
       "community": 6,
-      "community_name": "Rust WASM Core",
       "norm_label": "compute_state_js()"
     },
     {
@@ -3148,7 +2827,6 @@
       "_origin": "ast",
       "id": "jsvalue",
       "community": 6,
-      "community_name": "Rust WASM Core",
       "norm_label": "jsvalue"
     },
     {
@@ -3159,7 +2837,6 @@
       "_origin": "ast",
       "id": "rust_wasm_src_lib_rankine_eta_js",
       "community": 6,
-      "community_name": "Rust WASM Core",
       "norm_label": "rankine_eta_js()"
     },
     {
@@ -3170,7 +2847,6 @@
       "_origin": "ast",
       "id": "rust_wasm_src_lib_wasmrequest",
       "community": 6,
-      "community_name": "Rust WASM Core",
       "norm_label": "wasmrequest"
     },
     {
@@ -3181,7 +2857,6 @@
       "_origin": "ast",
       "id": "rust_wasm_src_lib_wasmprop",
       "community": 6,
-      "community_name": "Rust WASM Core",
       "norm_label": "wasmprop"
     },
     {
@@ -3192,7 +2867,6 @@
       "_origin": "ast",
       "id": "scripts_build_substances",
       "community": 9,
-      "community_name": "Build Scripts",
       "norm_label": "build-substances.js"
     },
     {
@@ -3203,7 +2877,6 @@
       "_origin": "ast",
       "id": "scripts_build_substances_fs",
       "community": 9,
-      "community_name": "Build Scripts",
       "norm_label": "fs"
     },
     {
@@ -3214,7 +2887,6 @@
       "_origin": "ast",
       "id": "scripts_build_substances_path",
       "community": 9,
-      "community_name": "Build Scripts",
       "norm_label": "path"
     },
     {
@@ -3225,7 +2897,6 @@
       "_origin": "ast",
       "id": "scripts_build_substances_root",
       "community": 9,
-      "community_name": "Build Scripts",
       "norm_label": "root"
     },
     {
@@ -3236,7 +2907,6 @@
       "_origin": "ast",
       "id": "scripts_build_substances_out",
       "community": 9,
-      "community_name": "Build Scripts",
       "norm_label": "out"
     },
     {
@@ -3247,7 +2917,6 @@
       "_origin": "ast",
       "id": "scripts_build_substances_prop1",
       "community": 9,
-      "community_name": "Build Scripts",
       "norm_label": "prop1"
     },
     {
@@ -3258,7 +2927,6 @@
       "_origin": "ast",
       "id": "scripts_build_substances_prop2",
       "community": 9,
-      "community_name": "Build Scripts",
       "norm_label": "prop2"
     },
     {
@@ -3269,7 +2937,6 @@
       "_origin": "ast",
       "id": "scripts_build_substances_legacy",
       "community": 9,
-      "community_name": "Build Scripts",
       "norm_label": "legacy"
     },
     {
@@ -3280,7 +2947,6 @@
       "_origin": "ast",
       "id": "scripts_build_substances_findlegacy",
       "community": 9,
-      "community_name": "Build Scripts",
       "norm_label": "findlegacy()"
     },
     {
@@ -3291,7 +2957,6 @@
       "_origin": "ast",
       "id": "scripts_build_substances_rfromm",
       "community": 9,
-      "community_name": "Build Scripts",
       "norm_label": "rfromm()"
     },
     {
@@ -3302,7 +2967,6 @@
       "_origin": "ast",
       "id": "scripts_build_substances_basicidealgas",
       "community": 9,
-      "community_name": "Build Scripts",
       "norm_label": "basicidealgas()"
     },
     {
@@ -3313,7 +2977,6 @@
       "_origin": "ast",
       "id": "scripts_build_substances_cptempbyname",
       "community": 9,
-      "community_name": "Build Scripts",
       "norm_label": "cptempbyname"
     },
     {
@@ -3324,7 +2987,6 @@
       "_origin": "ast",
       "id": "scripts_build_substances_idealgases",
       "community": 9,
-      "community_name": "Build Scripts",
       "norm_label": "idealgases"
     },
     {
@@ -3335,7 +2997,6 @@
       "_origin": "ast",
       "id": "scripts_build_substances_realbylegacykey",
       "community": 9,
-      "community_name": "Build Scripts",
       "norm_label": "realbylegacykey"
     },
     {
@@ -3346,7 +3007,6 @@
       "_origin": "ast",
       "id": "scripts_build_substances_real",
       "community": 9,
-      "community_name": "Build Scripts",
       "norm_label": "real"
     },
     {
@@ -3357,7 +3017,6 @@
       "_origin": "ast",
       "id": "scripts_build_substances_water",
       "community": 9,
-      "community_name": "Build Scripts",
       "norm_label": "water"
     },
     {
@@ -3368,7 +3027,6 @@
       "_origin": "ast",
       "id": "scripts_build_substances_buildsaturationtable",
       "community": 9,
-      "community_name": "Build Scripts",
       "norm_label": "buildsaturationtable()"
     },
     {
@@ -3379,7 +3037,6 @@
       "_origin": "ast",
       "id": "scripts_build_substances_output",
       "community": 9,
-      "community_name": "Build Scripts",
       "norm_label": "output"
     },
     {
@@ -3390,7 +3047,6 @@
       "_origin": "ast",
       "id": "scripts_build_substances_slugkey",
       "community": 9,
-      "community_name": "Build Scripts",
       "norm_label": "slugkey()"
     },
     {
@@ -3401,7 +3057,6 @@
       "_origin": "ast",
       "id": "scripts_build_substances_englishname",
       "community": 9,
-      "community_name": "Build Scripts",
       "norm_label": "englishname()"
     },
     {
@@ -3412,7 +3067,6 @@
       "_origin": "ast",
       "id": "scripts_ci_build",
       "community": 16,
-      "community_name": "child_process Spawn Helpers",
       "norm_label": "ci-build.js"
     },
     {
@@ -3423,7 +3077,6 @@
       "_origin": "ast",
       "id": "scripts_ci_build_spawn",
       "community": 16,
-      "community_name": "child_process Spawn Helpers",
       "norm_label": "{ spawn }"
     },
     {
@@ -3434,7 +3087,6 @@
       "_origin": "ast",
       "id": "scripts_ci_build_args",
       "community": 16,
-      "community_name": "child_process Spawn Helpers",
       "norm_label": "args"
     },
     {
@@ -3445,7 +3097,6 @@
       "_origin": "ast",
       "id": "scripts_ci_build_child",
       "community": 16,
-      "community_name": "child_process Spawn Helpers",
       "norm_label": "child"
     },
     {
@@ -3456,7 +3107,6 @@
       "_origin": "ast",
       "id": "scripts_self_validate",
       "community": 25,
-      "community_name": "self-validate.js",
       "norm_label": "self-validate.js"
     },
     {
@@ -3467,7 +3117,6 @@
       "_origin": "ast",
       "id": "scripts_smoke",
       "community": 17,
-      "community_name": "smoke.js",
       "norm_label": "smoke.js"
     },
     {
@@ -3478,7 +3127,6 @@
       "_origin": "ast",
       "id": "scripts_smoke_path",
       "community": 17,
-      "community_name": "smoke.js",
       "norm_label": "path"
     },
     {
@@ -3489,7 +3137,6 @@
       "_origin": "ast",
       "id": "scripts_smoke_fs",
       "community": 17,
-      "community_name": "smoke.js",
       "norm_label": "fs"
     },
     {
@@ -3500,7 +3147,6 @@
       "_origin": "ast",
       "id": "scripts_smoke_main",
       "community": 17,
-      "community_name": "smoke.js",
       "norm_label": "main()"
     },
     {
@@ -3511,7 +3157,6 @@
       "_origin": "ast",
       "id": "tailwind_config",
       "community": 21,
-      "community_name": "tailwind.config.ts",
       "norm_label": "tailwind.config.ts"
     },
     {
@@ -3522,7 +3167,6 @@
       "_origin": "ast",
       "id": "tailwind_config_config",
       "community": 21,
-      "community_name": "tailwind.config.ts",
       "norm_label": "config"
     },
     {
@@ -3533,7 +3177,6 @@
       "_origin": "ast",
       "id": "tsconfig",
       "community": 4,
-      "community_name": "TypeScript Globals",
       "norm_label": "tsconfig.json"
     },
     {
@@ -3544,7 +3187,6 @@
       "_origin": "ast",
       "id": "tsconfig_compileroptions",
       "community": 4,
-      "community_name": "TypeScript Globals",
       "norm_label": "compileroptions"
     },
     {
@@ -3555,7 +3197,6 @@
       "_origin": "ast",
       "id": "tsconfig_compileroptions_target",
       "community": 4,
-      "community_name": "TypeScript Globals",
       "norm_label": "target"
     },
     {
@@ -3566,7 +3207,6 @@
       "_origin": "ast",
       "id": "tsconfig_compileroptions_usedefineforclassfields",
       "community": 4,
-      "community_name": "TypeScript Globals",
       "norm_label": "usedefineforclassfields"
     },
     {
@@ -3577,7 +3217,6 @@
       "_origin": "ast",
       "id": "tsconfig_compileroptions_lib",
       "community": 4,
-      "community_name": "TypeScript Globals",
       "norm_label": "lib"
     },
     {
@@ -3588,7 +3227,6 @@
       "_origin": "ast",
       "id": "ref_es2020",
       "community": 4,
-      "community_name": "TypeScript Globals",
       "norm_label": "es2020"
     },
     {
@@ -3599,7 +3237,6 @@
       "_origin": "ast",
       "id": "ref_dom",
       "community": 4,
-      "community_name": "TypeScript Globals",
       "norm_label": "dom"
     },
     {
@@ -3610,7 +3247,6 @@
       "_origin": "ast",
       "id": "ref_dom_iterable",
       "community": 4,
-      "community_name": "TypeScript Globals",
       "norm_label": "dom.iterable"
     },
     {
@@ -3621,7 +3257,6 @@
       "_origin": "ast",
       "id": "tsconfig_compileroptions_skiplibcheck",
       "community": 4,
-      "community_name": "TypeScript Globals",
       "norm_label": "skiplibcheck"
     },
     {
@@ -3632,7 +3267,6 @@
       "_origin": "ast",
       "id": "tsconfig_compileroptions_esmoduleinterop",
       "community": 4,
-      "community_name": "TypeScript Globals",
       "norm_label": "esmoduleinterop"
     },
     {
@@ -3643,7 +3277,6 @@
       "_origin": "ast",
       "id": "tsconfig_compileroptions_allowsyntheticdefaultimports",
       "community": 4,
-      "community_name": "TypeScript Globals",
       "norm_label": "allowsyntheticdefaultimports"
     },
     {
@@ -3654,7 +3287,6 @@
       "_origin": "ast",
       "id": "tsconfig_compileroptions_moduleresolution",
       "community": 4,
-      "community_name": "TypeScript Globals",
       "norm_label": "moduleresolution"
     },
     {
@@ -3665,7 +3297,6 @@
       "_origin": "ast",
       "id": "tsconfig_compileroptions_allowimportingtsextensions",
       "community": 4,
-      "community_name": "TypeScript Globals",
       "norm_label": "allowimportingtsextensions"
     },
     {
@@ -3676,7 +3307,6 @@
       "_origin": "ast",
       "id": "tsconfig_compileroptions_resolvejsonmodule",
       "community": 4,
-      "community_name": "TypeScript Globals",
       "norm_label": "resolvejsonmodule"
     },
     {
@@ -3687,7 +3317,6 @@
       "_origin": "ast",
       "id": "tsconfig_compileroptions_isolatedmodules",
       "community": 4,
-      "community_name": "TypeScript Globals",
       "norm_label": "isolatedmodules"
     },
     {
@@ -3698,7 +3327,6 @@
       "_origin": "ast",
       "id": "tsconfig_compileroptions_noemit",
       "community": 4,
-      "community_name": "TypeScript Globals",
       "norm_label": "noemit"
     },
     {
@@ -3709,7 +3337,6 @@
       "_origin": "ast",
       "id": "tsconfig_compileroptions_jsx",
       "community": 4,
-      "community_name": "TypeScript Globals",
       "norm_label": "jsx"
     },
     {
@@ -3720,7 +3347,6 @@
       "_origin": "ast",
       "id": "tsconfig_compileroptions_strict",
       "community": 4,
-      "community_name": "TypeScript Globals",
       "norm_label": "strict"
     },
     {
@@ -3731,7 +3357,6 @@
       "_origin": "ast",
       "id": "tsconfig_compileroptions_nounusedlocals",
       "community": 4,
-      "community_name": "TypeScript Globals",
       "norm_label": "nounusedlocals"
     },
     {
@@ -3742,7 +3367,6 @@
       "_origin": "ast",
       "id": "tsconfig_compileroptions_nounusedparameters",
       "community": 4,
-      "community_name": "TypeScript Globals",
       "norm_label": "nounusedparameters"
     },
     {
@@ -3753,7 +3377,6 @@
       "_origin": "ast",
       "id": "tsconfig_compileroptions_nofallthroughcasesinswitch",
       "community": 4,
-      "community_name": "TypeScript Globals",
       "norm_label": "nofallthroughcasesinswitch"
     },
     {
@@ -3764,7 +3387,6 @@
       "_origin": "ast",
       "id": "tsconfig_compileroptions_baseurl",
       "community": 4,
-      "community_name": "TypeScript Globals",
       "norm_label": "baseurl"
     },
     {
@@ -3775,7 +3397,6 @@
       "_origin": "ast",
       "id": "tsconfig_compileroptions_paths",
       "community": 4,
-      "community_name": "TypeScript Globals",
       "norm_label": "paths"
     },
     {
@@ -3786,7 +3407,6 @@
       "_origin": "ast",
       "id": "tsconfig_compileroptions_allowjs",
       "community": 4,
-      "community_name": "TypeScript Globals",
       "norm_label": "allowjs"
     },
     {
@@ -3797,7 +3417,6 @@
       "_origin": "ast",
       "id": "tsconfig_compileroptions_incremental",
       "community": 4,
-      "community_name": "TypeScript Globals",
       "norm_label": "incremental"
     },
     {
@@ -3808,7 +3427,6 @@
       "_origin": "ast",
       "id": "tsconfig_compileroptions_module",
       "community": 4,
-      "community_name": "TypeScript Globals",
       "norm_label": "module"
     },
     {
@@ -3819,7 +3437,6 @@
       "_origin": "ast",
       "id": "tsconfig_compileroptions_plugins",
       "community": 4,
-      "community_name": "TypeScript Globals",
       "norm_label": "plugins"
     },
     {
@@ -3830,7 +3447,6 @@
       "_origin": "ast",
       "id": "tsconfig_include",
       "community": 4,
-      "community_name": "TypeScript Globals",
       "norm_label": "include"
     },
     {
@@ -3841,7 +3457,6 @@
       "_origin": "ast",
       "id": "ref_next_env_d_ts",
       "community": 4,
-      "community_name": "TypeScript Globals",
       "norm_label": "next-env.d.ts"
     },
     {
@@ -3852,7 +3467,6 @@
       "_origin": "ast",
       "id": "ref_ts",
       "community": 4,
-      "community_name": "TypeScript Globals",
       "norm_label": "**/*.ts"
     },
     {
@@ -3863,7 +3477,6 @@
       "_origin": "ast",
       "id": "ref_tsx",
       "community": 4,
-      "community_name": "TypeScript Globals",
       "norm_label": "**/*.tsx"
     },
     {
@@ -3874,7 +3487,6 @@
       "_origin": "ast",
       "id": "ref_next_types_ts",
       "community": 4,
-      "community_name": "TypeScript Globals",
       "norm_label": ".next/types/**/*.ts"
     },
     {
@@ -3885,7 +3497,6 @@
       "_origin": "ast",
       "id": "tsconfig_exclude",
       "community": 4,
-      "community_name": "TypeScript Globals",
       "norm_label": "exclude"
     },
     {
@@ -3896,7 +3507,6 @@
       "_origin": "ast",
       "id": "ref_node_modules",
       "community": 4,
-      "community_name": "TypeScript Globals",
       "norm_label": "node_modules"
     },
     {
@@ -3907,7 +3517,6 @@
       "_origin": "ast",
       "id": "tsconfig_references",
       "community": 4,
-      "community_name": "TypeScript Globals",
       "norm_label": "references"
     },
     {
@@ -3918,7 +3527,6 @@
       "_origin": "ast",
       "id": "tsconfig_node",
       "community": 13,
-      "community_name": "TypeScript Config",
       "norm_label": "tsconfig.node.json"
     },
     {
@@ -3929,7 +3537,6 @@
       "_origin": "ast",
       "id": "tsconfig_node_compileroptions",
       "community": 13,
-      "community_name": "TypeScript Config",
       "norm_label": "compileroptions"
     },
     {
@@ -3940,7 +3547,6 @@
       "_origin": "ast",
       "id": "tsconfig_node_compileroptions_composite",
       "community": 13,
-      "community_name": "TypeScript Config",
       "norm_label": "composite"
     },
     {
@@ -3951,7 +3557,6 @@
       "_origin": "ast",
       "id": "tsconfig_node_compileroptions_skiplibcheck",
       "community": 13,
-      "community_name": "TypeScript Config",
       "norm_label": "skiplibcheck"
     },
     {
@@ -3962,7 +3567,6 @@
       "_origin": "ast",
       "id": "tsconfig_node_compileroptions_module",
       "community": 13,
-      "community_name": "TypeScript Config",
       "norm_label": "module"
     },
     {
@@ -3973,7 +3577,6 @@
       "_origin": "ast",
       "id": "tsconfig_node_compileroptions_moduleresolution",
       "community": 13,
-      "community_name": "TypeScript Config",
       "norm_label": "moduleresolution"
     },
     {
@@ -3984,7 +3587,6 @@
       "_origin": "ast",
       "id": "tsconfig_node_compileroptions_allowsyntheticdefaultimports",
       "community": 13,
-      "community_name": "TypeScript Config",
       "norm_label": "allowsyntheticdefaultimports"
     },
     {
@@ -3995,7 +3597,6 @@
       "_origin": "ast",
       "id": "tsconfig_node_include",
       "community": 13,
-      "community_name": "TypeScript Config",
       "norm_label": "include"
     },
     {
@@ -4006,7 +3607,6 @@
       "_origin": "ast",
       "id": "ref_next_config_js",
       "community": 13,
-      "community_name": "TypeScript Config",
       "norm_label": "next.config.js"
     },
     {
@@ -4017,7 +3617,6 @@
       "_origin": "ast",
       "id": "vercel",
       "community": 14,
-      "community_name": "Vercel Deployment Settings",
       "norm_label": "vercel.json"
     },
     {
@@ -4028,7 +3627,6 @@
       "_origin": "ast",
       "id": "vercel_buildcommand",
       "community": 14,
-      "community_name": "Vercel Deployment Settings",
       "norm_label": "buildcommand"
     },
     {
@@ -4039,7 +3637,6 @@
       "_origin": "ast",
       "id": "vercel_devcommand",
       "community": 14,
-      "community_name": "Vercel Deployment Settings",
       "norm_label": "devcommand"
     },
     {
@@ -4050,7 +3647,6 @@
       "_origin": "ast",
       "id": "vercel_installcommand",
       "community": 14,
-      "community_name": "Vercel Deployment Settings",
       "norm_label": "installcommand"
     },
     {
@@ -4061,7 +3657,6 @@
       "_origin": "ast",
       "id": "vercel_framework",
       "community": 14,
-      "community_name": "Vercel Deployment Settings",
       "norm_label": "framework"
     },
     {
@@ -4073,10 +3668,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 5,
-      "norm_label": "pdf workflow",
       "id": "github_workflows_pdf_yml_pdfyml",
-      "community_name": "Deployment + Professor Mode Workflow"
+      "community": 5,
+      "norm_label": "pdf workflow"
     },
     {
       "label": "Self-check CI workflow",
@@ -4087,10 +3681,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 5,
-      "norm_label": "self-check ci workflow",
       "id": "github_workflows_self_check_yml_self_checkyml",
-      "community_name": "Deployment + Professor Mode Workflow"
+      "community": 5,
+      "norm_label": "self-check ci workflow"
     },
     {
       "label": "Deployment Guide",
@@ -4101,10 +3694,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 22,
-      "norm_label": "deployment guide",
       "id": "deployment_md_deployment",
-      "community_name": "Deployment Guide"
+      "community": 22,
+      "norm_label": "deployment guide"
     },
     {
       "label": "Thermo Lab README",
@@ -4115,10 +3707,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 5,
-      "norm_label": "thermo lab readme",
       "id": "readme_md_thermo_lab",
-      "community_name": "Deployment + Professor Mode Workflow"
+      "community": 5,
+      "norm_label": "thermo lab readme"
     },
     {
       "label": "Thermonator Pro system specification",
@@ -4129,10 +3720,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 5,
-      "norm_label": "thermonator pro system specification",
       "id": "prompt_md_thermonator_pro_spec",
-      "community_name": "Deployment + Professor Mode Workflow"
+      "community": 5,
+      "norm_label": "thermonator pro system specification"
     },
     {
       "label": "Rust/WASM core README",
@@ -4143,10 +3733,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 24,
-      "norm_label": "rust/wasm core readme",
       "id": "rust_wasm_readme_md_rust_wasm_core",
-      "community_name": "Rust/WASM core README"
+      "community": 24,
+      "norm_label": "rust/wasm core readme"
     },
     {
       "label": "WASM scaffold README",
@@ -4157,10 +3746,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 26,
-      "norm_label": "wasm scaffold readme",
       "id": "wasm_readme_md_wasm_scaffold",
-      "community_name": "WASM scaffold README"
+      "community": 26,
+      "norm_label": "wasm scaffold readme"
     },
     {
       "label": "Professor Mode LaTeX/PDF workflow",
@@ -4171,10 +3759,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 5,
-      "norm_label": "professor mode latex/pdf workflow",
       "id": "github_workflows_pdf_yml_professor_mode",
-      "community_name": "Deployment + Professor Mode Workflow"
+      "community": 5,
+      "norm_label": "professor mode latex/pdf workflow"
     },
     {
       "label": "Self-check API endpoint",
@@ -4185,10 +3772,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 5,
-      "norm_label": "self-check api endpoint",
       "id": "github_workflows_self_check_yml_self_check_endpoint",
-      "community_name": "Deployment + Professor Mode Workflow"
+      "community": 5,
+      "norm_label": "self-check api endpoint"
     },
     {
       "label": "CoolProp/REFPROP integration",
@@ -4199,10 +3785,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 5,
-      "norm_label": "coolprop/refprop integration",
       "id": "prompt_md_coolingprop_refprop_integration",
-      "community_name": "Deployment + Professor Mode Workflow"
+      "community": 5,
+      "norm_label": "coolprop/refprop integration"
     },
     {
       "label": "Professor Mode (pedagogical engine)",
@@ -4213,10 +3798,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 5,
-      "norm_label": "professor mode (pedagogical engine)",
       "id": "prompt_md_professor_mode",
-      "community_name": "Deployment + Professor Mode Workflow"
+      "community": 5,
+      "norm_label": "professor mode (pedagogical engine)"
     },
     {
       "label": "3D P-v-T state surface",
@@ -4227,10 +3811,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 5,
-      "norm_label": "3d p-v-t state surface",
       "id": "prompt_md_threejs_state_surface_3d",
-      "community_name": "Deployment + Professor Mode Workflow"
+      "community": 5,
+      "norm_label": "3d p-v-t state surface"
     },
     {
       "label": "Thermodynamic cycles library",
@@ -4241,10 +3824,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 5,
-      "norm_label": "thermodynamic cycles library",
       "id": "prompt_md_thermodynamic_cycles",
-      "community_name": "Deployment + Professor Mode Workflow"
+      "community": 5,
+      "norm_label": "thermodynamic cycles library"
     },
     {
       "label": "Ideal gas state calculation",
@@ -4255,10 +3837,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 5,
-      "norm_label": "ideal gas state calculation",
       "id": "prompt_md_ideal_gas_state_calc",
-      "community_name": "Deployment + Professor Mode Workflow"
+      "community": 5,
+      "norm_label": "ideal gas state calculation"
     },
     {
       "label": "Thermonator baseline app",
@@ -4269,10 +3850,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 5,
-      "norm_label": "thermonator baseline app",
       "id": "prompt_md_thermonator_baseline",
-      "community_name": "Deployment + Professor Mode Workflow"
+      "community": 5,
+      "norm_label": "thermonator baseline app"
     },
     {
       "label": "Ideal gas solver (Rust)",
@@ -4283,10 +3863,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 5,
-      "norm_label": "ideal gas solver (rust)",
       "id": "rust_wasm_readme_md_ideal_gas_solver",
-      "community_name": "Deployment + Professor Mode Workflow"
+      "community": 5,
+      "norm_label": "ideal gas solver (rust)"
     },
     {
       "label": "Rankine \u03b7 helper",
@@ -4297,10 +3876,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 5,
-      "norm_label": "rankine \u03b7 helper",
       "id": "rust_wasm_readme_md_rankine_eta",
-      "community_name": "Deployment + Professor Mode Workflow"
+      "community": 5,
+      "norm_label": "rankine \u03b7 helper"
     },
     {
       "label": "Polytropic helper",
@@ -4311,10 +3889,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 5,
-      "norm_label": "polytropic helper",
       "id": "rust_wasm_readme_md_polytropic_helper",
-      "community_name": "Deployment + Professor Mode Workflow"
+      "community": 5,
+      "norm_label": "polytropic helper"
     },
     {
       "label": "wasm-bindgen API exposure",
@@ -4325,10 +3902,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 5,
-      "norm_label": "wasm-bindgen api exposure",
       "id": "rust_wasm_readme_md_wasm_bindgen",
-      "community_name": "Deployment + Professor Mode Workflow"
+      "community": 5,
+      "norm_label": "wasm-bindgen api exposure"
     },
     {
       "label": "/api/compute-state endpoint",
@@ -4339,10 +3915,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 5,
-      "norm_label": "/api/compute-state endpoint",
       "id": "deployment_md_api_compute_state",
-      "community_name": "Deployment + Professor Mode Workflow"
+      "community": 5,
+      "norm_label": "/api/compute-state endpoint"
     },
     {
       "label": "lib/thermo-engine.ts",
@@ -4353,10 +3928,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 5,
-      "norm_label": "lib/thermo-engine.ts",
       "id": "deployment_md_thermo_engine_ts",
-      "community_name": "Deployment + Professor Mode Workflow"
+      "community": 5,
+      "norm_label": "lib/thermo-engine.ts"
     },
     {
       "label": "Next.js 14 + React 19 + TypeScript stack",
@@ -4367,10 +3941,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 5,
-      "norm_label": "next.js 14 + react 19 + typescript stack",
       "id": "readme_md_stack",
-      "community_name": "Deployment + Professor Mode Workflow"
+      "community": 5,
+      "norm_label": "next.js 14 + react 19 + typescript stack"
     },
     {
       "label": "Vercel hosting",
@@ -4381,10 +3954,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 5,
-      "norm_label": "vercel hosting",
       "id": "deployment_md_vercel_hosting",
-      "community_name": "Deployment + Professor Mode Workflow"
+      "community": 5,
+      "norm_label": "vercel hosting"
     },
     {
       "label": "Tectonic TeXLive container",
@@ -4395,10 +3967,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 5,
-      "norm_label": "tectonic texlive container",
       "id": "github_workflows_pdf_yml_tectonic",
-      "community_name": "Deployment + Professor Mode Workflow"
+      "community": 5,
+      "norm_label": "tectonic texlive container"
     },
     {
       "label": "LaTeX report artifact",
@@ -4409,10 +3980,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 5,
-      "norm_label": "latex report artifact",
       "id": "github_workflows_pdf_yml_latex",
-      "community_name": "Deployment + Professor Mode Workflow"
+      "community": 5,
+      "norm_label": "latex report artifact"
     },
     {
       "label": "Rust WebAssembly pipeline",
@@ -4423,10 +3993,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 5,
-      "norm_label": "rust webassembly pipeline",
       "id": "readme_md_rust_wasm_pipeline",
-      "community_name": "Deployment + Professor Mode Workflow"
+      "community": 5,
+      "norm_label": "rust webassembly pipeline"
     },
     {
       "label": "WASM drop-in replacement plan",
@@ -4437,10 +4006,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 5,
-      "norm_label": "wasm drop-in replacement plan",
       "id": "wasm_readme_md_wasm_drop_in_plan",
-      "community_name": "Deployment + Professor Mode Workflow"
+      "community": 5,
+      "norm_label": "wasm drop-in replacement plan"
     },
     {
       "label": "Parallel JS/Rust engines rationale",
@@ -4451,10 +4019,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 5,
-      "norm_label": "parallel js/rust engines rationale",
       "id": "rust_wasm_readme_md_parallel_engines",
-      "community_name": "Deployment + Professor Mode Workflow"
+      "community": 5,
+      "norm_label": "parallel js/rust engines rationale"
     }
   ],
   "links": [
@@ -4662,18 +4229,6 @@
       "confidence_score": 1.0
     },
     {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/analysis/ProcessAnalysis.tsx",
-      "source_location": "L12",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_analysis_processanalysis",
-      "target": "lib_units_converttosi",
-      "confidence_score": 1.0
-    },
-    {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
@@ -4691,7 +4246,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "app/analysis/ProcessAnalysis.tsx",
-      "source_location": "L43",
+      "source_location": "L42",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_analysis_processanalysis_processanalysis",
@@ -4715,7 +4270,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "app/analysis/ProcessAnalysis.tsx",
-      "source_location": "L63",
+      "source_location": "L57",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_analysis_processanalysis_processanalysis",
@@ -4727,7 +4282,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "app/analysis/ProcessAnalysis.tsx",
-      "source_location": "L110",
+      "source_location": "L112",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_analysis_processanalysis_processanalysis",
@@ -4851,17 +4406,6 @@
       "confidence_score": 1.0
     },
     {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "app/api/compute-state/route.ts",
-      "source_location": "L58",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_api_compute_state_route",
-      "target": "app_api_compute_state_route_resultunitsfor",
-      "confidence_score": 1.0
-    },
-    {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
@@ -4906,68 +4450,20 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_api_compute_state_route",
-      "target": "lib_units_convertfromsi",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/api/compute-state/route.ts",
-      "source_location": "L3",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_api_compute_state_route",
       "target": "lib_units_normalizepayloadunits",
       "confidence_score": 1.0
     },
     {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/api/compute-state/route.ts",
-      "source_location": "L3",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_api_compute_state_route",
-      "target": "lib_units_unitsfor",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "app/api/compute-state/route.ts",
-      "source_location": "L30",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_api_compute_state_route_post",
-      "target": "app_api_compute_state_route_resultunitsfor",
-      "confidence_score": 1.0
-    },
-    {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "app/api/compute-state/route.ts",
-      "source_location": "L25",
+      "source_location": "L24",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_api_compute_state_route_post",
       "target": "lib_thermo_engine_computethermodynamicstate"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "app/api/compute-state/route.ts",
-      "source_location": "L34",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_api_compute_state_route_post",
-      "target": "lib_units_convertfromsi"
     },
     {
       "relation": "calls",
@@ -4980,18 +4476,6 @@
       "_origin": "ast",
       "source": "app_api_compute_state_route_post",
       "target": "lib_units_normalizepayloadunits"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "app/api/compute-state/route.ts",
-      "source_location": "L62",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_api_compute_state_route_resultunitsfor",
-      "target": "lib_units_unitsfor",
-      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -5503,7 +4987,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/cycles/CycleBuilder.tsx",
-      "source_location": "L53",
+      "source_location": "L11",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_cycles_cyclebuilder",
@@ -5514,7 +4998,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/cycles/CycleBuilder.tsx",
-      "source_location": "L55",
+      "source_location": "L13",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_cycles_cyclebuilder",
@@ -5525,29 +5009,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/cycles/CycleBuilder.tsx",
-      "source_location": "L17",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_cycles_cyclebuilder",
-      "target": "app_cycles_cyclebuilder_deriveunits",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "app/cycles/CycleBuilder.tsx",
-      "source_location": "L46",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_cycles_cyclebuilder",
-      "target": "app_cycles_cyclebuilder_fmtsi",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "app/cycles/CycleBuilder.tsx",
-      "source_location": "L447",
+      "source_location": "L386",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_cycles_cyclebuilder",
@@ -5558,18 +5020,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/cycles/CycleBuilder.tsx",
-      "source_location": "L35",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_cycles_cyclebuilder",
-      "target": "app_cycles_cyclebuilder_statetosi",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "app/cycles/CycleBuilder.tsx",
-      "source_location": "L460",
+      "source_location": "L399",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_cycles_cyclebuilder",
@@ -5700,42 +5151,6 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "app/cycles/CycleBuilder.tsx",
-      "source_location": "L10",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_cycles_cyclebuilder",
-      "target": "lib_units",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/cycles/CycleBuilder.tsx",
-      "source_location": "L10",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_cycles_cyclebuilder",
-      "target": "lib_units_convertfromsi",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/cycles/CycleBuilder.tsx",
-      "source_location": "L10",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_cycles_cyclebuilder",
-      "target": "lib_units_converttosi",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
       "source_file": "app/page.tsx",
       "source_location": "L9",
       "weight": 1.0,
@@ -5749,67 +5164,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app/cycles/CycleBuilder.tsx",
-      "source_location": "L66",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_cycles_cyclebuilder_cyclebuilder",
-      "target": "app_cycles_cyclebuilder_deriveunits",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "app/cycles/CycleBuilder.tsx",
-      "source_location": "L67",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_cycles_cyclebuilder_cyclebuilder",
-      "target": "app_cycles_cyclebuilder_statetosi",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "app/cycles/CycleBuilder.tsx",
-      "source_location": "L40",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_cycles_cyclebuilder_statetosi",
-      "target": "lib_units_converttosi",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "app/cycles/CycleBuilder.tsx",
-      "source_location": "L381",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_cycles_cyclebuilder_cyclebuilder",
-      "target": "app_cycles_cyclebuilder_fmtsi",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "app/cycles/CycleBuilder.tsx",
-      "source_location": "L49",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_cycles_cyclebuilder_fmtsi",
-      "target": "lib_units_convertfromsi",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "app/cycles/CycleBuilder.tsx",
-      "source_location": "L281",
+      "source_location": "L236",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_cycles_cyclebuilder_cyclebuilder",
@@ -5821,7 +5176,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app/cycles/CycleBuilder.tsx",
-      "source_location": "L106",
+      "source_location": "L61",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_cycles_cyclebuilder_cyclebuilder",
@@ -5834,7 +5189,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "app/cycles/CycleBuilder.tsx",
-      "source_location": "L56",
+      "source_location": "L14",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_cycles_cyclebuilder_cyclebuilder",
@@ -5846,7 +5201,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "app/cycles/CycleBuilder.tsx",
-      "source_location": "L68",
+      "source_location": "L24",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_cycles_cyclebuilder_cyclebuilder",
@@ -5858,7 +5213,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "app/cycles/CycleBuilder.tsx",
-      "source_location": "L210",
+      "source_location": "L165",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_cycles_cyclebuilder_cyclebuilder",
@@ -5870,7 +5225,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "app/cycles/CycleBuilder.tsx",
-      "source_location": "L63",
+      "source_location": "L21",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_cycles_cyclebuilder_cyclebuilder",
@@ -6023,7 +5378,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app/diagrams/Diagrams.tsx",
-      "source_location": "L91",
+      "source_location": "L65",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_diagrams_diagrams_diagrams",
@@ -6048,7 +5403,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "app/diagrams/Diagrams.tsx",
-      "source_location": "L60",
+      "source_location": "L52",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_diagrams_diagrams_diagrams",
@@ -6230,7 +5585,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "components/PropField.tsx",
-      "source_location": "L33",
+      "source_location": "L27",
       "weight": 1.0,
       "_origin": "ast",
       "source": "components_propfield",
@@ -6252,7 +5607,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "components/PropField.tsx",
-      "source_location": "L149",
+      "source_location": "L128",
       "weight": 1.0,
       "_origin": "ast",
       "source": "components_propfield",
@@ -6324,7 +5679,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "components/PropField.tsx",
-      "source_location": "L142",
+      "source_location": "L121",
       "weight": 1.0,
       "_origin": "ast",
       "source": "components_propfield_propfield",
@@ -6337,7 +5692,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "components/PropField.tsx",
-      "source_location": "L80",
+      "source_location": "L57",
       "weight": 1.0,
       "_origin": "ast",
       "source": "components_propfield_propfield",
@@ -6349,7 +5704,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "components/PropField.tsx",
-      "source_location": "L79",
+      "source_location": "L68",
       "weight": 1.0,
       "_origin": "ast",
       "source": "components_propfield_propfield",
@@ -6361,7 +5716,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "components/PropField.tsx",
-      "source_location": "L44",
+      "source_location": "L38",
       "weight": 1.0,
       "_origin": "ast",
       "source": "components_propfield_propfield",
@@ -6373,7 +5728,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "components/PropField.tsx",
-      "source_location": "L43",
+      "source_location": "L37",
       "weight": 1.0,
       "_origin": "ast",
       "source": "components_propfield_propfield",
@@ -6385,7 +5740,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "components/PropField.tsx",
-      "source_location": "L45",
+      "source_location": "L39",
       "weight": 1.0,
       "_origin": "ast",
       "source": "components_propfield_propfield",
@@ -6395,7 +5750,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "components/PropertyTable.tsx",
-      "source_location": "L15",
+      "source_location": "L10",
       "weight": 1.0,
       "_origin": "ast",
       "source": "components_propertytable",
@@ -6467,11 +5822,23 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "components/PropertyTable.tsx",
-      "source_location": "L33",
+      "source_location": "L31",
       "weight": 1.0,
       "_origin": "ast",
       "source": "components_propertytable_propertytable",
       "target": "lib_format_fmt"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "components/PropertyTable.tsx",
+      "source_location": "L30",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "components_propertytable_propertytable",
+      "target": "lib_units_convertfromsi"
     },
     {
       "relation": "contains",
@@ -6796,7 +6163,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "components/ThermoChart.tsx",
-      "source_location": "L37",
+      "source_location": "L33",
       "weight": 1.0,
       "_origin": "ast",
       "source": "components_thermochart",
@@ -6844,7 +6211,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "components/ThermoChart.tsx",
-      "source_location": "L59",
+      "source_location": "L60",
       "weight": 1.0,
       "_origin": "ast",
       "source": "components_thermochart_thermochart",
@@ -11213,5 +10580,5 @@
       "source_file": "rust-wasm/README.md"
     }
   ],
-  "built_at_commit": "6e9cc1e2a0eb9461043277b331ac2ad4c066d350"
+  "built_at_commit": "a242c5c4180b8d0bdf1e37c50b1e2825949c95a8"
 }

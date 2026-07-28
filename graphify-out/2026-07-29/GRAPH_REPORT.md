@@ -1,18 +1,12 @@
-# Graph Report - thermo-sim  (2026-07-29)
+# Graph Report - .  (2026-07-29)
 
 ## Corpus Check
-- 49 files · ~35,629 words
-- Verdict: corpus is large enough that graph structure adds value.
+- Corpus is ~34,615 words - fits in a single context window. You may not need a graph.
 
 ## Summary
-- 393 nodes · 587 edges · 27 communities (19 shown, 8 thin omitted)
+- 389 nodes · 570 edges · 27 communities (19 shown, 8 thin omitted)
 - Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 13 edges (avg confidence: 0.89)
 - Token cost: 0 input · 0 output
-
-## Graph Freshness
-- Built from commit: `6e9cc1e2`
-- Run `git rev-parse HEAD` and compare to check if the graph is stale.
-- Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
 - React UI Components
@@ -27,30 +21,30 @@
 - Build Scripts
 - Radix UI Primitives
 - WASM Loader Bridge
-- Parser
+- Community 12
 - TypeScript Config
 - Vercel Deployment Settings
 - LaTeX/PDF Route
 - child_process Spawn Helpers
-- smoke.js
-- next.config.js
-- next-env.d.ts
-- tailwind.config.ts
-- Deployment Guide
-- Rust/WASM core README
-- WASM scaffold README
+- Community 17
+- Community 19
+- Community 20
+- Community 21
+- Community 22
+- Community 24
+- Community 26
 
 ## God Nodes (most connected - your core abstractions)
 1. `compilerOptions` - 23 edges
 2. `useStore` - 13 edges
-3. `convertFromSI()` - 13 edges
-4. `generateProfessorReport()` - 11 edges
-5. `scripts` - 11 edges
-6. `CycleBuilder()` - 10 edges
-7. `NUM()` - 9 edges
-8. `generateCycleReport()` - 9 edges
-9. `Parser` - 9 edges
-10. `computeThermodynamicState()` - 9 edges
+3. `generateProfessorReport()` - 11 edges
+4. `scripts` - 11 edges
+5. `convertFromSI()` - 10 edges
+6. `NUM()` - 9 edges
+7. `generateCycleReport()` - 9 edges
+8. `Parser` - 9 edges
+9. `computeThermodynamicState()` - 9 edges
+10. `analyzeCycle()` - 9 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `Thermonator baseline app` --semantically_similar_to--> `WASM drop-in replacement plan`  [INFERRED] [semantically similar]
@@ -75,8 +69,8 @@
 ## Communities (27 total, 8 thin omitted)
 
 ### Community 0 - "React UI Components"
-Cohesion: 0.09
-Nodes (31): ProcessAnalysis(), Model, StateCalculator(), criticalPointForPlane(), Diagrams(), NAV, PAGES, Shell() (+23 more)
+Cohesion: 0.07
+Nodes (42): ProcessAnalysis(), Model, StateCalculator(), CYCLE_TYPES, CycleBuilder(), reportMarkdownToHTML(), triggerDownload(), criticalPointForPlane() (+34 more)
 
 ### Community 1 - "Thermodynamic Engine + API Routes"
 Cohesion: 0.09
@@ -103,8 +97,8 @@ Cohesion: 0.18
 Nodes (22): HashMap, JsValue, Option, Result, compute_state_js(), ComputeResult, ideal_gas(), ideal_gas_basic() (+14 more)
 
 ### Community 7 - "Unit Conversion Logic"
-Cohesion: 0.10
-Nodes (31): POST(), resultUnitsFor(), CYCLE_TYPES, CycleBuilder(), deriveUnits(), fmtSI(), reportMarkdownToHTML(), stateToSI() (+23 more)
+Cohesion: 0.14
+Nodes (18): POST(), PropField(), PropFieldProps, unitHintSI(), ConversionTables, convertToSI(), defaultUnitFor(), ENERGY_ALIASES (+10 more)
 
 ### Community 8 - "Professor Derivation Generators"
 Cohesion: 0.23
@@ -115,8 +109,8 @@ Cohesion: 0.11
 Nodes (15): basicIdealGas(), cpTempByName, fs, idealGases, legacy, OUT, output, path (+7 more)
 
 ### Community 10 - "Radix UI Primitives"
-Cohesion: 0.11
-Nodes (17): ButtonProps, buttonVariants, SelectContent, SelectContentProps, SelectItem, SelectItemProps, SelectTrigger, SelectTriggerProps (+9 more)
+Cohesion: 0.12
+Nodes (15): SelectContent, SelectContentProps, SelectItem, SelectItemProps, SelectTrigger, SelectTriggerProps, SelectValue, SelectValueProps (+7 more)
 
 ### Community 11 - "WASM Loader Bridge"
 Cohesion: 0.33
@@ -148,14 +142,14 @@ _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `dependencies` connect `npm Dependencies` to `React UI Components`, `Dev Tooling Config`?**
   _High betweenness centrality (0.196) - this node is a cross-community bridge._
-- **Why does `CycleBuilder()` connect `Unit Conversion Logic` to `React UI Components`, `Thermodynamic Engine + API Routes`, `npm Dependencies`?**
-  _High betweenness centrality (0.118) - this node is a cross-community bridge._
 - **Why does `react` connect `React UI Components` to `npm Dependencies`, `Unit Conversion Logic`?**
-  _High betweenness centrality (0.116) - this node is a cross-community bridge._
+  _High betweenness centrality (0.117) - this node is a cross-community bridge._
+- **Why does `CycleBuilder()` connect `React UI Components` to `Thermodynamic Engine + API Routes`, `npm Dependencies`?**
+  _High betweenness centrality (0.115) - this node is a cross-community bridge._
 - **What connects `Model`, `CYCLE_TYPES`, `metadata` to the rest of the system?**
   _174 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `React UI Components` be split into smaller, more focused modules?**
-  _Cohesion score 0.08771929824561403 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.07111756168359942 - nodes in this community are weakly interconnected._
 - **Should `Thermodynamic Engine + API Routes` be split into smaller, more focused modules?**
   _Cohesion score 0.08636977058029689 - nodes in this community are weakly interconnected._
 - **Should `npm Dependencies` be split into smaller, more focused modules?**

@@ -17,6 +17,9 @@ export interface ThermoState {
   phase?: string
   substance?: string
   model?: 'ideal_gas' | 'ideal_gas_cp_t' | 'real'
+  /** Units each property was last stored in. Used by the Cycle Builder to
+   *  re-convert the state to SI before calling the analysis engine. */
+  output_units?: Record<string, string>
 }
 
 interface UnitSystem extends Record<string, string> {

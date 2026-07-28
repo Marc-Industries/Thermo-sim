@@ -26,8 +26,12 @@ interface ThermoChartProps {
   diagram: 'Ts' | 'Pv' | 'Ph' | 'Tv' | 'Ps' | 'Hs'
   height?: number
   series: SeriesData[]
-  /** Optional axis units (otherwise SI). Keys: x, y. */
-  units?: { x?: string; y?: string }
+  /** Optional axis units. Keys: x, y.
+   *  By default, when `units` is passed, the values in `series` are assumed to
+   *  be in SI and the chart converts them to the requested units before plotting.
+   *  Pass `convertFromSI: false` to skip the conversion (e.g. when the data is
+   *  already in user units, as in the cycle builder). */
+  units?: { x?: string; y?: string; convertFromSI?: boolean }
 }
 
 export default function ThermoChart({ diagram, height = 400, series, units }: ThermoChartProps) {
@@ -46,6 +50,15 @@ export default function ThermoChart({ diagram, height = 400, series, units }: Th
   const axisLabelX = xUnit ? `${ax.xKey} (${xUnit})` : ax.x
   const axisLabelY = yUnit ? `${ax.yKey} (${yUnit})` : ax.y
 
+  // Default behaviour: when a unit is requested, points come from the engine in
+  // SI and we convert them to the requested unit for display. When
+  // `convertFromSI: false` is set, points are already in the requested unit and
+  // we plot them as-is.
+  const shouldConvert = units?.convertFromSI !== false && !!xUnit
+
+  const xConvert = (v: number) => (shouldConvert ? convertFromSI(ax.xKey, v, xUnit) : v)
+  const yConvert = (v: number) => (shouldConvert && yUnit ? convertFromSI(ax.yKey, v, yUnit) : v)
+
   // Build a unified table keyed by (x, then each series name).
   // recharts needs every <Line dataKey="..."> to read from its own column, so
   // we collect all x values across series, then emit one row per x with one
@@ -57,11 +70,9 @@ export default function ThermoChart({ diagram, height = 400, series, units }: Th
     for (const p of s.points) {
       const xRaw = (p as Record<string, any>)[ax.xKey]
       const yRaw = (p as Record<string, any>)[ax.yKey]
-      const xVal = typeof xRaw === 'number' ? (xUnit ? convertFromSI(ax.xKey, xRaw, xUnit) : xRaw) : Number.NaN
-      const yVal = typeof yRaw === 'number' ? (yUnit ? convertFromSI(ax.yKey, yRaw, yUnit) : yRaw) : Number.NaN
+      const xVal = typeof xRaw === 'number' ? xConvert(xRaw) : Number.NaN
+      const yVal = typeof yRaw === 'number' ? yConvert(yRaw) : Number.NaN
       if (!Number.isFinite(xVal) || !Number.isFinite(yVal)) continue
-      // Round x to avoid float duplicates; tighter tolerance for log axes would
-      // need a different approach — but for normal ranges this is fine.
       if (!seen.has(xVal)) {
         seen.add(xVal)
         xVals.push(xVal)

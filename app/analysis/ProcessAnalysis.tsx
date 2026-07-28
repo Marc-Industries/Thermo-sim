@@ -9,7 +9,7 @@ import { toast } from 'sonner'
 import { computeState } from '@/lib/api'
 import { analyzeProcess, ProcessType } from '@/lib/thermo-engine'
 import { generateProfessorReport } from '@/lib/professor'
-import { convertFromSI } from '@/lib/units'
+import { convertFromSI, convertToSI } from '@/lib/units'
 
 export default function ProcessAnalysis() {
   const { t, substances, setCurrentState } = useStore()
@@ -37,36 +37,34 @@ export default function ProcessAnalysis() {
   const compute = async () => {
     setBusy(true)
     try {
-      // `value` is already in SI (PropField converts on change). Send an empty
-      // unit string so the server doesn't double-convert.
+      // PropField now keeps the raw user-typed number; we send the chosen unit
+      // with it. The server does the SI conversion internally and returns the
+      // derived state already in user units.
       const r1 = await computeState({
         model,
         substance,
-        prop1: { name: prop1_1.name, value: Number(prop1_1.value), unit: '' },
-        prop2: { name: prop1_2.name, value: Number(prop1_2.value), unit: '' },
+        prop1: { name: prop1_1.name, value: Number(prop1_1.value), unit: prop1_1.unit || '' },
+        prop2: { name: prop1_2.name, value: Number(prop1_2.value), unit: prop1_2.unit || '' },
       })
       const r2 = await computeState({
         model,
         substance,
-        prop1: { name: prop2_1.name, value: Number(prop2_1.value), unit: '' },
-        prop2: { name: prop2_2.name, value: Number(prop2_2.value), unit: '' },
+        prop1: { name: prop2_1.name, value: Number(prop2_1.value), unit: prop2_1.unit || '' },
+        prop2: { name: prop2_2.name, value: Number(prop2_2.value), unit: prop2_2.unit || '' },
       })
       setState1(r1.state)
       setState2(r2.state)
       const n = processType === 'polytropic' ? parseFloat(polytropicN) : undefined
-      const out = analyzeProcess(model, substance, r1.state, r2.state, processType, n)
+      // analyzeProcess expects SI internally. Convert the user-units state
+      // back to SI for the engine call only — the displayed state stays in
+      // user units.
+      const s1si = toSI(r1.state, r1.output_units)
+      const s2si = toSI(r2.state, r2.output_units)
+      const out = analyzeProcess(model, substance, s1si, s2si, processType, n)
       setW(out.W); setQ(out.Q)
-      setCurrentState({ ...r1.state, substance, model })
-      // Use the unit the user picked for the same property (or default SI).
-      setDisplayUnits({
-        P: prop1_1.name === 'P' ? (prop1_1.unit || 'Pa') : (prop2_1.name === 'P' ? (prop2_1.unit || 'Pa') : 'Pa'),
-        T: prop1_1.name === 'T' ? (prop1_1.unit || 'K') : (prop1_2.name === 'T' ? (prop1_2.unit || 'K') : (prop2_1.name === 'T' ? (prop2_1.unit || 'K') : (prop2_2.name === 'T' ? (prop2_2.unit || 'K') : 'K'))),
-        h: prop1_2.name === 'h' ? (prop1_2.unit || 'J/kg') : (prop2_2.name === 'h' ? (prop2_2.unit || 'J/kg') : 'J/kg'),
-        s: prop1_2.name === 's' ? (prop1_2.unit || 'J/(kg·K)') : (prop2_2.name === 's' ? (prop2_2.unit || 'J/(kg·K)') : 'J/(kg·K)'),
-        v: prop1_2.name === 'v' ? (prop1_2.unit || 'm³/kg') : (prop2_2.name === 'v' ? (prop2_2.unit || 'm³/kg') : 'm³/kg'),
-        u: prop1_2.name === 'u' ? (prop1_2.unit || 'J/kg') : (prop2_2.name === 'u' ? (prop2_2.unit || 'J/kg') : 'J/kg'),
-        x: '',
-      })
+      setCurrentState({ ...r1.state, output_units: r1.output_units, substance, model })
+      // Display units: the server told us which units it returned in.
+      setDisplayUnits(r1.output_units ?? {})
       setReport(null)
     } catch (e: any) {
       toast.error(e.message || t('saveErr'))
@@ -112,6 +110,22 @@ export default function ProcessAnalysis() {
     const v = u ? convertFromSI(key, value, u) : value
     return `${v.toFixed(2)} ${u || ''}`.trim()
   }
+
+/**
+ * Convert a state returned by the server (in user-picked units) back to SI
+ * so the engine can use it directly. Used before calling `analyzeProcess`.
+ */
+function toSI(state: any, units: Record<string, string> | undefined) {
+  const out: any = { ...state }
+  for (const k of Object.keys(out)) {
+    const v = out[k]
+    const u = units?.[k]
+    if (typeof v === 'number' && u) {
+      out[k] = convertToSI(k, v, u)
+    }
+  }
+  return out
+}
 
   const subsList = (substances as any)[model === 'ideal_gas_cp_t' ? 'ideal_gas' : model] || []
 
@@ -211,18 +225,18 @@ export default function ProcessAnalysis() {
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
               <div className="border border-slate-800 p-3 rounded">
                 <h4 className="mb-2 text-sm font-semibold text-slate-400">Stato 1</h4>
-                <PropertyTable state={state1} units={{ P: 'Pa', T: 'K', v: 'm³/kg', h: 'J/kg', u: 'J/kg', s: 'J/(kg·K)' }} />
+                <PropertyTable state={state1} units={displayUnits as any} />
               </div>
               <div className="border border-slate-800 p-3 rounded">
                 <h4 className="mb-2 text-sm font-semibold text-slate-400">Stato 2</h4>
-                <PropertyTable state={state2} units={{ P: 'Pa', T: 'K', v: 'm³/kg', h: 'J/kg', u: 'J/kg', s: 'J/(kg·K)' }} />
+                <PropertyTable state={state2} units={displayUnits as any} />
               </div>
             </div>
             {W !== null && Q !== null && (
               <div className="border border-slate-700 p-4 rounded bg-slate-900/40">
                 <h4 className="mb-2 font-semibold text-slate-300">Analisi del processo: {processType}</h4>
-                <p className="text-sm">Lavoro specifico: <span className="font-mono text-signal-red">W = {W.toFixed(2)} J/kg</span></p>
-                <p className="text-sm">Calore specifico: <span className="font-mono text-signal-blue">Q = {Q.toFixed(2)} J/kg</span></p>
+                <p className="text-sm">Lavoro specifico: <span className="font-mono text-signal-red">{fmtValue('W', W)}</span></p>
+                <p className="text-sm">Calore specifico: <span className="font-mono text-signal-blue">{fmtValue('Q', Q)}</span></p>
               </div>
             )}
 
