@@ -15,18 +15,16 @@ export default function Diagrams() {
   const substances = ['Water', 'R134a', 'R410a', 'R22', 'Ammoniaca', 'Metanolo']
 
   // Build the saturation envelope for the chosen substance / diagram.
+  // All six planes supported: Ts/Pv/Ph/Hs/Tv/Ps.
   const satSeries = useMemo(() => {
-    if (selectedDiagram === 'Ts' || selectedDiagram === 'Ph' || selectedDiagram === 'Hs') {
-      const pts = buildSaturationCurve(substance, selectedDiagram as any)
-      if (!pts.length) return []
-      const liquid = pts.filter((p: any) => p.series === 'liquid')
-      const vapor = pts.filter((p: any) => p.series === 'vapor')
-      return [
-        { name: 'sat. liquid', color: '#38bdf8', points: liquid, showDots: false, showLine: true },
-        { name: 'sat. vapor', color: '#f97316', points: vapor, showDots: false, showLine: true },
-      ]
-    }
-    return []
+    const pts = buildSaturationCurve(substance, selectedDiagram as any)
+    if (!pts.length) return []
+    const liquid = pts.filter((p: any) => p.series === 'liquid')
+    const vapor = pts.filter((p: any) => p.series === 'vapor')
+    return [
+      { name: 'sat. liquid', color: '#38bdf8', points: liquid, showDots: false, showLine: true },
+      { name: 'sat. vapor', color: '#f97316', points: vapor, showDots: false, showLine: true },
+    ]
   }, [substance, selectedDiagram])
 
   const cycleSeries = useMemo(() => {

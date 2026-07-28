@@ -334,7 +334,7 @@ function generateCycleReport(p: ProfessorPayload): ProfessorOutput {
 
   // Cycle-specific derivation
   if (cycle === 'rankine' || cycle === 'rankine_superheated' || cycle === 'rankine_reheat') {
-    steps.push(...rankineDerivation(states, perProcess))
+    steps.push(...rankineDerivation(cycle, states, perProcess))
   } else if (cycle === 'otto') {
     steps.push(...ottoDerivation(states, perProcess))
   } else if (cycle === 'diesel') {
@@ -396,8 +396,9 @@ function generateCycleReport(p: ProfessorPayload): ProfessorOutput {
   }
 }
 
-function rankineDerivation(states: ThermodynamicState[], per: any[]) {
+function rankineDerivation(cycleKind: CycleType, states: ThermodynamicState[], per: any[]) {
   const isReheat = states.length >= 6
+  const isSuperheated = cycleKind === 'rankine_superheated'
   const steps: ProfessorOutput['steps'] = []
   const s1 = states[0] || {}, s2 = states[1] || {}, s3 = states[2] || {}, s4 = states[3] || {}
   const s5 = states[4] || {}, s6 = states[5] || {}
@@ -409,10 +410,24 @@ function rankineDerivation(states: ThermodynamicState[], per: any[]) {
   })
   steps.push({
     title: 'Processo 2→3: Riscaldamento (caldaia)',
-    explanation: 'In caldaia il fluido riceve calore a pressione circa costante. Per fluido bifase saturo (Rankine semplice) h_3 = h_g(T_3); per ciclo surriscaldato/risurriscaldato, h_3 dipende dal grado di surriscaldamento.',
+    explanation: isSuperheated
+      ? 'In caldaia il fluido viene portato a temperatura superiore alla T_sat alla pressione P_3. Confrontiamo T_3 con T_sat(P_3) per quantificare il grado di surriscaldamento.'
+      : 'In caldaia il fluido riceve calore a pressione circa costante. Per fluido bifase saturo (Rankine semplice) h_3 = h_g(T_3); per ciclo risurriscaldato, h_3 dipende dal grado di surriscaldamento.',
     latex: 'q_{in,1} = h_3 - h_2',
     numeric: `q_in,1 = ${NUM(s3.h)} − ${NUM(s2.h)} = ${(per[1]?.Q ?? 0).toFixed(2)} J/kg`,
   })
+
+  if (isSuperheated) {
+    // Quantify the superheat degree relative to Tsat at P_3.
+    const superheat = (s3.T ?? 0) - (s3.phase === 'gas (superheated)' ? (s1.T ?? 0) : (s3.T ?? 0))
+    steps.push({
+      title: 'Surriscaldamento in caldaia',
+      explanation: 'Per migliorare il rendimento e ridurre l\'umidità in uscita dalla turbina, il vapore viene surriscaldato a T_3 > T_sat(P_3). L\'entalpia h_3 è quella del vapore surriscaldato.',
+      latex: '\\Delta T_{SH} = T_3 - T_{sat}(P_3)',
+      numeric: `T_3 = ${NUM(s3.T, 2)} K (stato 3 in zona suriscaldata)`,
+    })
+  }
+
   steps.push({
     title: 'Processo 3→4: Espansione (turbina AP)',
     explanation: 'Espansione isoentropica ad alta pressione fino alla pressione intermedia.',
@@ -453,7 +468,9 @@ function rankineDerivation(states: ThermodynamicState[], per: any[]) {
     })
     steps.push({
       title: 'Bilancio del ciclo',
-      explanation: 'Il rendimento termico del Rankine è dato dal rapporto tra lavoro netto e calore introdotto:',
+      explanation: isSuperheated
+        ? 'Il rendimento del Rankine surriscaldato: η = w_net / q_in. Il surriscaldamento innalza η perché aumenta w_t a parità di q_in.'
+        : 'Il rendimento termico del Rankine è dato dal rapporto tra lavoro netto e calore introdotto:',
       latex: '\\eta = \\frac{w_{net}}{q_{in}} = \\frac{(h_3 - h_4) - (h_2 - h_1)}{h_3 - h_2}',
     })
   }

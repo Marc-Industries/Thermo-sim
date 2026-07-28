@@ -22,22 +22,30 @@ export async function POST(req: Request) {
 
     const texBin = await findLaTeXBinary()
     if (texBin) {
-      const pdf = await compileLaTeX(texBin, latex)
-      // pdf is a Buffer — wrap in a Blob so the Web Response type is happy
-      const blob = new Blob([new Uint8Array(pdf)], { type: 'application/pdf' })
-      return new Response(blob, {
-        headers: {
-          'Content-Type': 'application/pdf',
-          'Content-Disposition': `attachment; filename="professor-${body.cycle || 'report'}.pdf"`,
-        },
-      })
+      try {
+        const pdf = await compileLaTeX(texBin, latex)
+        const blob = new Blob([new Uint8Array(pdf)], { type: 'application/pdf' })
+        return new Response(blob, {
+          headers: {
+            'Content-Type': 'application/pdf',
+            'Content-Disposition': `attachment; filename="professor-${body.cycle || 'report'}.pdf"`,
+          },
+        })
+      } catch (compileErr: any) {
+        // LaTeX binary present but compile failed → fall back to client-side
+        // rendering so the user still gets a usable document.
+        return NextResponse.json({
+          text: body?.markdown || '',
+          warning: 'LaTeX compile failed: ' + (compileErr?.message || 'unknown error') + '. Falling back to client-side PDF.',
+        })
+      }
     }
 
     // Fallback: server cannot compile LaTeX here. Return the markdown so the
     // client can render it in HTML and use the browser's print-to-PDF.
     return NextResponse.json({
       text: body?.markdown || '',
-      warning: 'No LaTeX binary found on server; falling back to client-side print. Set up a build with tectonic or deploy the GitHub Action workflow for server-side PDF.',
+      warning: 'No LaTeX binary found on server; falling back to client-side PDF. Set up a build with tectonic or deploy the GitHub Action workflow for server-side PDF.',
     })
   } catch (e: any) {
     return NextResponse.json({ error: e.message || 'PDF error' }, { status: 500 })

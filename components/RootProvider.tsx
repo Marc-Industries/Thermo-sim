@@ -2,6 +2,7 @@
 
 import { useStore } from '@/lib/store'
 import React, { useEffect } from 'react'
+import { loadWasmCore, hasWasmCore } from '@/lib/wasm-loader'
 
 export default function RootProvider({ children }: { children: React.ReactNode }) {
   const loadSubstances = useStore((s) => s.loadSubstances)
@@ -18,6 +19,16 @@ export default function RootProvider({ children }: { children: React.ReactNode }
       }
     }
     loadData()
+
+    // Best-effort: try to load the Rust/WASM core. If unavailable (no binary in
+    // public/wasm/, no toolchain), this is a no-op and the TS engine is used.
+    loadWasmCore().then((core) => {
+      if (core) {
+        // Expose for ad-hoc evaluation so the engine can hot-swap later.
+        ;(window as any).__THERMO_WASM__ = core
+        console.info('WASM core loaded; TypeScript engine remains the default.')
+      }
+    })
 
     // Load session snapshot from sessionStorage (if present)
     try {
