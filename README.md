@@ -1,4 +1,4 @@
-# TermoLab - Next.js + Rust Wasm + Vercel
+# Thermo Lab - Next.js + Rust Wasm + Vercel
 
 Calcolo e visualizzazione termodinamica per studenti, ricercatori e ingegneri.
 

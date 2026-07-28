@@ -1,4 +1,4 @@
-# TermoLab - Deployment Guide
+# Thermo Lab - Deployment Guide
 
 ## Setup GitHub
 

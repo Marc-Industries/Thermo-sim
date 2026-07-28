@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import RootProvider from '@/components/RootProvider'
 
 export const metadata: Metadata = {
-  title: 'TermoLab',
+  title: 'Thermo Lab',
   description: 'Calcolo e visualizzazione termodinamica',
 }
 

@@ -70,9 +70,9 @@ interface Store {
 
 const translations = {
   it: {
-    appTitle: 'TermoLab',
+    appTitle: 'Thermo Lab',
     appTagline: 'Calcolo e visualizzazione termodinamica',
-    appFooter: 'TermoLab · Calcolo termico per studio e ricerca',
+    appFooter: 'Thermo Lab · Calcolo termico per studio e ricerca',
     nav_state: 'Stato',
     nav_process: 'Processo',
     nav_cycle: 'Ciclo',
@@ -88,9 +88,9 @@ const translations = {
     saveErr: 'Errore nel calcolo',
   },
   en: {
-    appTitle: 'TermoLab',
+    appTitle: 'Thermo Lab',
     appTagline: 'Thermodynamic calculation & visualisation',
-    appFooter: 'TermoLab · Thermal calculation for study and research',
+    appFooter: 'Thermo Lab · Thermal calculation for study and research',
     nav_state: 'State',
     nav_process: 'Process',
     nav_cycle: 'Cycle',

@@ -233,7 +233,7 @@ export default function CycleBuilder() {
         // Last resort: open a print preview window with MathJax.
         const w = window.open('', '_blank')
         if (w) {
-          w.document.write(`<html><head><title>TermoLab ${selectedCycle}</title><script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script></head><body style="font-family:system-ui;padding:2cm;background:white;color:black">${reportMarkdownToHTML(report.markdown)}</body></html>`)
+          w.document.write(`<html><head><title>Thermo Lab ${selectedCycle}</title><script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script></head><body style="font-family:system-ui;padding:2cm;background:white;color:black">${reportMarkdownToHTML(report.markdown)}</body></html>`)
           w.document.close()
           setTimeout(() => w.print(), 800)
         }
