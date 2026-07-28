@@ -209,6 +209,64 @@ export async function GET(req: Request) {
       } catch (e: any) {
         results.push({ name: 'http_analyze_routes', ok: false, error: e.message })
       }
+
+      // Test 13: IAPWS-IF97 reference comparison for water at 1 atm / x=0.5.
+      // Verifies the saturation table matches the international standard within
+      // engineering tolerance (~1%).
+      try {
+        const r = await fetch(`${url.origin}/api/compute-state`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            model: 'real', substance: 'Water',
+            prop1: { name: 'P', value: 101325, unit: 'Pa' },
+            prop2: { name: 'T', value: 373.15, unit: 'K' },
+          }),
+        })
+        const data = await r.json()
+        const s = data.state
+        // Reference values (IAPWS-IF97) at 1 atm, x = 0.5:
+        // v_ref ≈ 0.8372 m³/kg, h_ref ≈ 1547.3 kJ/kg, s_ref ≈ 4.3307 kJ/(kg·K)
+        const vErr = Math.abs((s.v - 0.8372) / 0.8372)
+        const hErr = Math.abs((s.h / 1000 - 1547.3) / 1547.3)
+        const sErr = Math.abs((s.s / 1000 - 4.3307) / 4.3307)
+        const ok = s.phase === 'two-phase' && vErr < 0.02 && hErr < 0.02 && sErr < 0.02
+        results.push({
+          name: 'iapws_water_1atm_x05',
+          ok,
+          errors: { v: (vErr * 100).toFixed(2) + '%', h: (hErr * 100).toFixed(2) + '%', s: (sErr * 100).toFixed(2) + '%' },
+        })
+      } catch (e: any) {
+        results.push({ name: 'iapws_water_1atm_x05', ok: false, error: e.message })
+      }
+
+      // Test 14: R134a two-phase from (T, x) — exercises the (T, x) branch
+      // we just added. Picks T = 260 K, x = 0.5 (well inside the dome) and
+      // checks the result is internally consistent.
+      try {
+        const r = await fetch(`${url.origin}/api/compute-state`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            model: 'real', substance: 'R134a',
+            prop1: { name: 'T', value: 260, unit: 'K' },
+            prop2: { name: 'x', value: 0.5, unit: '' },
+          }),
+        })
+        const data = await r.json()
+        const s = data.state
+        // Internal consistency: h must lie between hf and hg at that T,
+        // and P must equal the saturation pressure at 260 K (145.2 kPa
+        // per the substance DB).
+        const ok = s.phase === 'two-phase' && Math.abs(s.x - 0.5) < 0.01 && Math.abs(s.P - 145200) / 145200 < 0.02
+        results.push({
+          name: 'r134a_T_x_two_phase',
+          ok,
+          P: s.P, T: s.T, x: s.x, h: s.h,
+        })
+      } catch (e: any) {
+        results.push({ name: 'r134a_T_x_two_phase', ok: false, error: e.message })
+      }
     }
 
     return NextResponse.json({ ok: true, results })

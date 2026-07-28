@@ -13,8 +13,8 @@ export async function POST(req: Request) {
       const title = idx !== undefined ? `State~${idx+1}` : 'State'
       return `\\subsection*{${title}}\\\n\\begin{itemize}\\n\\item P = ${s.P ?? '-'}~\\mathrm{Pa}\\n\\item T = ${s.T ?? '-'}~\\mathrm{K}\\n\\item v = ${s.v ?? '-'}~\\mathrm{m^3/kg}\\n\\item h = ${s.h ?? '-'}~\\mathrm{J/kg}\\n\\item s = ${s.s ?? '-'}~\\mathrm{J/(kg\\,K)}\\n\\item phase = ${s.phase ?? '-'}\\n\\end{itemize}\\n`}
 
-    let markdown = '# Thermonator Pro Report\n\n'
-    let latex = '\\section*{Thermonator Pro Report}\\n\\n'
+    let markdown = '# TermoLab Report\n\n'
+    let latex = '\\section*{TermoLab Report}\\n\\n'
 
     if (type === 'state') {
       const s = body.state

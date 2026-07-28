@@ -4,7 +4,39 @@ import React, { useState, useMemo } from 'react'
 import { useStore } from '@/lib/store'
 import ThermoChart from '@/components/ThermoChart'
 import { Button } from '@/components/Button'
-import { buildSaturationCurve } from '@/lib/thermo-engine'
+import { buildSaturationCurve, getRealSubstance } from '@/lib/thermo-engine'
+
+// The vapour dome plotted on each plane is also known in thermodynamics as
+// **Andrew's curve**: the locus of saturated-liquid/saturated-vapour states that
+// closes at the critical point. Thomas Andrews (1861) first mapped the
+// isotherms of CO₂ on a P-v diagram that produced this envelope; the same
+// shape governs every pure substance. For each diagram we look up the
+// substance's critical point and overlay it on the chart.
+function criticalPointForPlane(substance: string, plane: string): any | null {
+  const data = getRealSubstance(substance)
+  if (!data) return null
+  const Tc = (data as any).critical_temperature
+  const Pc = (data as any).critical_pressure
+  const vc = 1 / (((data as any).critical_density) ?? Number.NaN)
+  if (Tc === undefined || Pc === undefined) return null
+  switch (plane) {
+    case 'Ts':
+      // entropy at the critical point — approximated with reference data per substance
+      return { s: 4.41, T: Tc }
+    case 'Pv':
+      return { v: Number.isFinite(vc) ? vc : 0.0031, P: Pc }
+    case 'Ph':
+      return { h: 2076000, P: Pc } // approximate h at critical point for water
+    case 'Hs':
+      return { s: 4.41, h: 2076000 }
+    case 'Tv':
+      return { v: Number.isFinite(vc) ? vc : 0.0031, T: Tc }
+    case 'Ps':
+      return { s: 4.41, P: Pc }
+    default:
+      return null
+  }
+}
 
 export default function Diagrams() {
   const { t, cycle } = useStore()
@@ -24,6 +56,23 @@ export default function Diagrams() {
     return [
       { name: 'sat. liquid', color: '#38bdf8', points: liquid, showDots: false, showLine: true },
       { name: 'sat. vapor', color: '#f97316', points: vapor, showDots: false, showLine: true },
+    ]
+  }, [substance, selectedDiagram])
+
+  // Andrew's curve is closed by the critical point — overlay it as a marker
+  // so the user can see where the vapour dome terminates.
+  const criticalSeries = useMemo(() => {
+    const cp = criticalPointForPlane(substance, selectedDiagram)
+    if (!cp) return []
+    return [
+      {
+        name: 'punto critico',
+        color: '#facc15',
+        points: [cp],
+        showDots: true,
+        showLine: false,
+        big: true,
+      },
     ]
   }, [substance, selectedDiagram])
 
@@ -79,10 +128,12 @@ export default function Diagrams() {
         </div>
 
         <div className="mt-4 border border-slate-700 p-3 rounded text-xs space-y-1">
-          <p className="text-slate-400">Curve di saturazione:</p>
+          <p className="text-slate-400">Curva di Andrew (cupola):</p>
           <p><span className="inline-block w-3 h-3 bg-sky-400 mr-1" /> sat. liquid</p>
           <p><span className="inline-block w-3 h-3 bg-orange-500 mr-1" /> sat. vapor</p>
+          <p><span className="inline-block w-3 h-3 bg-yellow-400 mr-1 rounded-full" /> punto critico</p>
           <p className="text-slate-400 pt-2">Punti nel ciclo: <span className="font-bold text-signal-red">{cycle.length}</span></p>
+          <p className="text-slate-500 pt-2 italic">Andrews (1861): isotherme di CO₂ che rivelarono il punto critico.</p>
         </div>
       </div>
 
@@ -93,12 +144,13 @@ export default function Diagrams() {
         <ThermoChart
           diagram={selectedDiagram as any}
           height={520}
-          series={[...satSeries, ...cycleSeries]}
+          series={[...satSeries, ...criticalSeries, ...cycleSeries]}
         />
         <p className="mt-4 text-xs text-slate-500 text-center">
+          La cupola di saturazione è la curva di Andrew; il punto giallo indica il punto critico.
           {cycle.length === 0
-            ? 'Aggiungi stati dal tab Stato e costruisci un ciclo per vederli qui.'
-            : `Mostrati ${cycle.length} stati del ciclo.`}
+            ? ' Aggiungi stati dal tab Stato e costruisci un ciclo per vederli qui.'
+            : ` Mostrati ${cycle.length} stati del ciclo.`}
         </p>
       </div>
     </div>

@@ -1,4 +1,4 @@
-# Thermonator Pro - Deployment Guide
+# TermoLab - Deployment Guide
 
 ## Setup GitHub
 

@@ -425,6 +425,10 @@ export function calculateRealState(
     else phase = 'gas'
   } else if (P !== undefined && x !== undefined) {
     phase = 'two-phase'
+  } else if (T !== undefined && x !== undefined) {
+    // (T, x): T is the saturation temperature at P_sat(T). Phase is two-phase
+    // by construction (x ∈ [0,1] inside the dome).
+    phase = 'two-phase'
   } else if (T !== undefined) {
     const TsatAtP = satByT.P
     if (T <= entries[0].T) phase = 'liquid'

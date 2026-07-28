@@ -3,8 +3,8 @@ import type { Metadata } from 'next'
 import RootProvider from '@/components/RootProvider'
 
 export const metadata: Metadata = {
-  title: 'Thermonator Pro',
-  description: 'Advanced thermodynamic simulation, calculation and visualization',
+  title: 'TermoLab',
+  description: 'Calcolo e visualizzazione termodinamica',
 }
 
 export default function RootLayout({

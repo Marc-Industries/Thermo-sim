@@ -1,7 +1,7 @@
 {
   "metadata": {
     "version": "1.2",
-    "description": "Database esteso delle costanti termodinamiche per Thermonator Pro",
+    "description": "Database esteso delle costanti termodinamiche per TermoLab",
     "reference_state": "IUPAC (T = 298.15 K, P = 100000 Pa)",
     "universal_gas_constant_R_u": 8.314462618
   },

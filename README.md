@@ -1,6 +1,6 @@
-# Thermonator Pro - Next.js + Rust Wasm + Vercel
+# TermoLab - Next.js + Rust Wasm + Vercel
 
-Advanced thermodynamic simulation and calculation app for students, researchers, and engineers.
+Calcolo e visualizzazione termodinamica per studenti, ricercatori e ingegneri.
 
 ## Features
 

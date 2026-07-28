@@ -49,7 +49,7 @@ export default function Shell() {
             </div>
             <div>
               <h1 className="font-head text-lg font-black leading-none tracking-tight">
-                THERMONATOR <span className="text-signal-red">PRO</span>
+                <span className="text-signal-red">{t('appTitle') || 'TermoLab'}</span>
               </h1>
               <p className="mt-0.5 text-[11px] text-slate-500">{t('appTagline')}</p>
             </div>
@@ -117,7 +117,7 @@ export default function Shell() {
 
       {/* FOOTER */}
       <footer className="border-t border-slate-800 px-5 py-4 text-center text-xs text-slate-600">
-        Thermonator Pro · Rust + WebAssembly · Next.js + Vercel
+        {t('appFooter') || 'TermoLab · Calcolo termico per studio e ricerca'}
       </footer>
     </div>
   )
