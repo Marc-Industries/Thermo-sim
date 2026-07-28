@@ -62,7 +62,7 @@ function generateStateReport(p: ProfessorPayload): ProfessorOutput {
   const s = p.state || {}
   const steps: ProfessorOutput['steps'] = []
   const md: string[] = ['# Calcolo di uno Stato Termodinamico', '', "Sostanza: " + p.substance + " modello: " + p.model, '']
-  const tex: string[] = ['\\section*{Calcolo di uno Stato Termodinamico}', `Sostanza: ${p.substance} (modello: ${p.model})']
+  const tex: string[] = ['\\section*{Calcolo di uno Stato Termodinamico}', "Sostanza: " + p.substance + " modello: " + p.model]
 
   steps.push({
     title: 'Identificazione delle proprietà note',

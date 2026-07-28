@@ -23,7 +23,9 @@ export async function POST(req: Request) {
     const texBin = await findLaTeXBinary()
     if (texBin) {
       const pdf = await compileLaTeX(texBin, latex)
-      return new Response(pdf, {
+      // pdf is a Buffer — wrap in a Blob so the Web Response type is happy
+      const blob = new Blob([new Uint8Array(pdf)], { type: 'application/pdf' })
+      return new Response(blob, {
         headers: {
           'Content-Type': 'application/pdf',
           'Content-Disposition': `attachment; filename="professor-${body.cycle || 'report'}.pdf"`,

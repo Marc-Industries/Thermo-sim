@@ -151,7 +151,8 @@ export function convertToSI(propName: string, value: number, unit?: string): num
       if (u === 'kPa') return value * 1e3
       if (u === 'MPa') return value * 1e6
       if (u === 'mbar') return value * 100
-      const f = factorToSI(TABLES.pressure, label)
+      if (u === 'bar') return value * 1e5
+      const f = factorToSI(TABLES.pressure, '1 ' + label)
       return Number.isNaN(f) ? value : value * f
     }
 
@@ -169,7 +170,7 @@ export function convertToSI(propName: string, value: number, unit?: string): num
       const label = ENERGY_PER_MASS_ALIASES[u] ?? u
       if (u === 'kJ/kg') return value * 1000
       if (u === 'MJ/kg') return value * 1e6
-      const f = factorToSI(TABLES.energySpecific, label, 'J_kg')
+      const f = factorToSI(TABLES.energySpecific, '1 ' + label, 'J_kg')
       return Number.isNaN(f) ? value : value * f
     }
 
@@ -199,7 +200,7 @@ export function convertToSI(propName: string, value: number, unit?: string): num
       const label = ENERGY_ALIASES[u] ?? u
       if (u === 'kJ') return value * 1000
       if (u === 'MJ') return value * 1e6
-      const f = factorToSI(TABLES.energy, label, 'J')
+      const f = factorToSI(TABLES.energy, '1 ' + label, 'J')
       return Number.isNaN(f) ? value : value * f
     }
 
@@ -208,7 +209,7 @@ export function convertToSI(propName: string, value: number, unit?: string): num
       const label = POWER_ALIASES[u] ?? u
       if (u === 'kW') return value * 1000
       if (u === 'MW') return value * 1e6
-      const f = factorToSI(TABLES.power, label, 'W')
+      const f = factorToSI(TABLES.power, '1 ' + label, 'W')
       return Number.isNaN(f) ? value : value * f
     }
 

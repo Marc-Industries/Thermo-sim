@@ -49,8 +49,8 @@ export default function StateCalculator() {
       const body = {
         model,
         substance,
-        prop1: { name: prop1.name, value: parseFloat(String(prop1.value)), unit: prop1.unit },
-        prop2: { name: prop2.name, value: parseFloat(String(prop2.value)), unit: prop2.unit },
+        prop1: { name: prop1.name, value: parseFloat(String(prop1.value)), unit: prop1.unit ?? '' },
+        prop2: { name: prop2.name, value: parseFloat(String(prop2.value)), unit: prop2.unit ?? '' },
       }
       const data = await computeState(body)
       setResult(data)

@@ -402,8 +402,8 @@ export function calculateRealState(
   if (!entries.length) throw new Error(`No saturation data for: ${substance}`)
 
   const props: Record<string, number> = { [prop1.name]: prop1.value, [prop2.name]: prop2.value }
-  const P = props.P
-  const T = props.T
+  let P = props.P
+  let T = props.T
   let v = props.v
   let h = props.h
   let u = props.u
@@ -508,7 +508,7 @@ export function computeThermodynamicState(
   substance: string,
   prop1: { name: string; value: number; unit?: string },
   prop2: { name: string; value: number; unit?: string }
-): { state: ThermodynamicState; extra?: Record<string, number> } {
+): { state: ThermodynamicState; extra?: Record<string, number | string> } {
   if (model === 'ideal_gas') {
     if (!idealGasData[substance]) throw new Error(`Ideal gas not supported: ${substance}`)
     const state = calculateIdealGasState(substance, prop1, prop2)
@@ -519,7 +519,7 @@ export function computeThermodynamicState(
     if (!idealGasData[substance]) throw new Error(`Ideal gas not supported: ${substance}`)
     const state = calculateIdealGasCpTState(substance, prop1, prop2)
     const d = idealGasData[substance]
-    return { state, extra: { R: d.R, cpModel: d.cpModel || 'cp(T)' } }
+    return { state, extra: { R: d.R, cpModel: String(d.cpModel || 'cp(T)') } }
   }
   if (model === 'real') {
     const state = calculateRealState(substance, prop1, prop2)
@@ -538,7 +538,7 @@ export function analyzeProcess(
   state2: ThermodynamicState,
   process: ProcessType,
   polytropic_n?: number
-): { W: number; Q: number; extra?: Record<string, number> } {
+): { W: number; Q: number; extra?: Record<string, number | string> } {
   const data = idealGasData[substance]
   // Ideal gas: analytic expressions
   if (model === 'ideal_gas' && data) {
@@ -558,12 +558,12 @@ export function analyzeProcess(
       case 'isochoric':
         return { W: 0, Q: cv * (T2 - T1), extra: { kind: 'isochoric' } }
       case 'isothermal':
-        return { W: R * T1 * Math.log(v2 / v1), Q: W, extra: { kind: 'isothermal' } }
+        return { W: R * T1 * Math.log(v2 / v1), Q: R * T1 * Math.log(v2 / v1), extra: { kind: 'isothermal' } }
       case 'adiabatic':
         return { W: cv * (T1 - T2), Q: 0, extra: { kind: 'adiabatic', gamma } }
       case 'polytropic': {
         const n = polytropic_n ?? ((P2 * v2 - P1 * v1) > 0 ? polytropic_from_state(P1, v1, P2, v2, R, T1) : 1.3)
-        if (Math.abs(n - 1) < 1e-6) return { W: R * T1 * Math.log(v2 / v1), Q: W, extra: { kind: 'polytropic', n } }
+        if (Math.abs(n - 1) < 1e-6) return { W: R * T1 * Math.log(v2 / v1), Q: R * T1 * Math.log(v2 / v1), extra: { kind: 'polytropic', n } }
         const W = (P2 * v2 - P1 * v1) / (1 - n)
         const Q = ((gamma - n) / (gamma - 1)) * W
         return { W, Q, extra: { kind: 'polytropic', n } }
@@ -572,7 +572,6 @@ export function analyzeProcess(
   }
   // Generic: W = ∫ P dv (ideal approx) ; Q = Δu + W
   if (model === 'ideal_gas' || model === 'ideal_gas_cp_t') {
-    const R = data!.R
     const v1 = state1.v!, v2 = state2.v!
     const P1 = state1.P!, P2 = state2.P!
     const W = process === 'isobaric' ? P1 * (v2 - v1) : 0.5 * (P1 + P2) * (v2 - v1)
@@ -605,7 +604,7 @@ export interface CycleResult {
   eta: number
   COP?: number
   perProcess: { from: number; to: number; W: number; Q: number }[]
-  extra?: Record<string, number>
+  extra?: Record<string, number | string>
 }
 
 export function analyzeCycle(
